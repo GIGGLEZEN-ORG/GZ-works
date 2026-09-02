@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumina Resort & Spa | Ultra-Luxury Coastal Sanctuary</title>
+  <meta name="description" content="Experience award-winning palatial architecture, Michelin-starred gastronomy, and bespoke private suites along the serene Mediterranean Riviera.">
+
+  <!-- Google Fonts (Haute Luxury Typography) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Handcrafted Pure CSS3 Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Pure Vanilla JavaScript -->
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+
+  <!-- Top Scroll Reading Progress Indicator -->
+  <div class="scroll-progress-bar" id="scroll-progress"></div>
+
+  <!-- Announcement & Concierge Top Bar -->
+  <aside class="top-bar" aria-label="Resort Information Bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-left">
+        <span class="top-bar-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Côte d'Azur, French Riviera
+        </span>
+        <span class="top-bar-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          Riviera Weather: 24°C / 75°F · Sunny
+        </span>
+      </div>
+      <div class="top-bar-right">
+        <span class="top-bar-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Local Resort Time: <strong id="live-resort-time" style="color:#ffffff; margin-left:4px;">12:00:00 CET</strong>
+        </span>
+        <span class="top-bar-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Concierge: <a href="tel:+33493123456">+33 (0)4 93 12 34 56</a>
+        </span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Sticky Glassmorphic Main Navigation Header -->
+  <header class="navbar" id="main-navbar">
+    <div class="container navbar-container">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="navbar-brand">
+        <div class="brand-emblem">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <div>
+          <span class="brand-name">Lumina</span>
+          <span class="brand-sub">Resort & Spa</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="navbar-menu">
+        <a href="#about" class="nav-link">Sanctuary</a>
+        <a href="#accommodations" class="nav-link">Suites & Villas</a>
+        <a href="#dining" class="nav-link">Gastronomy</a>
+        <a href="#spa" class="nav-link">Aura Spa</a>
+        <a href="#experiences" class="nav-link">Experiences</a>
+        <a href="#resort-map" class="nav-link">Grounds</a>
+        <a href="#company" class="nav-link">Company</a>
+      </nav>
+
+      <!-- CTA Actions -->
+      <div class="navbar-actions">
+        <button onclick="openBookingModal()" class="btn btn-gold">
+          <span>Reserve Stay</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <button class="mobile-toggle-btn" id="mobile-toggle-btn" aria-label="Toggle Navigation Menu">
+          ☰
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Fullscreen Navigation Drawer -->
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+    <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close Navigation Menu">✕</button>
+    <div class="mobile-nav-links">
+      <a href="#about" class="mobile-nav-link">The Sanctuary</a>
+      <a href="#accommodations" class="mobile-nav-link">Suites & Villas</a>
+      <a href="#dining" class="mobile-nav-link">Fine Gastronomy</a>
+      <a href="#spa" class="mobile-nav-link">Aura Spa & Wellness</a>
+      <a href="#experiences" class="mobile-nav-link">Curated Experiences</a>
+      <a href="#resort-map" class="mobile-nav-link">Interactive Map</a>
+      <a href="#company" class="mobile-nav-link">About Company</a>
+    </div>
+    <button onclick="openBookingModal()" class="btn btn-gold" style="width: 240px;">
+      Reserve Your Suite
+    </button>
+  </div>
+
+  <main>
+    <!-- Section 1: Majestic Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="hero-background">
+        <img src="https://images.unsplash.com/photo-1542314831-c53cd4b85d05?auto=format&fit=crop&w=2000&q=85" alt="Lumina Resort & Spa Aerial Panorama" class="hero-bg-img">
+        <div class="hero-overlay"></div>
+      </div>
+
+      <div class="container hero-content">
+        <div class="hero-badge reveal-on-scroll">
+          <span class="hero-badge-star">★</span>
+          <span>Condé Nast Traveler #1 World Resort 2026</span>
+          <span class="hero-badge-star">★</span>
+        </div>
+
+        <h1 class="hero-title reveal-on-scroll reveal-delay-1">
+          Where Palatial Elegance<br><span>Meets Coastal Serenity.</span>
+        </h1>
+
+        <p class="hero-desc reveal-on-scroll reveal-delay-2">
+          Immerse yourself in unrivaled luxury, bespoke butler heritage, and Michelin-starred culinary artistry nestled along the sun-drenched cliffs of the Mediterranean.
+        </p>
+
+        <div class="hero-actions reveal-on-scroll reveal-delay-3">
+          <button onclick="openBookingModal()" class="btn btn-gold">
+            <span>Book Your Stay</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <a href="#accommodations" class="btn btn-outline-light">
+            <span>Explore Suites</span>
+          </a>
+        </div>
+
+        <a href="#booking-widget" class="hero-scroll-indicator reveal-on-scroll reveal-delay-3">
+          <div class="hero-scroll-mouse">
+            <div class="hero-scroll-wheel"></div>
+          </div>
+          <span>Discover Sanctuary</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Section 2: Luxury Quick-Booking Bar (Floating) -->
+    <div class="container booking-widget-wrapper" id="booking-widget">
+      <div class="booking-widget reveal-on-scroll">
+        <form id="quick-booking-form" class="booking-form-grid">
+          
+          <!-- Check In -->
+          <div class="booking-field">
+            <label class="booking-label" for="quick-checkin">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Check-In Date
+            </label>
+            <div class="booking-input-wrapper">
+              <input type="date" id="quick-checkin" class="booking-input" required>
+            </div>
+          </div>
+
+          <!-- Check Out -->
+          <div class="booking-field">
+            <label class="booking-label" for="quick-checkout">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Check-Out Date
+            </label>
+            <div class="booking-input-wrapper">
+              <input type="date" id="quick-checkout" class="booking-input" required>
+            </div>
+          </div>
+
+          <!-- Room Tier Selection -->
+          <div class="booking-field">
+            <label class="booking-label" for="quick-suite">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              Suite Collection
+            </label>
+            <div class="booking-input-wrapper">
+              <select id="quick-suite" class="booking-input">
+                <option value="deluxe-ocean">Deluxe Ocean View Villa ($650/n)</option>
+                <option value="executive-suite">Executive Horizon Suite ($1,100/n)</option>
+                <option value="overwater-pavilion">Overwater Lagoon Pavilion ($1,650/n)</option>
+                <option value="royal-penthouse">Royal Penthouse Sanctuary ($2,800/n)</option>
+                <option value="wellness-residence">Botanical Wellness Residence ($1,350/n)</option>
+                <option value="cliffside-villa">Cliffside Sunset Villa ($2,100/n)</option>
+              </select>
+              <div class="select-arrow">▼</div>
+            </div>
+          </div>
+
+          <!-- Guests Selector -->
+          <div class="booking-field">
+            <label class="booking-label" for="quick-guests">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              Guests
+            </label>
+            <div class="booking-input-wrapper">
+              <select id="quick-guests" class="booking-input">
+                <option value="1">1 Adult (Solo Retreat)</option>
+                <option value="2" selected>2 Adults (Couples Stay)</option>
+                <option value="3">3 Adults (Suite Sharing)</option>
+                <option value="4">4+ Guests (Family Villa)</option>
+              </select>
+              <div class="select-arrow">▼</div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-gold booking-submit-btn">
+            <span>Check Rates</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+
+        </form>
+      </div>
+    </div>
+
+    <!-- Section 3: Brand Highlights & Stats Ribbon -->
+    <section class="stats-ribbon" aria-label="Resort Key Figures">
+      <div class="container stats-grid">
+        <div class="stat-item reveal-on-scroll">
+          <div class="stat-number" data-target="450" data-suffix=" ACRES">0</div>
+          <div class="stat-label">Private Coastal Sanctuary</div>
+        </div>
+        <div class="stat-item reveal-on-scroll reveal-delay-1">
+          <div class="stat-number" data-target="3" data-suffix=" STARS">0</div>
+          <div class="stat-label">Michelin Gastronomy</div>
+        </div>
+        <div class="stat-item reveal-on-scroll reveal-delay-2">
+          <div class="stat-number" data-target="98" data-suffix=" VILLAS">0</div>
+          <div class="stat-label">Private Plunge Pool Suites</div>
+        </div>
+        <div class="stat-item reveal-on-scroll reveal-delay-3">
+          <div class="stat-number" data-target="100" data-suffix="%">0</div>
+          <div class="stat-label">Carbon Neutral Certified</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Editorial Heritage / About Us -->
+    <section class="about-section" id="about">
+      <div class="container about-grid">
+        
+        <!-- Imagery Composition -->
+        <div class="about-images-composition reveal-on-scroll">
+          <img src="https://6a96693e7f21973e44498099.imgix.net/sandbox/download1111.webp?view=detailV2&ccid=9eRgQaC7&id=33C9C01EB28ACBB595B8A8D1B009050EA9951CD2&thid=OIP.9eRgQaC7hfs6zeHXVx5mIAHaEK&mediaurl=https:%2F%2Fmedia.cntraveler.com%2Fphotos%2F60d4aa2efa2963639daee3fe%2F16:9%2Fw_1280,c_limit%2FThe-Leela-Palace-Jaipur-lead.jpg&exph=720&expw=1280&q=Palatial%2BResort%2BArchitecture&FORM=IRPRST&ck=D9165205205E319324EF459DB1A2D322&selectedIndex=11&itb=0" alt="" />
+          <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=800&q=80" alt="Private Pool Horizon" class="about-img-secondary">
+          
+          <div class="about-experience-badge">
+            <div class="badge-years">25</div>
+            <div class="badge-text">Years of Haute<br>Hospitality</div>
+          </div>
+        </div>
+
+        <!-- Editorial Content -->
+        <div class="about-content reveal-on-scroll reveal-delay-1">
+          <span class="eyebrow">The Lumina Heritage</span>
+          <h2 class="section-title">An architectural masterpiece sculpted by the sea.</h2>
+          <p class="about-lead">
+            Conceived by Pritzker-prize laureates, Lumina Resort is a testament to the harmony between radical minimalist aesthetics and ancient Mediterranean grandeur.
+          </p>
+          <p class="about-paragraph">
+            Every limestone arch, cantilevered terrace, and private infinity plunge pool is positioned to capture the golden hour radiance of the French Riviera. Here, privacy is absolute, bespoke service is intuitive, and every moment is elevated to timeless memory.
+          </p>
+
+          <ul class="about-features-list">
+            <li class="about-feature-item">
+              <span class="feature-check-icon">✓</span>
+              <span>Private Superyacht Marina</span>
+            </li>
+            <li class="about-feature-item">
+              <span class="feature-check-icon">✓</span>
+              <span>24/7 Dedicated Butler Service</span>
+            </li>
+            <li class="about-feature-item">
+              <span class="feature-check-icon">✓</span>
+              <span>Helipad VIP Fast-Track Arrival</span>
+            </li>
+            <li class="about-feature-item">
+              <span class="feature-check-icon">✓</span>
+              <span>Grand Cru Sommelier Wine Cellar</span>
+            </li>
+          </ul>
+
+          <div style="display: flex; align-items: center; gap: 24px; flex-wrap: wrap;">
+            <a href="#accommodations" class="btn btn-dark">
+              <span>Explore Accommodations</span>
+            </a>
+            <a href="#experiences" class="btn-link">
+              <span>Read Our Story</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 5: Accommodations (Rooms & Suites Collection) -->
+    <section class="rooms-section" id="accommodations">
+      <div class="container">
+        
+        <div class="section-header reveal-on-scroll">
+          <span class="eyebrow">Exclusive Sanctuary</span>
+          <h2 class="section-title">Suites, Pavilions & Residences</h2>
+          <p class="section-subtitle">
+            Indulge in spacious, ocean-facing sanctuaries thoughtfully appointed with natural stone, organic linens, and private plunge pools.
+          </p>
+        </div>
+
+        <!-- Filter Category Tabs -->
+        <div class="category-filter-nav reveal-on-scroll">
+          <button class="filter-btn active" data-filter="all">All Suites</button>
+          <button class="filter-btn" data-filter="ocean">Ocean Villas</button>
+          <button class="filter-btn" data-filter="overwater">Overwater Pavilions</button>
+          <button class="filter-btn" data-filter="penthouse">Royal Penthouse</button>
+          <button class="filter-btn" data-filter="wellness">Wellness Suites</button>
+        </div>
+
+        <!-- Suites Grid -->
+        <div class="rooms-grid">
+          
+          <!-- Suite Card 1 -->
+          <article class="room-card reveal-on-scroll" data-category="ocean">
+            <div class="room-media">
+              <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=800&q=80" alt="Deluxe Ocean View Villa" class="room-img">
+              <div class="room-badge-tag">Oceanfront</div>
+              <div class="room-price-badge">
+                <div class="room-price-amount">$650</div>
+                <div class="room-price-period">per night</div>
+              </div>
+            </div>
+            <div class="room-body">
+              <h3 class="room-title">Deluxe Ocean View Villa</h3>
+              <p class="room-description">
+                Panoramic Mediterranean views with a private sun terrace, freestanding soaking tub, and bespoke Italian furnishings.
+              </p>
+              <div class="room-amenities-bar">
+                <span class="room-amenity-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                  2 Guests
+                </span>
+                <span class="room-amenity-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20M6 8v9"/></svg>
+                  1 King Bed
+                </span>
+                <span class="room-amenity-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+                  65 m²
+                </span>
+              </div>
+              <div class="room-card-actions">
+                <button onclick="openSuiteModal('deluxe-ocean')" class="btn btn-outline-gold" style="padding: 10px 16px; font-size: 0.72rem;">
+                  View Details
+                </button>
+                <button onclick="openBookingModalWithSuite('deluxe-ocean')" class="btn btn-gold" style="padding: 10px 16px; font-size: 0.72rem;">
+                  Reserve Suite
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Suite Card 2 -->
+          <article class="room-card reveal-on-scroll reveal-delay-1" data-category="ocean">
+            <div class="room-media">
+              <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80" alt="Executive Horizon Suite" class="room-img">
+              <div class="room-badge-tag">Horizon View</div>
+              <div class="room-price-badge">
+                <div class="room-price-amount">$1,100</div>
+                <div class="room-price-period">per night</div>
+              </div>
+            </div>
+            <div class="room-body">
+              <h3 class="room-title">Executive Horizon Suite</h3>
+              <p class="room-description">
+                Expansive living quarters with a private heated plunge pool, dedicated butler pantry, and curated modern art.
+              </p>
+              <div class="room-amenities-bar">
+                <span class="room-amenity-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                  3 Guests
+                </span>
+                <span class="room-amenity-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20M6 8v9"/></svg>
+                  1 Emperor King
+                </span>
+                <span class="room-amenity-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+                  95 m²
+                </span>
+              </div>
+              <div class="room-card-actions">
+                <button onclick="openSuiteModal('executive-suite')" class="btn btn-outline-gold" style="padding: 10px 16px; font-size: 0.72rem;">
+                  View Details
+                </button>
+                <button onclick="openBookingModalWithSuite('executive-suite')" class="btn btn-gold" style="padding: 10px 16px; font-size: 0.72rem;">
+                  Reserve Suite
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Suite Card 3 -->
+          <article class="room-card reveal-on-scroll reveal-delay-2" data-category="overwater">
+            <div class="room-media">
+              <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80" alt="Overwater Lagoon Pavilion" class="room-img">
+              <div class="room-badge-tag">Overwater</div>
+              <div class="room-price-badge">
+                <div class="room-price-amount">$1,650</div>
+                <div class="room-price-period">per night</div>
+              </div>
+            </div>
+            <div class="room-body">
+              <h3 class="room-title">Overwater Lagoon Pavilion</h3>
+              <p class="room-description">
+                Perched directly above serene azure waters with private catamaran nets, glass floor portals, and lagoon steps.
+              </p>
+              <div class="room-amenities-bar">
+                <span class="room-amenity-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                  2 Guests
+                </span>
+                <span class="room-amenity-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20M6 8v9"/></svg>
+                  1 Floating King
+                </span>
+                <span class="room-amenity-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+                  130 m²
+                </span>
+              </div>
+              <div class="room-card-actions">
+                <button onclick="openSuiteModal('overwater-pavilion')" class="btn btn-outline-gold" style="padding: 10px 16px; font-size: 0.72rem;">
+                  View Details
+                </button>
+                <button onclick="openBookingModalWithSuite('overwater-pavilion')" class="btn btn-gold" style="padding: 10px 16px; font-size: 0.72rem;">
+                  Reserve Suite
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Suite Card 4 -->
+          <article class="room-card reveal-on-scroll" data-category="penthouse">
+            <div class="room-media">
+              <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80" alt="Royal Penthouse Sanctuary" class="room-img">
+              <div class="room-badge-tag">Penthouse Signature</div>
+              <div class="room-price-badge">
+                <div class="room-price-amount">$2,800</div>
+                <div class="room-price-period">per night</div>
+              </div>
+            </div>
+            <div class="room-body">
+              <h3 class="room-title">Royal Penthouse Sanctuary</h3>
+              <p class="room-description">
+                The pinnacle of coastal majesty. Private rooftop lap pool, dedicated sommelier, cinema salon, and 24/7 master chef.
+              </p>
+              <div class="room-amenities-bar">
+                <span class="room-amenity-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                  6 Guests
+                </span>
+                <span class="room-amenity-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20M6 8v9"/></svg>
+                  3 King Suites
+                </span>
+                <span class="room-amenity-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+                  220 m²
+                </span>
+              </div>
+              <div class="room-card-actions">
+                <button onclick="openSuiteModal('royal-penthouse')" class="btn btn-outline-gold" style="padding: 10px 16px; font-size: 0.72rem;">
+                  View Details
+                </button>
+                <button onclick="openBookingModalWithSuite('royal-penthouse')" class="btn btn-gold" style="padding: 10px 16px; font-size: 0.72rem;">
+                  Reserve Suite
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Suite Card 5 -->
+          <article class="room-card reveal-on-scroll reveal-delay-1" data-category="wellness">
+            <div class="room-media">
+              <img src="https://6a96693e7f21973e44498099.imgix.net/sandbox/OIP.webp?view=detailV2&ccid=JzdpGMx8&id=5DBF4E73A3A31442D1022F826F58137323120207&thid=OIP.JzdpGMx89yTCcvd14hOoDQHaEZ&mediaurl=https:%2F%2Fyan.co.th%2Fwp-content%2Fuploads%2F2024%2F12%2Fyanarchitects_A_contemporary_modern_grand_master_bedroom_with_w_beab90ea-b841-4972-b17a-04a469244eea-enhanced-1024x609.png&exph=609&expw=1024&q=Botanical%2BWellness%2BResidence&FORM=IRPRST&ck=6EDC78D8C70536F2B783C840571546D8&selectedIndex=3&itb=0" alt="" />
+              <div class="room-badge-tag">Wellness Retreat</div>
+              <div class="room-price-badge">
+                <div class="room-price-amount">$1,350</div>
+                <div class="room-price-period">per night</div>
+              </div>
+            </div>
+            <div class="room-body">
+              <h3 class="room-title">Botanical Wellness Residence</h3>
+              <p class="room-description">
+                Private Finnish cedar sauna, cold plunge tub, Himalayan salt wall, and bespoke daily Ayurvedic spa rituals.
+              </p>
+              <div class="room-amenities-bar">
+                <span class="room-amenity-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                  2 Guests
+                </span>
+                <span class="room-amenity-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20M6 8v9"/></svg>
+                  1 Organic King
+                </span>
+                <span class="room-amenity-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+                  115 m²
+                </span>
+              </div>
+              <div class="room-card-actions">
+                <button onclick="openSuiteModal('wellness-residence')" class="btn btn-outline-gold" style="padding: 10px 16px; font-size: 0.72rem;">
+                  View Details
+                </button>
+                <button onclick="openBookingModalWithSuite('wellness-residence')" class="btn btn-gold" style="padding: 10px 16px; font-size: 0.72rem;">
+                  Reserve Suite
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Suite Card 6 -->
+          <article class="room-card reveal-on-scroll reveal-delay-2" data-category="ocean">
+            <div class="room-media">
+              <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" alt="Cliffside Sunset Villa" class="room-img">
+              <div class="room-badge-tag">Cliffside Villa</div>
+              <div class="room-price-badge">
+                <div class="room-price-amount">$2,100</div>
+                <div class="room-price-period">per night</div>
+              </div>
+            </div>
+            <div class="room-body">
+              <h3 class="room-title">Cliffside Sunset Villa</h3>
+              <p class="room-description">
+                Sculpted into sheer granite cliffs with multi-tiered sun decks, a cantilevered infinity pool, and private firepit.
+              </p>
+              <div class="room-amenities-bar">
+                <span class="room-amenity-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                  4 Guests
+                </span>
+                <span class="room-amenity-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4v16M2 8h18a2 2 0 0 1 2 2v10M2 17h20M6 8v9"/></svg>
+                  2 King Suites
+                </span>
+                <span class="room-amenity-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+                  180 m²
+                </span>
+              </div>
+              <div class="room-card-actions">
+                <button onclick="openSuiteModal('cliffside-villa')" class="btn btn-outline-gold" style="padding: 10px 16px; font-size: 0.72rem;">
+                  View Details
+                </button>
+                <button onclick="openBookingModalWithSuite('cliffside-villa')" class="btn btn-gold" style="padding: 10px 16px; font-size: 0.72rem;">
+                  Reserve Suite
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 6: Fine Dining & Gastronomy -->
+    <section class="dining-section" id="dining">
+      <div class="container">
+        
+        <div class="section-header reveal-on-scroll">
+          <span class="eyebrow">Culinary Artistry</span>
+          <h2 class="section-title">Michelin-Starred Gastronomy</h2>
+          <p class="section-subtitle">
+            An extraordinary epicurean journey featuring world-renowned master chefs, rare vintage wine vaults, and oceanfront table settings.
+          </p>
+        </div>
+
+        <!-- Restaurant 1: L'Étoile -->
+        <div class="dining-showcase reveal-on-scroll">
+          <div class="dining-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1000&q=80" alt="L'Étoile Michelin Restaurant" class="dining-img">
+            <div class="dining-michelin-tag">
+              <span>★★★</span> Michelin 2026
+            </div>
+          </div>
+          <div class="dining-content">
+            <span class="dining-cuisine">Haute Coastal French Cuisine</span>
+            <h3 class="dining-name">L'Étoile by Chef Jean-Luc</h3>
+            <p class="dining-desc">
+              Three-Michelin starred culinary theatre spotlighting hand-dived Mediterranean langoustines, Périgord black truffles, and sustainable coastal foraging.
+            </p>
+            <div class="dining-meta-grid">
+              <div class="dining-meta-item">
+                <h5>Dinner Hours</h5>
+                <p>19:00 — 23:30</p>
+              </div>
+              <div class="dining-meta-item">
+                <h5>Dress Code</h5>
+                <p>Formal Elegant</p>
+              </div>
+              <div class="dining-meta-item">
+                <h5>Wine Cellar</h5>
+                <p>3,200 Grand Crus</p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+              <button onclick="openTableModal('L\'Étoile')" class="btn btn-gold">
+                <span>Reserve Table</span>
+              </button>
+              <a href="#experiences" class="btn btn-outline-gold">
+                <span>Explore Tasting Menu</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Restaurant 2: Mizu -->
+        <div class="dining-showcase reversed reveal-on-scroll">
+          <div class="dining-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1578474846511-04ba529f0b88?auto=format&fit=crop&w=1000&q=80" alt="Mizu Omakase Lounge" class="dining-img">
+            <div class="dining-michelin-tag">
+              <span>★★</span> Michelin 2026
+            </div>
+          </div>
+          <div class="dining-content">
+            <span class="dining-cuisine">Overwater Japanese Omakase</span>
+            <h3 class="dining-name">Mizu Water Pavilion</h3>
+            <p class="dining-desc">
+              Master Kenji Sato crafts an unforgettable 18-course omakase ritual featuring A5 Miyazaki Wagyu, Hokkaido sea urchin, and bluefin otoro flown daily from Tokyo.
+            </p>
+            <div class="dining-meta-grid">
+              <div class="dining-meta-item">
+                <h5>Seating Times</h5>
+                <p>18:30 & 21:00</p>
+              </div>
+              <div class="dining-meta-item">
+                <h5>Capacity</h5>
+                <p>12 Exclusive Seats</p>
+              </div>
+              <div class="dining-meta-item">
+                <h5>Sake Pairing</h5>
+                <p>Rare Junmai Daiginjo</p>
+              </div>
+            </div>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+              <button onclick="openTableModal('Mizu')" class="btn btn-gold">
+                <span>Reserve Omakase</span>
+              </button>
+              <a href="#experiences" class="btn btn-outline-gold">
+                <span>View Master Menu</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 7: The Lumina Spa & Wellness Haven -->
+    <section class="spa-section" id="spa">
+      <div class="container">
+        
+        <div class="section-header reveal-on-scroll">
+          <span class="eyebrow">Holistic Rejuvenation</span>
+          <h2 class="section-title">The Aura Spa & Hydrothermal Haven</h2>
+          <p class="section-subtitle">
+            Restore harmony of body and mind with bespoke treatments infused with marine minerals, 24K gold botanicals, and ancient sound therapies.
+          </p>
+        </div>
+
+        <div class="spa-hero-card reveal-on-scroll">
+          <div class="spa-hero-media">
+            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1000&q=80" alt="Aura Spa Sanctuary" class="spa-hero-img">
+          </div>
+          <div class="spa-hero-content">
+            <span class="eyebrow no-after" style="color: var(--color-gold-300);">Private Wellness Sanctuary</span>
+            <h3 style="font-size: 2.2rem; color: #ffffff; margin-bottom: 1rem;">Hydrothermal Pools & Himalayan Salt Caves</h3>
+            <p style="font-size: 0.92rem; color: rgba(255,255,255,0.8); line-height: 1.8; margin-bottom: 2rem;">
+              Immerse yourself in our thermal circuit with magnesium-rich vitality pools, Finnish aromatherapy saunas, cryo-lounges, and private garden relaxation cabanas.
+            </p>
+            <button onclick="openSpaModal('General Thermal Suite Access')" class="btn btn-gold" style="align-self: flex-start;">
+              <span>Book Spa Journey</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Spa Signature Treatments Grid -->
+        <div class="spa-treatments-grid">
+          
+          <div class="spa-treatment-card reveal-on-scroll">
+            <div class="spa-treatment-header">
+              <h4 class="spa-treatment-title">24K Gold & Marine Botanical Facial</h4>
+              <span class="spa-treatment-price">$380</span>
+            </div>
+            <span class="spa-treatment-duration">90 Minutes · Cellular Radiance</span>
+            <p class="spa-treatment-desc">
+              Pure 24-karat gold leaf infused with deep-sea red algae and hyaluronic serum to illuminate, firm, and restore youthful luminescence.
+            </p>
+            <button onclick="openSpaModal('24K Gold & Marine Botanical Facial')" class="btn-link" style="margin-top: 20px;">
+              <span>Book Treatment</span>
+            </button>
+          </div>
+
+          <div class="spa-treatment-card reveal-on-scroll reveal-delay-1">
+            <div class="spa-treatment-header">
+              <h4 class="spa-treatment-title">Himalayan Salt Stone Massage</h4>
+              <span class="spa-treatment-price">$290</span>
+            </div>
+            <span class="spa-treatment-duration">75 Minutes · Deep Tension Release</span>
+            <p class="spa-treatment-desc">
+              Warm mineralized crystal stones paired with cold-pressed organic French lavender oils to melt muscular stress and rebalance bio-energy.
+            </p>
+            <button onclick="openSpaModal('Himalayan Salt Stone Massage')" class="btn-link" style="margin-top: 20px;">
+              <span>Book Treatment</span>
+            </button>
+          </div>
+
+          <div class="spa-treatment-card reveal-on-scroll reveal-delay-2">
+            <div class="spa-treatment-header">
+              <h4 class="spa-treatment-title">Ayurvedic Vitality & Sound Bath</h4>
+              <span class="spa-treatment-price">$450</span>
+            </div>
+            <span class="spa-treatment-duration">120 Minutes · Complete Mind Reset</span>
+            <p class="spa-treatment-desc">
+              Custom herbal Shirodhara oil stream followed by Tibetan quartz singing bowls to calm the nervous system and induce transcendent sleep.
+            </p>
+            <button onclick="openSpaModal('Ayurvedic Vitality & Sound Bath')" class="btn-link" style="margin-top: 20px;">
+              <span>Book Treatment</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 8: Curated Experiences -->
+    <section class="experiences-section" id="experiences">
+      <div class="container">
+        
+        <div class="section-header reveal-on-scroll">
+          <span class="eyebrow" style="color: var(--color-gold-300);">Bespoke Adventures</span>
+          <h2 class="section-title light">Curated Private Experiences</h2>
+          <p class="section-subtitle light">
+            Immerse yourself in hand-crafted Riviera expeditions, private yacht charters, and starlight culinary moments.
+          </p>
+        </div>
+
+        <div class="experiences-grid">
+          
+          <div class="experience-card reveal-on-scroll" onclick="showToast('Inquiry received for St. Tropez Yacht Charter. Concierge will contact you shortly.')">
+            <img src="https://6a96693e7f21973e44498099.imgix.net/sandbox/download22222.webp?view=detailV2&ccid=4nPz0L0c&id=240B497AE898AD72D7A2AD447BFA57BBE3CB0EB1&thid=OIP.4nPz0L0cYSTavMgOSOqtOwHaE8&mediaurl=https:%2F%2Fwww.twwyachts.com%2Fwp-content%2Fuploads%2F2023%2F07%2FCornelia-Yacht-for-charter-2.jpg&exph=1067&expw=1600&q=Private%2BYacht%2BCharter&FORM=IRPRST&ck=02A2AC53AF94827F48DFF3CBF4A7FD7E&selectedIndex=14&itb=0" alt="private yacht charter" />
+            <div class="experience-overlay"></div>
+            <div class="experience-content">
+              <div class="experience-category">Nautical Charter</div>
+              <h3 class="experience-title">Riva Yacht to St. Tropez</h3>
+              <p class="experience-text">
+                Glide across pristine coastal coves aboard our custom 88ft Riva yacht with a private sommelier and caviar service.
+              </p>
+              <span class="experience-link">
+                <span>Inquire With Butler</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="experience-card reveal-on-scroll reveal-delay-1" onclick="showToast('Inquiry received for Helipad Sunset Gastronomy. Concierge will contact you shortly.')">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Starlight Helipad Dining" class="experience-bg">
+            <div class="experience-overlay"></div>
+            <div class="experience-content">
+              <div class="experience-category">Culinary Alchemy</div>
+              <h3 class="experience-title">Starlight Helipad Dining</h3>
+              <p class="experience-text">
+                An exclusive table for two set atop the cliffside helipad beneath the constellations with a live acoustic cellist.
+              </p>
+              <span class="experience-link">
+                <span>Inquire With Butler</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="experience-card reveal-on-scroll reveal-delay-2" onclick="showToast('Inquiry received for Midnight Acoustic Sound Journey. Concierge will contact you shortly.')">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Midnight Sound Journey" class="experience-bg">
+            <div class="experience-overlay"></div>
+            <div class="experience-content">
+              <div class="experience-category">Wellness & Soul</div>
+              <h3 class="experience-title">Midnight Sound Journey</h3>
+              <p class="experience-text">
+                Guided deep-resonance meditation on our private beach as gentle waves synchronize with soothing quartz frequencies.
+              </p>
+              <span class="experience-link">
+                <span>Inquire With Butler</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 9: Interactive Resort Map & Hotspots -->
+    <section class="map-section" id="resort-map">
+      <div class="container">
+        
+        <div class="section-header reveal-on-scroll">
+          <span class="eyebrow" style="color: var(--color-gold-300);">Grounds & Exploration</span>
+          <h2 class="section-title light">The Resort Grounds Map</h2>
+          <p class="section-subtitle light">
+            Explore our 450-acre private peninsula. Click any glowing pin for details or to dispatch an electric VIP golf cart.
+          </p>
+        </div>
+
+        <div class="map-container reveal-on-scroll">
+          <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1600&q=80" alt="Resort Map Panorama" class="map-bg-img">
+
+          <!-- Hotspot 1: Heliport -->
+          <div class="map-hotspot" style="top: 25%; left: 20%;">
+            <div class="hotspot-pin">H</div>
+            <div class="hotspot-card">
+              <h4>VIP Heliport & Arrival Lounge</h4>
+              <p>Direct 12-minute helicopter transfers to Nice Côte d'Azur & Monaco.</p>
+              <button onclick="requestCartToHotspot('VIP Heliport')" class="btn-link" style="color:var(--color-gold-300); font-size:0.7rem; margin-top:8px;">Request Shuttle →</button>
+            </div>
+          </div>
+
+          <!-- Hotspot 2: Horizon Lagoon Pool -->
+          <div class="map-hotspot" style="top: 55%; left: 45%;">
+            <div class="hotspot-pin">★</div>
+            <div class="hotspot-card">
+              <h4>Infinity Horizon Lagoon</h4>
+              <p>Triple-tiered heated salt-water pools with submerged loungers.</p>
+              <button onclick="requestCartToHotspot('Infinity Horizon Lagoon')" class="btn-link" style="color:var(--color-gold-300); font-size:0.7rem; margin-top:8px;">Request Shuttle →</button>
+            </div>
+          </div>
+
+          <!-- Hotspot 3: Michelin Dining Pavilion -->
+          <div class="map-hotspot" style="top: 40%; left: 70%;">
+            <div class="hotspot-pin">🍽</div>
+            <div class="hotspot-card">
+              <h4>L'Étoile & Wine Vault</h4>
+              <p>Michelin 3-star dining and 3,200-bottle subterranean wine cellar.</p>
+              <button onclick="requestCartToHotspot('L\'Étoile Restaurant')" class="btn-link" style="color:var(--color-gold-300); font-size:0.7rem; margin-top:8px;">Request Shuttle →</button>
+            </div>
+          </div>
+
+          <!-- Hotspot 4: Private Yacht Marina -->
+          <div class="map-hotspot" style="top: 78%; left: 80%;">
+            <div class="hotspot-pin">⚓</div>
+            <div class="hotspot-card">
+              <h4>Private Yacht Marina</h4>
+              <p>Berthing for vessels up to 90m with dedicated harbor master.</p>
+              <button onclick="requestCartToHotspot('Private Yacht Marina')" class="btn-link" style="color:var(--color-gold-300); font-size:0.7rem; margin-top:8px;">Request Shuttle →</button>
+            </div>
+          </div>
+
+          <!-- Hotspot 5: Aura Spa Sanctuary -->
+          <div class="map-hotspot" style="top: 72%; left: 28%;">
+            <div class="hotspot-pin">♨</div>
+            <div class="hotspot-card">
+              <h4>The Aura Hydrothermal Spa</h4>
+              <p>Thermal caves, salt saunas, and botanical treatment pavilions.</p>
+              <button onclick="requestCartToHotspot('Aura Spa')" class="btn-link" style="color:var(--color-gold-300); font-size:0.7rem; margin-top:8px;">Request Shuttle →</button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 10: About the Company -->
+    <section class="company-section" id="company">
+      <div class="container">
+
+        <div class="section-header reveal-on-scroll">
+          <span class="eyebrow">About Our Company</span>
+          <h2 class="section-title">Our story is rooted in thoughtful luxury.</h2>
+          <p class="section-subtitle">
+            Lumina Resort & Spa was created to bring contemporary European elegance, warm hospitality, and restorative wellbeing into one unforgettable coastal destination.
+          </p>
+        </div>
+
+        <div class="about-grid" style="grid-template-columns: 1.1fr 0.9fr; align-items: center;">
+          <div class="about-content reveal-on-scroll reveal-delay-1">
+            <p class="about-lead">
+              Founded by a family of hospitality visionaries, Lumina began with a simple ambition: to create a place where exceptional service, cultural authenticity, and natural beauty could live in perfect harmony.
+            </p>
+            <p class="about-paragraph">
+              From our first private villa retreat to the full-scale sanctuary you see today, every decision has been guided by calm, craftsmanship, and care. We believe luxury should feel personal, immersive, and deeply restorative.
+            </p>
+
+            <ul class="about-features-list">
+              <li class="about-feature-item">
+                <span class="feature-check-icon">✓</span>
+                <span>Private hospitality experiences designed around guest comfort</span>
+              </li>
+              <li class="about-feature-item">
+                <span class="feature-check-icon">✓</span>
+                <span>Modern luxury inspired by Mediterranean culture and nature</span>
+              </li>
+              <li class="about-feature-item">
+                <span class="feature-check-icon">✓</span>
+                <span>Commitment to sustainability, wellness, and unforgettable service</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="about-images-composition reveal-on-scroll">
+            <img src="https://6a96693e7f21973e44498099.imgix.net/sandbox/OIP11.jpg?view=detailV2&ccid=cjcb4rqg&id=F42228EF2419D980884299074E9A722CA8D88451&thid=OIP.cjcb4rqgU3Idc25Qs-8ELQHaGp&mediaurl=https:%2F%2Flumina-hospitality.com%2Fwp-json%2Fyootheme%2Fimage%3Fsrc%3D%7B%22file%22:%22wp-content%252Fuploads%252F2026%252F05%252Fimage-2.png%22%252C%22thumbnail%22:%22610%252C548%252C%22%7D%26hash%3Deaf16047&exph=548&expw=610&q=lumina%2Bcompany%2Bhospitality%2Bimage&mode=overlay&FORM=IQFRBA&ck=551A6AF9771311D23896B3186BE90C7F&selectedIndex=0&idpp=serp" alt="lumina company hospitality image" />
+            <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=800&q=80" alt="Resort hospitality atmosphere" class="about-img-secondary">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 11: Editorial Press & Testimonials Slider -->
+    <section class="reviews-section" id="reviews">
+      <div class="container">
+        
+        <!-- Press Logos -->
+        <div class="press-logos-ribbon reveal-on-scroll">
+          <span class="press-logo-item">FORBES TRAVEL GUIDE ★★★★★</span>
+          <span class="press-logo-item">CONDÉ NAST TRAVELER</span>
+          <span class="press-logo-item">ARCHITECTURAL DIGEST</span>
+          <span class="press-logo-item">VOGUE LIVING</span>
+        </div>
+
+        <div class="reviews-carousel-wrapper reveal-on-scroll">
+          
+          <div class="reviews-slider">
+            
+            <div class="review-slide active">
+              <div class="review-stars">★★★★★</div>
+              <blockquote class="review-quote">
+                "An unrivaled triumph of modern architecture and intuitive luxury. Lumina delivers privacy and culinary transcendence unlike any resort on Earth."
+              </blockquote>
+              <div class="review-author-name">Lady Eleanor Vance</div>
+              <div class="review-author-origin">London & Geneva · Stayed August 2026</div>
+            </div>
+
+            <div class="review-slide">
+              <div class="review-stars">★★★★★</div>
+              <blockquote class="review-quote">
+                "The overwater lagoon pavilion is mesmerizing. Waking up to crystalline Mediterranean waters and personal sommelier service felt like pure poetry."
+              </blockquote>
+              <div class="review-author-name">Marcus & Sophia Sterling</div>
+              <div class="review-author-origin">New York City · Stayed July 2026</div>
+            </div>
+
+            <div class="review-slide">
+              <div class="review-stars">★★★★★</div>
+              <blockquote class="review-quote">
+                "Chef Jean-Luc's tasting menu at L'Étoile alongside the Himalayan salt spa treatments makes Lumina the world's most rejuvenating coastal haven."
+              </blockquote>
+              <div class="review-author-name">Alexander Von Berg</div>
+              <div class="review-author-origin">Munich · Stayed June 2026</div>
+            </div>
+
+          </div>
+
+          <div class="reviews-controls">
+            <button class="carousel-arrow" id="reviews-prev" aria-label="Previous Review">←</button>
+            <div class="carousel-dots" id="reviews-dots"></div>
+            <button class="carousel-arrow" id="reviews-next" aria-label="Next Review">→</button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 12: VIP Lumina Circle & Newsletter -->
+    <section class="vip-section">
+      <div class="container">
+        <div class="vip-card reveal-on-scroll">
+          <div class="vip-grid">
+            
+            <div>
+              <span class="eyebrow" style="color: var(--color-gold-300);">Exclusive Invitation</span>
+              <h2 style="font-size: clamp(2rem, 3.5vw, 2.8rem); color: #ffffff; margin-bottom: 1rem;">
+                Join The Lumina Circle
+              </h2>
+              <p style="font-size: 0.95rem; color: rgba(255, 255, 255, 0.75); line-height: 1.8;">
+                Receive private invitations to seasonal culinary retreats, preferred suite upgrades, and complimentary vintage champagne upon arrival.
+              </p>
+              
+              <div class="vip-perks-list">
+                <div class="vip-perk-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Complimentary category suite upgrade upon check-in</span>
+                </div>
+                <div class="vip-perk-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Welcome chilled bottle of Vintage Dom Pérignon</span>
+                </div>
+                <div class="vip-perk-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Priority reservations for Michelin 3-Star L'Étoile</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="vip-form-box">
+              <h4>VIP Membership Portal</h4>
+              <p>Enter your contact details to receive your personalized booking privilege code.</p>
+              
+              <form id="vip-newsletter-form" class="vip-form">
+                <input type="text" placeholder="Full Name" required class="vip-input">
+                <input type="email" id="vip-email" placeholder="Preferred Email Address" required class="vip-input">
+                <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 8px;">
+                  <span>Unlock VIP Privileges</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Grand Luxury Footer -->
+  <footer class="footer">
+    <div class="container">
+      
+      <div class="footer-grid">
+        
+        <!-- Brand Column -->
+        <div class="footer-brand">
+          <a href="#" class="navbar-brand" style="margin-bottom: 12px;">
+            <div class="brand-emblem">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </div>
+            <div>
+              <span class="brand-name">Lumina</span>
+              <span class="brand-sub">Resort & Spa</span>
+            </div>
+          </a>
+          <p>
+            An enclave of profound peace and architectural wonder. Redefining modern luxury hospitality on the azure cliffs of the French Riviera.
+          </p>
+          <div class="footer-awards-badge">
+            <span>🏆 World Luxury Hotel Awards 2026 Global Winner</span>
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div>
+          <h4 class="footer-heading">Sanctuary</h4>
+          <ul class="footer-links-list">
+            <li><a href="#about" class="footer-link">The Architecture</a></li>
+            <li><a href="#accommodations" class="footer-link">Suites & Villas</a></li>
+            <li><a href="#dining" class="footer-link">Michelin Gastronomy</a></li>
+            <li><a href="#spa" class="footer-link">Aura Spa & Wellness</a></li>
+            <li><a href="#experiences" class="footer-link">Private Charters</a></li>
+            <li><a href="#resort-map" class="footer-link">Resort Grounds Map</a></li>
+          </ul>
+        </div>
+
+        <!-- Experiences Links -->
+        <div>
+          <h4 class="footer-heading">Services & Butler</h4>
+          <ul class="footer-links-list">
+            <li><a href="#" onclick="openBookingModal(); return false;" class="footer-link">Suite Reservations</a></li>
+            <li><a href="#" onclick="openTableModal(); return false;" class="footer-link">Table Bookings</a></li>
+            <li><a href="#" onclick="openSpaModal(); return false;" class="footer-link">Spa Appointments</a></li>
+            <li><a href="#" onclick="showToast('Helicopter transfer concierge notified.'); return false;" class="footer-link">Helipad Transfers</a></li>
+            <li><a href="#" onclick="showToast('Yacht charter concierge notified.'); return false;" class="footer-link">Yacht Marina Berthing</a></li>
+          </ul>
+        </div>
+
+        <!-- Direct Contact Column -->
+        <div>
+          <h4 class="footer-heading">Direct Concierge</h4>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>1000 Boulevard de la Croisette, Cap d'Antibes, 06600, France</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span>+33 (0)4 93 12 34 56</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>reservations@lumina-resort.com</span>
+            </div>
+          </div>
+
+          <div class="social-links">
+            <a href="#" class="social-icon-btn" aria-label="Instagram">IG</a>
+            <a href="#" class="social-icon-btn" aria-label="Facebook">FB</a>
+            <a href="#" class="social-icon-btn" aria-label="LinkedIn">LI</a>
+            <a href="#" class="social-icon-btn" aria-label="YouTube">YT</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="footer-bottom">
+        <p>&copy; 2026 Lumina Resort & Spa. All Rights Reserved. Pure HTML5 + CSS3 + Vanilla JavaScript Architecture.</p>
+        <div class="footer-legal-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Haute Hospitality</a>
+          <a href="#">Sustainability Commitment</a>
+          <a href="#">Cookie Preferences</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       INTERACTIVE MODALS & OVERLAYS SYSTEM
+       ========================================================================= -->
+
+  <!-- Modal 1: Complete 4-Step Interactive Booking Engine -->
+  <div class="modal-overlay" id="booking-flow-modal">
+    <div class="modal-window">
+      
+      <div class="modal-header">
+        <h3 id="booking-modal-title">Lumina Bespoke Reservation</h3>
+        <button class="modal-close-btn" id="booking-modal-close" aria-label="Close Reservation Window">✕</button>
+      </div>
+
+      <div class="modal-body">
+        
+        <!-- Step Indicator Nodes -->
+        <div class="modal-steps-indicator">
+          <div class="step-indicator-node active" id="step-node-1">
+            <div class="step-node-circle">1</div>
+            <span class="step-node-label">Dates & Suite</span>
+          </div>
+          <div class="step-indicator-node" id="step-node-2">
+            <div class="step-node-circle">2</div>
+            <span class="step-node-label">VIP Enhancements</span>
+          </div>
+          <div class="step-indicator-node" id="step-node-3">
+            <div class="step-node-circle">3</div>
+            <span class="step-node-label">Guest Details</span>
+          </div>
+          <div class="step-indicator-node" id="step-node-4">
+            <div class="step-node-circle">4</div>
+            <span class="step-node-label">Confirmed</span>
+          </div>
+        </div>
+
+        <!-- Step 1 Pane: Dates & Suite Selection -->
+        <div class="modal-step-pane active" id="step-pane-1">
+          <div class="selected-suite-summary-box">
+            <div>
+              <span style="font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-text-secondary);">Current Selection</span>
+              <div class="suite-summary-title" id="modal-summary-suite-title">Deluxe Ocean View Villa</div>
+            </div>
+            <div class="suite-summary-price" id="modal-summary-suite-price">$650 / night</div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="booking-suite-select">Select Suite Tier</label>
+            <select id="booking-suite-select" class="form-control">
+              <option value="deluxe-ocean">Deluxe Ocean View Villa ($650/night)</option>
+              <option value="executive-suite">Executive Horizon Suite ($1,100/night)</option>
+              <option value="overwater-pavilion">Overwater Lagoon Pavilion ($1,650/night)</option>
+              <option value="royal-penthouse">Royal Penthouse Sanctuary ($2,800/night)</option>
+              <option value="wellness-residence">Botanical Wellness Residence ($1,350/night)</option>
+              <option value="cliffside-villa">Cliffside Sunset Villa ($2,100/night)</option>
+            </select>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="booking-checkin">Check-In Date</label>
+              <input type="date" id="booking-checkin" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="booking-checkout">Check-Out Date</label>
+              <input type="date" id="booking-checkout" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="booking-guests">Number of Guests</label>
+            <select id="booking-guests" class="form-control">
+              <option value="1">1 Adult</option>
+              <option value="2" selected>2 Adults (Couples Package)</option>
+              <option value="3">3 Adults</option>
+              <option value="4">4+ Guests</option>
+            </select>
+          </div>
+
+          <div class="modal-actions-row">
+            <div></div>
+            <button onclick="nextBookingStep()" class="btn btn-gold">
+              <span>Continue to VIP Enhancements</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2 Pane: Bespoke Add-ons -->
+        <div class="modal-step-pane" id="step-pane-2">
+          <p style="font-size: 0.92rem; color: var(--color-text-secondary); margin-bottom: 24px;">
+            Customize your stay with our signature luxury inclusions:
+          </p>
+
+          <div class="addons-grid">
+            <label class="addon-card-checkbox">
+              <input type="checkbox" id="addon-heli">
+              <div class="addon-card-content">
+                <div class="addon-card-info">
+                  <h5>Helipad VIP Transfer</h5>
+                  <p>Direct luxury helicopter from Nice Airport</p>
+                </div>
+                <div class="addon-price">+$450</div>
+              </div>
+            </label>
+
+            <label class="addon-card-checkbox">
+              <input type="checkbox" id="addon-champagne">
+              <div class="addon-card-content">
+                <div class="addon-card-info">
+                  <h5>Vintage Dom Pérignon</h5>
+                  <p>Chilled bottle with Kristal flutes in suite</p>
+                </div>
+                <div class="addon-price">+$180</div>
+              </div>
+            </label>
+
+            <label class="addon-card-checkbox">
+              <input type="checkbox" id="addon-spa">
+              <div class="addon-card-content">
+                <div class="addon-card-info">
+                  <h5>Couples Hydrothermal Spa</h5>
+                  <p>90-minute private salt cave therapy</p>
+                </div>
+                <div class="addon-price">+$320</div>
+              </div>
+            </label>
+
+            <label class="addon-card-checkbox">
+              <input type="checkbox" id="addon-butler">
+              <div class="addon-card-content">
+                <div class="addon-card-info">
+                  <h5>Dedicated Master Butler</h5>
+                  <p>24/7 personal valet and cocktail service</p>
+                </div>
+                <div class="addon-price">+$250/day</div>
+              </div>
+            </label>
+          </div>
+
+          <div class="modal-actions-row">
+            <button onclick="prevBookingStep()" class="btn btn-outline-gold">
+              <span>← Back</span>
+            </button>
+            <button onclick="nextBookingStep()" class="btn btn-gold">
+              <span>Proceed to Guest Details</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3 Pane: Guest Details & Live Breakdown -->
+        <div class="modal-step-pane" id="step-pane-3">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="guest-name">Primary Guest Full Name</label>
+              <input type="text" id="guest-name" placeholder="e.g. Lord Harrison Sterling" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="guest-email">Email Address for Confirmation</label>
+              <input type="email" id="guest-email" placeholder="harrison@sterling.com" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="guest-requests">Special Concierge Requests / Dietary Preferences</label>
+            <textarea id="guest-requests" rows="2" placeholder="e.g. Extra down feather pillows, gluten-free dining at L'Étoile, private marina slip for yacht..." class="form-control"></textarea>
+          </div>
+
+          <!-- Live Price Breakdown -->
+          <div style="background: var(--color-cream-bg); border: 1px solid var(--color-sand); padding: 20px; border-radius: var(--radius-xs); margin-top: 16px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:0.88rem; color:var(--color-text-secondary);">
+              <span>Suite Subtotal (<span id="inv-nights-count">4 nights</span>)</span>
+              <strong id="inv-room-cost" style="color:var(--color-obsidian);">$2,600</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:0.88rem; color:var(--color-text-secondary);">
+              <span>Selected VIP Enhancements</span>
+              <strong id="inv-addons-cost" style="color:var(--color-obsidian);">$0</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:12px; font-size:0.88rem; color:var(--color-text-secondary);">
+              <span>Luxury Hospitality Tax & Service (10%)</span>
+              <strong id="inv-tax-cost" style="color:var(--color-obsidian);">$260</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding-top:12px; border-top:1px solid var(--color-sand); font-size:1.2rem;">
+              <span style="font-family:var(--font-serif); font-weight:600;">Total Investment</span>
+              <strong id="inv-grand-total" style="color:var(--color-gold-600); font-family:var(--font-serif);">$2,860</strong>
+            </div>
+          </div>
+
+          <div class="modal-actions-row">
+            <button onclick="prevBookingStep()" class="btn btn-outline-gold">
+              <span>← Back</span>
+            </button>
+            <button onclick="nextBookingStep()" class="btn btn-gold">
+              <span>Confirm & Register Booking</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 4 Pane: Confirmation Receipt Screen -->
+        <div class="modal-step-pane" id="step-pane-4">
+          <div class="booking-success-box">
+            <div class="success-icon-badge">✓</div>
+            <h3 style="font-size: 1.8rem; margin-bottom: 8px;">Reservation Confirmed</h3>
+            <p style="font-size: 0.92rem; color: var(--color-text-secondary); max-width: 500px; margin: 0 auto 16px auto;">
+              Your stay at Lumina Resort & Spa has been officially secured. Your dedicated butler will reach out 48 hours prior to arrival.
+            </p>
+            
+            <div class="booking-ref-code">
+              REFERENCE: <span id="confirm-ref-code">LUM-2026-948123</span>
+            </div>
+
+            <div style="background: var(--color-cream-bg); border: 1px solid var(--color-sand); padding: 20px; border-radius: var(--radius-xs); max-width: 480px; margin: 0 auto 24px auto; text-align: left;">
+              <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:0.88rem;">
+                <span style="color:var(--color-text-secondary);">Suite:</span>
+                <strong id="confirm-suite-name">Deluxe Ocean View Villa</strong>
+              </div>
+              <div style="display:flex; justify-content:space-between; margin-bottom:8px; font-size:0.88rem;">
+                <span style="color:var(--color-text-secondary);">Dates:</span>
+                <strong id="confirm-dates">Aug 15 — Aug 19, 2026 (4 Nights)</strong>
+              </div>
+              <div style="display:flex; justify-content:space-between; font-size:0.88rem;">
+                <span style="color:var(--color-text-secondary);">Total:</span>
+                <strong id="confirm-total" style="color:var(--color-gold-600);">$2,860</strong>
+              </div>
+            </div>
+
+            <button onclick="finishBooking()" class="btn btn-dark" style="min-width: 200px;">
+              <span>Return to Sanctuary</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Suite Details Drawer -->
+  <div class="modal-overlay" id="suite-details-modal">
+    <div class="modal-window" style="max-width: 720px;">
+      <div class="modal-header">
+        <h3 id="suite-detail-title">Suite Details</h3>
+        <button class="modal-close-btn" id="suite-modal-close">✕</button>
+      </div>
+      <div class="modal-body" style="padding: 28px;">
+        <div style="height: 320px; overflow: hidden; border-radius: var(--radius-xs); margin-bottom: 20px;">
+          <img id="suite-detail-img" src="" alt="Suite Preview" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px;">
+          <span class="eyebrow no-after" id="suite-detail-view" style="margin-bottom: 0;">Ocean View</span>
+          <div class="suite-summary-price" id="suite-detail-price">$650 / night</div>
+        </div>
+        <p id="suite-detail-desc" style="font-size: 0.92rem; color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 20px;"></p>
+        
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 14px 0; border-top: 1px solid var(--color-sand); border-bottom: 1px solid var(--color-sand); margin-bottom: 20px; font-size: 0.82rem; text-align: center;">
+          <div><span style="color:var(--color-text-light); display:block;">Floor Area</span><strong id="suite-detail-size">65 m²</strong></div>
+          <div><span style="color:var(--color-text-light); display:block;">Capacity</span><strong id="suite-detail-guests">2 Guests</strong></div>
+          <div><span style="color:var(--color-text-light); display:block;">Bedding</span><strong id="suite-detail-bed">King Bed</strong></div>
+        </div>
+
+        <h5 style="font-family:var(--font-sans); font-size:0.8rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--color-text-secondary); margin-bottom:12px;">Included Luxury Appointments:</h5>
+        <ul id="suite-detail-amenities" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px;"></ul>
+
+        <button id="suite-modal-book-now" class="btn btn-gold" style="width: 100%;">
+          <span>Reserve This Suite</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Table Reservation Modal -->
+  <div class="modal-overlay" id="table-reservation-modal">
+    <div class="modal-window" style="max-width: 540px;">
+      <div class="modal-header">
+        <h3>Michelin Dining Reservation</h3>
+        <button class="modal-close-btn" id="table-modal-close">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="table-reservation-form">
+          <div class="form-group">
+            <label class="form-label" for="table-restaurant-select">Select Restaurant</label>
+            <select id="table-restaurant-select" class="form-control">
+              <option value="L'Étoile">L'Étoile (★★★ Michelin French)</option>
+              <option value="Mizu">Mizu Water Pavilion (★★ Omakase)</option>
+              <option value="Solstice">Solstice Sunset Lounge</option>
+            </select>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="table-date">Date</label>
+              <input type="date" id="table-date" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="table-time">Preferred Time</label>
+              <select id="table-time" class="form-control">
+                <option>19:00</option>
+                <option selected>20:00</option>
+                <option>21:00</option>
+                <option>22:00</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="table-guests">Guests</label>
+              <select id="table-guests" class="form-control">
+                <option>2 Guests</option>
+                <option>4 Guests</option>
+                <option>6 Guests</option>
+                <option>Private Dining Room (8-14)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="table-guest-name">Guest Name</label>
+              <input type="text" id="table-guest-name" placeholder="Full Name" class="form-control" required>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 16px;">
+            <span>Confirm Table Reservation</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Spa Treatment Booking Modal -->
+  <div class="modal-overlay" id="spa-booking-modal">
+    <div class="modal-window" style="max-width: 540px;">
+      <div class="modal-header">
+        <h3>Aura Spa Appointment</h3>
+        <button class="modal-close-btn" id="spa-modal-close">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="spa-booking-form">
+          <div class="form-group">
+            <label class="form-label" for="spa-treatment-select">Select Spa Ritual</label>
+            <select id="spa-treatment-select" class="form-control">
+              <option value="24K Gold & Marine Botanical Facial">24K Gold & Marine Botanical Facial (90m · $380)</option>
+              <option value="Himalayan Salt Stone Massage">Himalayan Salt Stone Massage (75m · $290)</option>
+              <option value="Ayurvedic Vitality & Sound Bath">Ayurvedic Vitality & Sound Bath (120m · $450)</option>
+              <option value="General Thermal Suite Access">Hydrothermal Suite Full-Day Pass ($150)</option>
+            </select>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label class="form-label" for="spa-date">Preferred Date</label>
+              <input type="date" id="spa-date" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="spa-time">Preferred Time</label>
+              <select id="spa-time" class="form-control">
+                <option>10:00 AM</option>
+                <option>02:00 PM</option>
+                <option selected>04:30 PM</option>
+                <option>07:00 PM</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="spa-guest-name">Guest Name & Suite #</label>
+            <input type="text" id="spa-guest-name" placeholder="e.g. Lady Vance (Suite 402)" class="form-control" required>
+          </div>
+          <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 16px;">
+            <span>Confirm Spa Appointment</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 5: Fullscreen Lightbox Modal -->
+  <div class="lightbox-modal" id="gallery-lightbox">
+    <button class="lightbox-close-btn" id="lightbox-close" aria-label="Close Lightbox">✕</button>
+    <button class="lightbox-prev-btn" id="lightbox-prev" aria-label="Previous Image">←</button>
+    <button class="lightbox-next-btn" id="lightbox-next" aria-label="Next Image">→</button>
+    <div class="lightbox-content">
+      <img src="" alt="Resort Gallery Preview" class="lightbox-image" id="lightbox-img">
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <!-- Luxury Toast Notification -->
+  <div class="luxury-toast" id="luxury-toast" role="alert" aria-live="polite">
+    <div class="toast-icon">★</div>
+    <div class="toast-msg" id="luxury-toast-msg">Operation completed successfully.</div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top-btn" id="back-to-top" aria-label="Back to top">
+    ↑
+  </button>
+
+</body>
+</html>

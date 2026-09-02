@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Lumina favicon">
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5d98d"/>
+      <stop offset="50%" stop-color="#d7b76c"/>
+      <stop offset="100%" stop-color="#b9893f"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="18" fill="#0d1117"/>
+  <circle cx="32" cy="32" r="24" fill="none" stroke="url(#gold)" stroke-width="2.5" opacity="0.9"/>
+  <path d="M21 18h9v19h15v8H21V18z" fill="url(#gold)"/>
+  <path d="M21 18h9v19h15v8H21V18z" fill="none" opacity="0.2"/>
+  <path d="M32 10l3.2 7.7L43 19l-6.5 5.8 2.2 8.2L32 1.5 25.3 32.9l2.2-8.2L21 19l7.8-1.3L32 10z" fill="url(#gold)" opacity="0.18"/>
+</svg>
