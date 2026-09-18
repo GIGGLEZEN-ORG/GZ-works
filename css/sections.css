@@ -1,0 +1,615 @@
+/* ==========================================================================
+   AURELIA GRAND SUITES & SANCTUARY
+   Sections: Hero, Welcome, Suites, Amenities, Dining, Experiences,
+             Offers, Gallery, Reviews, FAQ, Booking CTA & Footer
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Hero Section
+   -------------------------------------------------------------------------- */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-charcoal-900);
+  background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 8rem 0 7rem;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(18, 19, 22, 0.4) 0%, rgba(18, 19, 22, 0.78) 100%),
+              linear-gradient(180deg, rgba(18, 19, 22, 0.6) 0%, rgba(18, 19, 22, 0.3) 50%, rgba(18, 19, 22, 0.85) 100%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 920px;
+  color: #FFFFFF;
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-gold-400);
+  margin-bottom: 1.25rem;
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.hero-title {
+  font-size: clamp(2.8rem, 6vw, 4.8rem);
+  font-weight: 400;
+  color: #FFFFFF;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.hero-title em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--color-gold-400);
+}
+
+.hero-subtitle {
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 680px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+}
+
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-bottom: 3.5rem;
+}
+
+/* Hero Stats Bar */
+.hero-stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.hero-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.hero-stat-number {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  color: var(--color-gold-400);
+  line-height: 1;
+}
+
+.hero-stat-label {
+  font-size: var(--font-size-2xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* --------------------------------------------------------------------------
+   2. Welcome / Editorial Introduction
+   -------------------------------------------------------------------------- */
+.editorial-intro-section {
+  background-color: var(--color-bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.editorial-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: center;
+}
+
+.editorial-text-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.editorial-quote {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-style: italic;
+  color: var(--color-charcoal-800);
+  line-height: 1.6;
+  border-left: 2px solid var(--color-gold-500);
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.signature-block {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1.75rem;
+}
+
+.signature-img {
+  height: 48px;
+  filter: contrast(1.2);
+}
+
+.signature-details h5 {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  margin: 0;
+  color: var(--color-charcoal-900);
+}
+
+.signature-details span {
+  font-size: var(--font-size-xs);
+  color: var(--color-gold-600);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.editorial-features-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.editorial-feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.editorial-feature-item svg {
+  color: var(--color-gold-500);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.editorial-feature-item strong {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--color-charcoal-900);
+}
+
+.editorial-feature-item span {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* Asymmetric Image Composition */
+.editorial-images-col {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.editorial-img-primary {
+  width: 88%;
+  height: 520px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  box-shadow: var(--shadow-card);
+}
+
+.editorial-img-secondary {
+  position: absolute;
+  bottom: -2.5rem;
+  left: 0;
+  width: 58%;
+  height: 280px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  box-shadow: var(--shadow-floating);
+  border: 8px solid var(--color-bg-primary);
+}
+
+.award-badge-pill {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  background: rgba(253, 251, 247, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 0.85rem 1.35rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-floating);
+  border: 1px solid var(--border-gold);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 3;
+}
+
+.award-badge-icon {
+  color: var(--color-gold-500);
+}
+
+.award-badge-text h6 {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  margin: 0;
+}
+
+.award-badge-text span {
+  font-size: var(--font-size-2xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   3. Suites & Accommodations Section
+   -------------------------------------------------------------------------- */
+.suites-section {
+  background-color: var(--color-bg-secondary);
+}
+
+.suites-footer-note {
+  text-align: center;
+  margin-top: 3.5rem;
+  padding: 1.5rem;
+  background: var(--color-surface-white);
+  border-radius: var(--radius-sm);
+  border: 1px dashed var(--border-medium);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.suites-footer-note a {
+  color: var(--color-gold-600);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   4. Amenities Section
+   -------------------------------------------------------------------------- */
+.amenities-section {
+  background-color: var(--color-bg-primary);
+}
+
+/* --------------------------------------------------------------------------
+   5. Dining Section (Dark Contrast)
+   -------------------------------------------------------------------------- */
+.dining-section {
+  background-color: var(--color-charcoal-900);
+  color: #FFFFFF;
+}
+
+.dining-section .section-title {
+  color: #FFFFFF;
+}
+
+.dining-section .section-description {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.culinary-philosophy {
+  margin-top: 4rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: 2.5rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+
+.philosophy-text h4 {
+  font-size: 1.6rem;
+  color: var(--color-gold-400);
+  margin-bottom: 0.5rem;
+}
+
+.philosophy-text p {
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  max-width: 720px;
+}
+
+/* --------------------------------------------------------------------------
+   6. Experiences Section
+   -------------------------------------------------------------------------- */
+.experiences-section {
+  background-color: var(--color-bg-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   7. Offers Section
+   -------------------------------------------------------------------------- */
+.offers-section {
+  background-color: var(--color-bg-primary);
+}
+
+/* --------------------------------------------------------------------------
+   8. Gallery Section
+   -------------------------------------------------------------------------- */
+.gallery-section {
+  background-color: var(--color-bg-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   9. Reviews & Press Accolades Section
+   -------------------------------------------------------------------------- */
+.reviews-section {
+  background-color: var(--color-bg-primary);
+}
+
+.press-accolades-strip {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 2rem;
+  opacity: 0.75;
+}
+
+.press-logo-item {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-charcoal-600);
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   10. FAQ Accordion Section
+   -------------------------------------------------------------------------- */
+.faq-section {
+  background-color: var(--color-bg-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   11. Booking CTA Banner
+   -------------------------------------------------------------------------- */
+.booking-cta-section {
+  position: relative;
+  padding: clamp(5rem, 9vw, 8rem) 0;
+  background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #FFFFFF;
+  text-align: center;
+  overflow: hidden;
+}
+
+.booking-cta-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(18, 19, 22, 0.65) 0%, rgba(18, 19, 22, 0.9) 100%);
+  z-index: 1;
+}
+
+.booking-cta-content {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.booking-cta-content h2 {
+  color: #FFFFFF;
+  font-size: clamp(2.2rem, 4.5vw, 3.75rem);
+  margin-bottom: 1.25rem;
+}
+
+.booking-cta-content p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: var(--font-size-md);
+  margin-bottom: 2.25rem;
+  line-height: 1.7;
+}
+
+.booking-cta-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+/* --------------------------------------------------------------------------
+   12. Site Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background-color: var(--color-charcoal-900);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 5rem 0 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1.2fr 1.4fr;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  margin-bottom: 4rem;
+}
+
+.footer-brand-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.footer-brand-monogram {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  letter-spacing: 0.16em;
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
+
+.footer-tagline {
+  font-size: var(--font-size-sm);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.footer-awards-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  font-size: var(--font-size-xs);
+  color: var(--color-gold-400);
+}
+
+.footer-col-title {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: #FFFFFF;
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.02em;
+}
+
+.footer-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.footer-nav-link {
+  font-size: var(--font-size-xs);
+  color: rgba(255, 255, 255, 0.7);
+  transition: color var(--transition-fast);
+}
+
+.footer-nav-link:hover {
+  color: var(--color-gold-400);
+  padding-left: 4px;
+}
+
+.footer-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  font-size: var(--font-size-xs);
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-contact-item svg {
+  color: var(--color-gold-500);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Newsletter Subscription */
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.newsletter-input-group {
+  display: flex;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.newsletter-input {
+  flex-grow: 1;
+  background: rgba(255, 255, 255, 0.06);
+  border: none;
+  padding: 0.85rem 1rem;
+  color: #FFFFFF;
+  font-size: var(--font-size-xs);
+}
+
+.newsletter-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.newsletter-btn {
+  background: var(--color-gold-500);
+  color: #FFFFFF;
+  border: none;
+  padding: 0 1.25rem;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: background var(--transition-fast);
+}
+
+.newsletter-btn:hover {
+  background: var(--color-gold-600);
+}
+
+.newsletter-disclaimer {
+  font-size: var(--font-size-2xs);
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.5;
+}
+
+/* Bottom Copyright & Legal */
+.footer-bottom {
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: var(--font-size-2xs);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.footer-legal-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-legal-links a:hover {
+  color: var(--color-gold-400);
+}

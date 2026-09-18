@@ -1,0 +1,304 @@
+/* ==========================================================================
+   AURELIA GRAND SUITES & SANCTUARY
+   Responsive Styles & Media Queries
+   ========================================================================== */
+
+/* Laptop & Medium Desktops (max-width: 1200px) */
+@media (max-width: 1200px) {
+  :root {
+    --container-padding: 1.5rem;
+  }
+
+  .booking-panel {
+    grid-template-columns: 1fr 1fr 1.2fr 1fr auto;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1.5fr 1fr 1fr 1.4fr;
+  }
+
+  .footer-newsletter-col {
+    grid-column: span 4;
+    margin-top: 1rem;
+    max-width: 500px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 220px;
+  }
+}
+
+/* Tablet Landscape & Below (max-width: 992px) */
+@media (max-width: 992px) {
+  .nav-menu {
+    display: none; /* Collapses into mobile drawer */
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .header-phone {
+    display: none;
+  }
+
+  .booking-panel {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .booking-field {
+    border-right: none;
+    border-bottom: 1px solid var(--border-light);
+    padding-right: 0;
+    padding-bottom: 0.75rem;
+  }
+
+  .booking-field:nth-child(3),
+  .booking-field:nth-child(4) {
+    border-bottom: none;
+  }
+
+  .booking-submit-wrap {
+    grid-column: span 2;
+  }
+
+  .booking-submit-wrap .btn {
+    width: 100%;
+  }
+
+  /* Editorial Intro Stacking */
+  .editorial-grid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .editorial-images-col {
+    justify-content: center;
+  }
+
+  .editorial-img-primary {
+    width: 92%;
+    height: 420px;
+  }
+
+  .editorial-img-secondary {
+    width: 50%;
+    height: 220px;
+    bottom: -1.5rem;
+  }
+
+  .dining-grid {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .culinary-philosophy {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+
+  .footer-brand-col {
+    grid-column: span 2;
+  }
+
+  .footer-newsletter-col {
+    grid-column: span 2;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 200px;
+  }
+}
+
+/* Tablet Portrait & Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  :root {
+    --container-padding: 1.25rem;
+  }
+
+  .hero-section {
+    padding: 7rem 0 5rem;
+  }
+
+  .hero-title {
+    font-size: 2.65rem;
+  }
+
+  .hero-stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .booking-panel-wrapper {
+    margin-top: -2rem;
+  }
+
+  .booking-panel {
+    grid-template-columns: 1fr;
+    padding: 1.25rem;
+  }
+
+  .booking-field {
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 0.75rem;
+  }
+
+  .booking-field:last-of-type {
+    border-bottom: none;
+  }
+
+  .booking-submit-wrap {
+    grid-column: span 1;
+  }
+
+  .rooms-grid,
+  .amenities-grid,
+  .experiences-grid,
+  .offers-grid {
+    grid-template-columns: 1fr;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .editorial-img-primary {
+    width: 100%;
+    height: 340px;
+  }
+
+  .editorial-img-secondary {
+    display: none; /* Hide secondary overlapping image on small tablet/mobile to preserve clean vertical rhythm */
+  }
+
+  .award-badge-pill {
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .editorial-features-list {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonial-inner {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .testimonial-quote-icon {
+    font-size: 3.5rem;
+    left: 1.5rem;
+    top: 1rem;
+  }
+
+  .testimonial-text {
+    font-size: 1.2rem;
+  }
+
+  .lightbox-arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .lightbox-arrow.prev {
+    left: 0.5rem;
+  }
+
+  .lightbox-arrow.next {
+    right: 0.5rem;
+  }
+
+  .reservation-drawer {
+    max-width: 100%;
+  }
+
+  .suite-modal-amenities-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Small Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .brand-monogram {
+    font-size: 1.45rem;
+  }
+
+  .header-btn {
+    display: none; /* Conserve space, hamburger drawer holds primary CTA */
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 240px;
+  }
+
+  .gallery-item.col-span-2 {
+    grid-column: span 1;
+  }
+
+  .gallery-item.row-span-2 {
+    grid-row: span 1;
+  }
+
+  .room-specs {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .room-card-actions {
+    flex-direction: column;
+  }
+
+  .room-card-actions .btn {
+    width: 100%;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-brand-col,
+  .footer-newsletter-col {
+    grid-column: span 1;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .footer-legal-links {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .back-to-top {
+    bottom: 1.25rem;
+    left: 1.25rem;
+    width: 40px;
+    height: 40px;
+  }
+}
