@@ -1,0 +1,192 @@
+{
+  "theme": {
+    "primaryColor": "#1E2D24",
+    "secondaryColor": "#F6F4EE",
+    "accentColor": "#8C7A5B",
+    "fontHeading": "Cormorant Garamond",
+    "fontBody": "Plus Jakarta Sans",
+    "borderRadius": "12px",
+    "sectionSpacing": "120px"
+  },
+  "hotel": {
+    "name": "Serenia Lake Resort",
+    "tagline": "Nature's Luxury Sanctuary.",
+    "description": "An exclusive lakeside wilderness resort designed for ultimate relaxation and immersive wellness.",
+    "location": "Udaipur Lakes, India",
+    "phone": "+91 91234 56789",
+    "email": "stay@serenialakeresort.com",
+    "address": "Whispering Pines Cove, Lake View Road",
+    "logo": "assets/images/logo.png"
+  },
+  "navigation": [
+    { "label": "Home", "link": "#home" },
+    { "label": "Villas & Suites", "link": "#rooms" },
+    { "label": "Wellness", "link": "#amenities" },
+    { "label": "Dining", "link": "#dining" },
+    { "label": "Offers", "link": "#offers" },
+    { "label": "Gallery", "link": "#gallery" },
+    { "label": "Contact", "link": "#contact" }
+  ],
+  "hero": {
+    "label": "LAKESIDE WILDERNESS RETREAT",
+    "title": "Where Tranquility Meets Unmatched Elegance",
+    "description": "Disconnect from the ordinary and immerse yourself in pristine nature, private lakeside villas, and world-class spa therapies.",
+    "backgroundImage": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=2000&q=80",
+    "primaryButton": { "text": "Explore Villas", "link": "#rooms" },
+    "secondaryButton": { "text": "Check Availability", "link": "#booking" }
+  },
+  "story": {
+    "subtitle": "The Sanctuary",
+    "title": "A Harmonious Blend of Wilderness & Luxury",
+    "description": "Every villa and pavilion is architecturally crafted to frame breathtaking lake reflections and towering pine forests while offering modern opulent comforts.",
+    "highlights": [
+      "Private Lakefront Access",
+      "Holistic Ayurvedic Spa",
+      "Organic Farm-to-Table Dining",
+      "Guided Nature Expeditions"
+    ],
+    "image1": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1000&q=80",
+    "image2": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1000&q=80"
+  },
+  "booking": {
+    "title": "Plan Your Escape",
+    "fields": ["checkIn", "checkOut", "guests", "rooms"],
+    "buttonText": "Check Availability"
+  },
+  "rooms": [
+    {
+      "id": 1,
+      "name": "Pine View Lakeside Room",
+      "description": "A cozy, light-filled sanctuary overlooking the misty pine tree canopy and gentle lake waters.",
+      "image": "https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=1000&q=80",
+      "price": 8999,
+      "currency": "INR",
+      "size": "450 sq.ft",
+      "guests": 2,
+      "bed": "King Bed",
+      "features": ["Private Balcony", "Fireplace", "Rain Shower", "Organic Tea Bar", "High-Speed WiFi"]
+    },
+    {
+      "id": 2,
+      "name": "Overwater Pool Villa",
+      "description": "Luxurious standalone villa extending over the lake with a private plunge pool and sun deck.",
+      "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1000&q=80",
+      "price": 16999,
+      "currency": "INR",
+      "size": "850 sq.ft",
+      "guests": 3,
+      "bed": "Super King Bed",
+      "features": ["Private Plunge Pool", "Outdoor Tub", "Floor-to-Ceiling Glass", "Butler Service", "Minibar"]
+    },
+    {
+      "id": 3,
+      "name": "The Grand Serenia Estate",
+      "description": "Multi-bedroom ultra-luxury estate with private dock, outdoor dining pavilion, and dedicated chef.",
+      "image": "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1000&q=80",
+      "price": 34999,
+      "currency": "INR",
+      "size": "1600 sq.ft",
+      "guests": 6,
+      "bed": "Dual King Beds",
+      "features": ["Private Lake Dock", "Dedicated Chef", "Jacuzzi & Sauna", "Firepit Lounge", "Helipad Access"]
+    }
+  ],
+  "amenities": [
+    {
+      "icon": "spa",
+      "title": "Serenia Spa & Wellness",
+      "description": "Rejuvenating holistic therapies, yoga pavilions, and hydrotherapy pools overlooking the water."
+    },
+    {
+      "icon": "pool",
+      "title": "Infinity Lakeside Pool",
+      "description": "Heated infinity pool seamlessly merging into the scenic horizon of the blue lake."
+    },
+    {
+      "icon": "coffee",
+      "title": "Artisanal Teahouse",
+      "description": "Savor single-origin mountain teas and organic pastries amidst botanical gardens."
+    },
+    {
+      "icon": "concierge",
+      "title": "Nature Concierge",
+      "description": "Customized kayaking, hiking tours, and stargazing sessions guided by local experts."
+    }
+  ],
+  "dining": [
+    {
+      "name": "The Canopy Restaurant",
+      "category": "Farm-to-Table Fine Dining",
+      "description": "Seasonal menus crafted from our organic greenhouse produce and locally sourced ingredients.",
+      "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80"
+    },
+    {
+      "name": "The Waters Edge Wine Lounge",
+      "category": "Wine & Tapas",
+      "description": "Hand-selected vintage wines and artisanal cheeses served by the crackling lakeside fire pit.",
+      "image": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1000&q=80"
+    }
+  ],
+  "offers": [
+    {
+      "title": "Mindful Weekend Retreat",
+      "label": "PACKAGE DEAL",
+      "description": "Includes daily yoga sessions, spa credit, and organic farmhouse breakfast.",
+      "image": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1000&q=80",
+      "buttonText": "Book Retreat"
+    },
+    {
+      "title": "Extended Nature Escape",
+      "label": "SAVE 25%",
+      "description": "Stay 4 nights or more and enjoy exclusive savings plus complimentary private kayaking.",
+      "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=80",
+      "buttonText": "Claim Offer"
+    }
+  ],
+  "experiences": [
+    {
+      "title": "Private Sunset Kayaking",
+      "description": "Glide across mirror-like lake waters as the sun sets behind the forested mountains."
+    },
+    {
+      "title": "Forest Meditation & Yoga",
+      "description": "Find inner peace with guided mindful breathing sessions beneath ancient pine trees."
+    },
+    {
+      "title": "Stargazing Astronomy Nights",
+      "description": "Enjoy private telescope viewings of the clear night sky far away from city lights."
+    }
+  ],
+  "gallery": [
+    { "title": "Lake View Sunset", "category": "Nature", "image": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1000&q=80" },
+    { "title": "Overwater Villa", "category": "Rooms", "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1000&q=80" },
+    { "title": "Spa Pavilion", "category": "Wellness", "image": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1000&q=80" },
+    { "title": "The Canopy Dining", "category": "Dining", "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1000&q=80" },
+    { "title": "Villa Bathroom", "category": "Interior", "image": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1000&q=80" },
+    { "title": "Pine Forest Trail", "category": "Nature", "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=80" }
+  ],
+  "testimonials": [
+    {
+      "name": "Rohan & Meera",
+      "role": "Nature Enthusiasts",
+      "rating": 5,
+      "review": "Serenia is paradise on earth. Waking up to the mist over the lake from our overwater villa was magical.",
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
+    },
+    {
+      "name": "Dr. Siddharth Verma",
+      "role": "Cardiologist",
+      "rating": 5,
+      "review": "The most peaceful retreat I have ever experienced. Exceptional service, pristine nature, and world-class spa.",
+      "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+    }
+  ],
+  "footer": {
+    "description": "An immersive wilderness resort dedicated to mindful luxury, pristine nature, and holistic wellness.",
+    "socialLinks": {
+      "instagram": "#",
+      "facebook": "#",
+      "linkedin": "#"
+    }
+  }
+}
