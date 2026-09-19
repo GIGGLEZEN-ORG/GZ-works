@@ -1,0 +1,187 @@
+{
+  "hotelName": "Mario",
+  "hotelFullName": "Hotel Mario Palace & Resort",
+  "tagline": "Artisan Elegance & Royal Indian Hospitality",
+  "subline": "Experience sanctuary on Lake Pichola, where handcrafted heritage meets world-class luxury.",
+  "established": "1924",
+  "location": "Udaipur, Rajasthan, India",
+  "address": "Lake Pichola Palace Road, Udaipur 313001, Rajasthan, India",
+  "contact": {
+    "phone": "+91 294 242 8800",
+    "email": "concierge@hotelmario.com",
+    "checkIn": "14:00",
+    "checkOut": "12:00"
+  },
+  "currency": "₹",
+  "hero": {
+    "badge": "Welcome to {{hotelName}}",
+    "heading": "Bespoke Luxury & Timeless Sanctuary at {{hotelName}}",
+    "description": "Surrender to the coastal beauty and unhurried luxury of {{hotelName}}. Every suite is meticulously tailored for sanctuary, peace, and unforgettable moments.",
+    "backgroundImage": "assets/images/hero.png"
+  },
+  "stats": [
+    { "label": "Private Suites", "value": "48" },
+    { "label": "Michelin Stars", "value": "2 Stars" },
+    { "label": "Guest Rating", "value": "4.98 ★" },
+    { "label": "Artisan Heritage", "value": "100+ Yrs" }
+  ],
+  "about": {
+    "badge": "The {{hotelName}} Legacy",
+    "title": "A Century of Handcrafted Italian Hospitality",
+    "description": "Founded on the cliffside cliffs of Amalfi, {{hotelName}} has welcomed royalty, artists, and discerning travelers since 1924. Built with travertine stone, hand-blown Venetian glass, and custom warm linen, every detail at {{hotelName}} celebrates effortless luxury.",
+    "quote": "At {{hotelName}}, hospitality is not a service—it is an art form passed through generations."
+  },
+  "rooms": [
+    {
+      "id": "presidential-suite",
+      "title": "The {{hotelName}} Royal Maharajah Suite",
+      "category": "master",
+      "categoryLabel": "Master Suite",
+      "price": 45000,
+      "originalPrice": 55000,
+      "capacity": "4 Guests",
+      "size": "140 m² / 1,500 sq ft",
+      "bed": "Grand Sovereign King Bed",
+      "view": "Panoramic Lake Pichola & Palace View",
+      "image": "assets/images/presidential.png",
+      "badge": "Most Requested",
+      "description": "The crown jewel of {{hotelName}}. Featuring expansive marble balconies, floor-to-ceiling panoramic views of Lake Pichola, private heated jacuzzi, and dedicated 24-hour royal butler service.",
+      "amenities": ["24/7 Royal Butler", "Heated Jacuzzi", "Helipad & Boat Transfer", "Bespoke Royal Amenities", "Sommelier Wine Bar"]
+    },
+    {
+      "id": "ocean-villa",
+      "title": "Private Lakefront Villa Sanctuary",
+      "category": "villas",
+      "categoryLabel": "Private Villa",
+      "price": 65000,
+      "originalPrice": 75000,
+      "capacity": "6 Guests",
+      "size": "210 m² / 2,260 sq ft",
+      "bed": "2 Royal King Beds + Private Sun Deck",
+      "view": "Direct Private Lake Frontage",
+      "image": "assets/images/ocean_villa.png",
+      "badge": "Ultimate Privacy",
+      "description": "A secluded multi-level villa at {{hotelName}}. Features a private plunge pool, teak dining pavilion, private chef kitchen, and private boat landing.",
+      "amenities": ["Private Infinity Plunge Pool", "Dedicated In-Villa Chef", "Private Boat Landing", "Custom Sun Deck", "Bang & Olufsen Audio"]
+    },
+    {
+      "id": "royal-penthouse",
+      "title": "Royal Sunset Palace Penthouse",
+      "category": "penthouse",
+      "categoryLabel": "Penthouse",
+      "price": 85000,
+      "originalPrice": 95000,
+      "capacity": "4 Guests",
+      "size": "185 m² / 1,990 sq ft",
+      "bed": "Empress King + Guest Suite",
+      "view": "360° Lake & Aravalli Horizon View",
+      "image": "assets/images/penthouse.png",
+      "badge": "Top Floor Luxury",
+      "description": "Perched on the top floor of {{hotelName}}, offering unobstructed 360-degree views of Udaipur. Includes marble wood-burning fireplace and curated royal art collection.",
+      "amenities": ["Marble Fireplace", "Telescope Deck", "Personal Champagne Bar", "Private Elevator Access", "Bespoke Pillow Menu"]
+    },
+    {
+      "id": "deluxe-garden-suite",
+      "title": "Artisan Garden Courtyard Suite",
+      "category": "deluxe",
+      "categoryLabel": "Deluxe Suite",
+      "price": 28000,
+      "originalPrice": 34000,
+      "capacity": "2 Guests",
+      "size": "75 m² / 800 sq ft",
+      "bed": "Custom Handcrafted King Bed",
+      "view": "Lush Royal Courtyard & Fountain View",
+      "image": "assets/images/hero.png",
+      "badge": "Best Value",
+      "description": "A peaceful retreat surrounded by {{hotelName}}'s heritage lotus fountains and marigold gardens. Features handcrafted teak furnishings and rain shower.",
+      "amenities": ["Private Courtyard Garden", "Handcrafted Teak Furnishings", "Rainwater Spa Shower", "Royal Breakfast Included"]
+    }
+  ],
+  "amenities": [
+    {
+      "icon": "pool",
+      "title": "Infinity Sunset Pool",
+      "description": "A heated freshwater infinity pool suspended over the Amalfi cliffside at {{hotelName}}, offering continuous poolside cocktail service.",
+      "image": "assets/images/infinity_pool.png",
+      "tag": "Outdoors & Relaxation"
+    },
+    {
+      "icon": "utensils",
+      "title": "Ristorante {{hotelName}} (2 Michelin Stars)",
+      "description": "An extraordinary gastronomic journey curated by Executive Chef Lorenzo, featuring fresh Mediterranean catch and hand-harvested ingredients.",
+      "image": "assets/images/fine_dining.png",
+      "tag": "Fine Culinary"
+    },
+    {
+      "icon": "spa",
+      "title": "Thermae Spa & Wellness Sanctuary",
+      "description": "Rejuvenate at {{hotelName}} with holistic thermal mud treatments, hydrothermal stone baths, and bespoke organic facial therapies.",
+      "image": "assets/images/spa.png",
+      "tag": "Holistic Wellbeing"
+    }
+  ],
+  "experiences": [
+    {
+      "title": "Private Yacht Sunset Cruise",
+      "subtitle": "Charter {{hotelName}}'s private Riva yacht along the Capri coast.",
+      "time": "3 Hours",
+      "tag": "Signature Experience"
+    },
+    {
+      "title": "Sommelier Wine Masterclass",
+      "subtitle": "Explore our 3,000-bottle subterranean cellar with {{hotelName}}'s head sommelier.",
+      "time": "2 Hours",
+      "tag": "Gourmet Tasting"
+    },
+    {
+      "title": "Helicopter Capri Excursion",
+      "subtitle": "Soar above the Faraglioni rocks with private helipad pickup directly from {{hotelName}}.",
+      "time": "Flexible",
+      "tag": "VIP Adventure"
+    }
+  ],
+  "reviews": [
+    {
+      "guest": "Countess Isabella R.",
+      "location": "Milan, Italy",
+      "rating": 5,
+      "comment": "{{hotelName}} is hands down the finest retreat on the Amalfi coast. The level of care, the private terrace views, and the food at Ristorante {{hotelName}} are beyond compare.",
+      "room": "Presidential Suite",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80"
+    },
+    {
+      "guest": "Arthur & Victoria Vance",
+      "location": "London, UK",
+      "rating": 5,
+      "comment": "Our anniversary stay at {{hotelName}} felt like living inside an Italian fairytale. The team anticipated every request before we even asked!",
+      "room": "Cliffside Ocean Villa",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80"
+    },
+    {
+      "guest": "Elena Rostova",
+      "location": "Zurich, Switzerland",
+      "rating": 5,
+      "comment": "The peacefulness of the gardens, the scent of fresh lemon groves, and the seamless service make {{hotelName}} our annual summer tradition.",
+      "room": "Royal Sunset Penthouse",
+      "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&auto=format&fit=crop&q=80"
+    }
+  ],
+  "faq": [
+    {
+      "q": "How do I request a reservation or check availability at {{hotelName}}?",
+      "a": "You can select your arrival and departure dates using the reservation bar on our website or click 'Book Your Stay' to select your preferred suite. Our concierge team responds within 1 hour."
+    },
+    {
+      "q": "What are check-in and check-out times at {{hotelName}}?",
+      "a": "Standard check-in is from 15:00 onwards, and check-out is until 12:00 noon. Early check-in and late check-out can be arranged via butler services upon availability."
+    },
+    {
+      "q": "Does {{hotelName}} provide private transfers?",
+      "a": "Yes, {{hotelName}} provides private chauffeur transfers from Naples International Airport (NAP) and Salerno train station, as well as private yacht and helicopter charters."
+    }
+  ],
+  "footer": {
+    "copyright": "© 2026 {{hotelName}} Luxury Resort. All Rights Reserved. Amalfi Coast, Italy.",
+    "tagline": "Handcrafted luxury & timeless Italian hospitality."
+  }
+}
