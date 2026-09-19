@@ -1,0 +1,21 @@
+{
+  "guestName": "Chaithanya",
+  "bookingId": "AURA1025",
+  "roomNumber": " 402 ",
+  "checkInDate": "2026-09-15",
+  "checkOutDate": "2026-09-18",
+  "services": [
+    { "name": "Room Service", "amount": 500, "date": "15 Sep 2026" },
+    { "name": "Laundry & Pressing", "amount": 300, "date": "16 Sep 2026" },
+    { "name": "Airport Pickup", "amount": 800, "date": "15 Sep 2026" }
+  ],
+  "foodOrders": [
+    { "name": "Chicken Biryani", "amount": 320, "date": "16 Sep 2026" },
+    { "name": "Fresh Orange Juice", "amount": 150, "date": "16 Sep 2026" }
+  ],
+  "entertainment": [
+    { "name": "Movie Night", "amount": 250, "date": "17 Sep 2026" }
+  ],
+  "taxRate": 0.18,
+  "paymentStatus": "Unpaid / Pending Checkout"
+}

@@ -1,0 +1,102 @@
+[
+  {
+    "id": "srv-1",
+    "name": "24/7 Room Service",
+    "icon": "fa-concierge-bell",
+    "emoji": "🛎️",
+    "description": "Gourmet dining and beverages delivered directly to your suite any time of the day or night.",
+    "price": 500,
+    "isComplimentary": false,
+    "image": "images/services/room_service.svg"
+  },
+  {
+    "id": "srv-2",
+    "name": "Personal Concierge",
+    "icon": "fa-user-tie",
+    "emoji": "🎩",
+    "description": "Tailored travel planning, VIP reservations, itinerary management, and exclusive access.",
+    "price": 0,
+    "isComplimentary": true,
+    "image": "images/services/concierge.svg"
+  },
+  {
+    "id": "srv-3",
+    "name": "Express Housekeeping",
+    "icon": "fa-broom",
+    "emoji": "✨",
+    "description": "Turn-down service, premium linen refresh, and comprehensive suite sanitization on demand.",
+    "price": 0,
+    "isComplimentary": true,
+    "image": "images/services/housekeeping.svg"
+  },
+  {
+    "id": "srv-4",
+    "name": "Luxury Laundry & Pressing",
+    "icon": "fa-shirt",
+    "emoji": "👔",
+    "description": "Same-day eco-friendly dry cleaning, delicate garment pressing, and steam care.",
+    "price": 300,
+    "isComplimentary": false,
+    "image": "images/services/laundry.svg"
+  },
+  {
+    "id": "srv-5",
+    "name": "Executive Airport Pickup",
+    "icon": "fa-car",
+    "emoji": "🚘",
+    "description": "Chauffeur-driven luxury sedan transfer to and from the airport with complimentary refreshments.",
+    "price": 800,
+    "isComplimentary": false,
+    "image": "images/services/airport_pickup.svg"
+  },
+  {
+    "id": "srv-6",
+    "name": "High-Speed Wi-Fi 6",
+    "icon": "fa-wifi",
+    "emoji": "📶",
+    "description": "Ultra-fast gigabit encrypted wireless internet available seamlessly across the entire resort.",
+    "price": 0,
+    "isComplimentary": true,
+    "image": "images/services/wifi.svg"
+  },
+  {
+    "id": "srv-7",
+    "name": "AURA Spa & Wellness",
+    "icon": "fa-spa",
+    "emoji": "🧘‍♀️",
+    "description": "Rejuvenating aromatherapy massages, organic facial treatments, and thermal sauna sessions.",
+    "price": 1200,
+    "isComplimentary": false,
+    "image": "images/services/spa.svg"
+  },
+  {
+    "id": "srv-8",
+    "name": "Personal Wake-Up Call",
+    "icon": "fa-clock",
+    "emoji": "⏰",
+    "description": "Customized morning wake-up notification paired with optional herbal tea or espresso service.",
+    "price": 0,
+    "isComplimentary": true,
+    "image": "images/services/wakeup.svg"
+  },
+  {
+    "id": "srv-9",
+    "name": "Luggage Assistance",
+    "icon": "fa-suitcase-rolling",
+    "emoji": "🧳",
+    "description": "White-glove bellhop service for luggage unpacking, secure storage, and transfer.",
+    "price": 0,
+    "isComplimentary": true,
+    "image": "images/services/luggage.svg"
+  },
+  {
+    "id": "srv-10",
+    "name": "Private Cab & Travel Assistance",
+    "icon": "fa-taxi",
+    "emoji": "🚕",
+    "description": "On-demand luxury chauffeur service for local sightseeing, business meetings, and coastal tours.",
+    "price": 600,
+    "isComplimentary": false,
+    "image": "images/services/cab.svg"
+  }
+]

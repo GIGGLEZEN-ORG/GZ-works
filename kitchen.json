@@ -1,0 +1,92 @@
+[
+  {
+    "id": "food-1",
+    "name": "Chicken Biryani",
+    "category": "Main Course",
+    "description": "Aromatic basmati rice cooked with succulent chicken pieces, saffron, and rich royal spices.",
+    "price": 320,
+    "image": "images/kitchen/chicken_biryani.svg",
+    "popular": true
+  },
+  {
+    "id": "food-2",
+    "name": "Truffle Mushroom Risotto",
+    "category": "Main Course",
+    "description": "Creamy Arborio rice infused with wild forest mushrooms, white truffle oil, and aged parmesan.",
+    "price": 450,
+    "image": "images/kitchen/mushroom_risotto.svg",
+    "popular": true
+  },
+  {
+    "id": "food-3",
+    "name": "Royale Breakfast Platter",
+    "category": "Breakfast",
+    "description": "Farm-fresh poached eggs, smoked salmon, avocado toast, grilled asparagus, and artisan croissant.",
+    "price": 380,
+    "image": "images/kitchen/breakfast_platter.svg",
+    "popular": true
+  },
+  {
+    "id": "food-4",
+    "name": "Golden Fluffy Pancakes",
+    "category": "Breakfast",
+    "description": "Stacked buttermilk pancakes served with organic maple syrup, fresh berries, and whipped cream.",
+    "price": 280,
+    "image": "images/kitchen/pancakes.svg",
+    "popular": false
+  },
+  {
+    "id": "food-5",
+    "name": "Crispy Paneer Tikka Bites",
+    "category": "Starters",
+    "description": "Cottage cheese cubes marinated in tandoori spices, char-grilled to perfection with mint chutney.",
+    "price": 260,
+    "image": "images/kitchen/paneer_tikka.svg",
+    "popular": false
+  },
+  {
+    "id": "food-6",
+    "name": "Seafood Dynamite Prawns",
+    "category": "Starters",
+    "description": "Tempura battered tiger prawns tossed in a spicy, creamy sriracha glaze with scallions.",
+    "price": 390,
+    "image": "images/kitchen/dynamite_prawns.svg",
+    "popular": true
+  },
+  {
+    "id": "food-7",
+    "name": "Gold Leaf Chocolate Sphere",
+    "category": "Desserts",
+    "description": "Decadent Belgian dark chocolate shell with hazelnut mousse, hot caramel drizzle, and edible gold leaf.",
+    "price": 350,
+    "image": "images/kitchen/chocolate_sphere.svg",
+    "popular": true
+  },
+  {
+    "id": "food-8",
+    "name": "Classic New York Cheesecake",
+    "category": "Desserts",
+    "description": "Velvety smooth cream cheese cake atop a buttery graham crust with wild berry compote.",
+    "price": 290,
+    "image": "images/kitchen/cheesecake.svg",
+    "popular": false
+  },
+  {
+    "id": "food-9",
+    "name": "Fresh Orange & Passionfruit Juice",
+    "category": "Beverages",
+    "description": "Freshly squeezed Valencia oranges mixed with tangy passionfruit pulp and mint leaves.",
+    "price": 150,
+    "image": "images/kitchen/fresh_juice.svg",
+    "popular": false
+  },
+  {
+    "id": "food-10",
+    "name": "Signature Sparkling Mocktail",
+    "category": "Beverages",
+    "description": "Infused elderflower, lychee nectar, sparkling tonic, and rosemary sprig.",
+    "price": 220,
+    "image": "images/kitchen/sparkling_mocktail.svg",
+    "popular": true
+  }
+]

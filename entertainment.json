@@ -1,0 +1,74 @@
+[
+  {
+    "id": "ent-1",
+    "name": "Live Acoustic Jazz Night 🎵",
+    "icon": "🎵",
+    "category": "Live Music",
+    "description": "An intimate evening of soulful live jazz music featuring international artists and fine wine pairing 🍷.",
+    "dateTime": "Every Friday & Saturday, 8:00 PM - 11:00 PM",
+    "location": "AURA Lounge & Terrace Bar",
+    "price": 0,
+    "isFree": true,
+    "image": "images/entertainment/live_music.svg"
+  },
+  {
+    "id": "ent-2",
+    "name": "Under the Stars Movie Night 🎬",
+    "icon": "🎬",
+    "category": "Movie Nights",
+    "description": "Open-air cinema screening of classic and blockbusters with complimentary gourmet popcorn 🍿 and lounger seating.",
+    "dateTime": "Daily at 8:30 PM",
+    "location": "Resort Amphitheater Lawn",
+    "price": 250,
+    "isFree": false,
+    "image": "images/entertainment/movie_night.svg"
+  },
+  {
+    "id": "ent-4",
+    "name": "Infinity Pool Cocktail Party 🏊",
+    "icon": "🏊",
+    "category": "Poolside Activities",
+    "description": "Sunset poolside vibes with aqua fitness sessions, floating cabanas, and signature tropical mixology 🍹.",
+    "dateTime": "Wednesdays & Sundays, 4:00 PM - 7:30 PM",
+    "location": "Skyline Infinity Pool Deck",
+    "price": 300,
+    "isFree": false,
+    "image": "images/entertainment/poolside.svg"
+  },
+  {
+    "id": "ent-5",
+    "name": "Royal Cultural Dance Showcase 🎭",
+    "icon": "🎭",
+    "category": "Cultural Events",
+    "description": "Captivating traditional dance and music performance celebrating regional heritage and artistic mastery 🪕.",
+    "dateTime": "Every Tuesday, 7:00 PM - 8:30 PM",
+    "location": "Grand Pavilion Courtyard",
+    "price": 0,
+    "isFree": true,
+    "image": "images/entertainment/cultural_events.svg"
+  },
+  {
+    "id": "ent-6",
+    "name": "Neon Sunset DJ Night 🎧",
+    "icon": "🎧",
+    "category": "DJ Nights",
+    "description": "High-energy deep house and EDM beats played by resident guest DJs under ambient neon lighting 🪩.",
+    "dateTime": "Saturday Nights, 9:30 PM - 1:00 AM",
+    "location": "AURA Rooftop Club",
+    "price": 500,
+    "isFree": false,
+    "image": "images/entertainment/dj_night.svg"
+  },
+  {
+    "id": "ent-7",
+    "name": "Sunrise Yoga & Coastal Trail Walk 🌅",
+    "icon": "🌅",
+    "category": "Outdoor Activities",
+    "description": "Guided sunrise meditation and beachfront yoga session 🧘‍♀️ followed by a scenic nature trail walk 🌿.",
+    "dateTime": "Daily at 6:15 AM",
+    "location": "Private Beach & Zen Garden",
+    "price": 0,
+    "isFree": true,
+    "image": "images/entertainment/outdoor_activities.svg"
+  }
+]

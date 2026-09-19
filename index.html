@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA | Luxury Hotel Portal</title>
+  <meta name="description" content="Where Luxury Meets Your Aura - Refined guest portal for hotel services, culinary dining, entertainment, and personal stay management.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Mobile Top Bar -->
+  <header class="mobile-header" id="mobile-header">
+    <div class="mobile-brand">
+      <div class="brand-logo">A</div>
+      <div class="brand-text">
+        <span class="hotel-name brand-title">AURA</span>
+        <span class="brand-sub">LUXURY HOTEL</span>
+      </div>
+    </div>
+    <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle Menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </header>
+
+  <div class="app-layout">
+    
+    <!-- Thin Icon-Only Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="brand-emblem-mini" title="AURA Luxury Hotel">
+          <i class="fa-solid fa-crown"></i>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <ul>
+          <li>
+            <a href="#home" class="nav-link active" data-section="home" data-tooltip="Home">
+              <i class="fa-solid fa-house"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#services" class="nav-link" data-section="services" data-tooltip="Services">
+              <i class="fa-solid fa-bell-concierge"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#kitchen" class="nav-link" data-section="kitchen" data-tooltip="Kitchen">
+              <i class="fa-solid fa-utensils"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#entertainment" class="nav-link" data-section="entertainment" data-tooltip="Entertainment">
+              <i class="fa-solid fa-masks-theater"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#billing" class="nav-link" data-section="billing" data-tooltip="Billing">
+              <i class="fa-solid fa-credit-card"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#reviews" class="nav-link" data-section="reviews" data-tooltip="Reviews">
+              <i class="fa-solid fa-star"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#profile" class="nav-link" data-section="profile" data-tooltip="My Profile">
+              <i class="fa-solid fa-user-gear"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#contact" class="nav-link" data-section="contact" data-tooltip="Contact">
+              <i class="fa-solid fa-phone"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Overlay for mobile sidebar -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+
+      <!-- SECTION 1: HOME -->
+      <section id="home" class="page-section active">
+        <div class="hero-card">
+          <div class="hero-overlay"></div>
+          <div class="hero-content">
+            <span class="gold-badge">WELCOME TO EXCELLENCE</span>
+            <h1 class="hero-title"><span class="hotel-name">AURA</span></h1>
+            <p class="hero-tagline hotel-tagline">Where Luxury Meets Your Aura</p>
+            <p class="hero-desc hotel-description">
+              Experience refined hospitality, exceptional dining, personalized services, and unforgettable moments at AURA.
+            </p>
+            <div class="hero-actions">
+              <a href="#services" class="btn btn-gold scroll-btn">Explore AURA</a>
+              <a href="#vacancy-section" class="btn btn-outline-light scroll-btn">Check Vacancy & Book</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Guest Status Strip -->
+        <div class="guest-banner">
+          <div class="guest-info">
+            <div class="avatar"><i class="fa-solid fa-user-tie"></i></div>
+            <div>
+              <p class="greeting">Welcome back, <strong id="guest-welcome-name">Chaithanya</strong></p>
+              <p class="stay-meta">Booking ID: <span id="guest-welcome-id">AURA1025</span> | <span id="guest-welcome-room">Suite 402</span></p>
+            </div>
+          </div>
+          <div class="guest-quick-stats">
+            <div class="stat-pill"><i class="fa-solid fa-clock"></i> Check-out: <span id="guest-welcome-checkout">18 Sep 2026</span></div>
+            <div class="stat-pill highlight"><i class="fa-solid fa-receipt"></i> Active Bill: <span class="hotel-currency">₹</span><span id="guest-quick-bill">2,738</span></div>
+          </div>
+        </div>
+
+        <!-- HOME PAGE: ROOM VACANCY & BOOKING SECTION -->
+        <div class="vacancy-section" id="vacancy-section">
+          <div class="section-header">
+            <span class="section-subtitle">LIVE SUITE INVENTORY</span>
+            <h2>Room Vacancy & Reservation</h2>
+            <p>Select your preferred luxury suite only when rooms are vacant</p>
+          </div>
+
+          <div class="vacancy-card">
+            <div class="vacancy-header-bar">
+              <div class="vacancy-badge-status" id="vacancy-total-badge">
+                <span class="dot-indicator green"></span>
+                <span id="vacancy-summary-text">6 Luxury Suites Currently Vacant</span>
+              </div>
+              <small class="live-pulse"><i class="fa-solid fa-rotate fa-spin"></i> Live Inventory Sync</small>
+            </div>
+
+            <div class="vacancy-grid" id="vacancy-rooms-grid">
+              <!-- Dynamic Room Vacancy Cards injected via script.js -->
+            </div>
+
+            <div class="vacancy-action-bar">
+              <button class="btn btn-gold btn-lg" id="home-book-vacant-btn">
+                <i class="fa-solid fa-calendar-check"></i> Book Vacant Room Now
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Access Cards -->
+        <div class="section-header" style="margin-top: 3rem;">
+          <h2>Quick Navigation</h2>
+          <p>Access your favorite hotel guest portals with one tap</p>
+        </div>
+
+        <div class="quick-cards-grid">
+          <a href="#services" class="quick-card" data-target="services">
+            <div class="quick-icon"><i class="fa-solid fa-bell-concierge"></i></div>
+            <h3>🛎 Services</h3>
+            <p>24/7 Room Service, Housekeeping, Spa & Airport Pickups.</p>
+            <span class="quick-link">Request Service <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <a href="#kitchen" class="quick-card" data-target="kitchen">
+            <div class="quick-icon"><i class="fa-solid fa-utensils"></i></div>
+            <h3>🍽 Kitchen</h3>
+            <p>Gourmet culinary delights delivered fresh to your suite.</p>
+            <span class="quick-link">Order Food <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <a href="#entertainment" class="quick-card" data-target="entertainment">
+            <div class="quick-icon"><i class="fa-solid fa-masks-theater"></i></div>
+            <h3>🎭 Entertainment</h3>
+            <p>Live music, poolside events, cinema nights & games.</p>
+            <span class="quick-link">View Schedule <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <a href="#billing" class="quick-card" data-target="billing">
+            <div class="quick-icon"><i class="fa-solid fa-credit-card"></i></div>
+            <h3>💳 Billing</h3>
+            <p>Track current stay charges, taxes, and download invoice.</p>
+            <span class="quick-link">View Invoice <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <a href="#reviews" class="quick-card" data-target="reviews">
+            <div class="quick-icon"><i class="fa-solid fa-star"></i></div>
+            <h3>⭐ Reviews</h3>
+            <p>Share your stay feedback and rate your experience.</p>
+            <span class="quick-link">Write Review <i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+        </div>
+      </section>
+
+      <!-- SECTION 2: SERVICES -->
+      <section id="services" class="page-section">
+        <div class="section-header">
+          <span class="section-subtitle">GUEST CONCIERGE</span>
+          <h2>Services Designed for You</h2>
+          <p>Select from our curated list of 24/7 guest luxury services</p>
+        </div>
+
+        <div class="services-grid" id="services-grid">
+          <!-- Dynamic Services injected via script.js -->
+        </div>
+      </section>
+
+      <!-- SECTION 3: KITCHEN -->
+      <section id="kitchen" class="page-section">
+        <div class="section-header">
+          <span class="section-subtitle">ROYAL CULINARY EXPERIENCE</span>
+          <h2>A Taste of <span class="hotel-name">AURA</span></h2>
+          <p>Handcrafted gourmet dishes prepared by master executive chefs</p>
+        </div>
+
+        <!-- Categories Bar -->
+        <div class="category-filters" id="kitchen-filters">
+          <button class="filter-btn active" data-category="All">All Items</button>
+          <button class="filter-btn" data-category="Breakfast">Breakfast</button>
+          <button class="filter-btn" data-category="Starters">Starters</button>
+          <button class="filter-btn" data-category="Main Course">Main Course</button>
+          <button class="filter-btn" data-category="Desserts">Desserts</button>
+          <button class="filter-btn" data-category="Beverages">Beverages</button>
+        </div>
+
+        <div class="kitchen-layout">
+          <!-- Food Grid -->
+          <div class="food-grid" id="food-grid">
+            <!-- Dynamic food cards injected via script.js -->
+          </div>
+
+          <!-- Order Summary Sidebar -->
+          <aside class="order-summary-panel">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-receipt"></i> Order Summary</h3>
+              <span class="cart-badge" id="cart-item-count">0 items</span>
+            </div>
+            <div class="order-items-list" id="order-items-list">
+              <div class="empty-cart-msg">
+                <i class="fa-solid fa-bowl-food"></i>
+                <p>Your culinary order is empty.</p>
+                <small>Select food items to add to your order.</small>
+              </div>
+            </div>
+            <div class="panel-footer">
+              <div class="summary-line">
+                <span>Subtotal:</span>
+                <span><span class="hotel-currency">₹</span><span id="cart-subtotal">0</span></span>
+              </div>
+              <div class="summary-line tax">
+                <span>Estimated Tax (18%):</span>
+                <span><span class="hotel-currency">₹</span><span id="cart-tax">0</span></span>
+              </div>
+              <div class="summary-line total">
+                <span>Total Amount:</span>
+                <span class="amount-highlight"><span class="hotel-currency">₹</span><span id="cart-total">0</span></span>
+              </div>
+              <button class="btn btn-gold btn-block" id="place-food-order-btn" disabled>
+                <i class="fa-solid fa-paper-plane"></i> Place Food Order
+              </button>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- SECTION 4: ENTERTAINMENT -->
+      <section id="entertainment" class="page-section">
+        <div class="section-header">
+          <span class="section-subtitle">RESORT ACTIVITIES</span>
+          <h2>Entertainment & Experience</h2>
+          <p>Immerse yourself in live music, rooftop events, cinema, and wellness</p>
+        </div>
+
+        <div class="entertainment-grid" id="entertainment-grid">
+          <!-- Dynamic entertainment items injected via script.js -->
+        </div>
+      </section>
+
+      <!-- SECTION 5: BILLING -->
+      <section id="billing" class="page-section">
+        <div class="section-header">
+          <span class="section-subtitle">LIVE INVOICE & CHARGES</span>
+          <h2>My Billing</h2>
+          <p>Real-time itemized breakdown of your stay charges, dining, and requested services</p>
+        </div>
+
+        <div class="billing-container">
+          <div class="invoice-card" id="invoice-card">
+            <div class="invoice-header">
+              <div class="invoice-brand">
+                <h3 class="hotel-name">AURA HOTEL</h3>
+                <p>LUXURY GUEST INVOICE</p>
+              </div>
+              <div class="invoice-badge">
+                <span class="status-badge" id="bill-payment-status">Unpaid / Pending Checkout</span>
+              </div>
+            </div>
+
+            <div class="invoice-meta-grid">
+              <div class="meta-item">
+                <span class="meta-label">Guest Name</span>
+                <span class="meta-value" id="bill-guest-name">Chaithanya</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Booking ID</span>
+                <span class="meta-value" id="bill-booking-id">AURA1025</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Room Number</span>
+                <span class="meta-value" id="bill-room-number">Suite 402</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Stay Period</span>
+                <span class="meta-value"><span id="bill-checkin">15 Sep</span> - <span id="bill-checkout">18 Sep 2026</span></span>
+              </div>
+            </div>
+
+            <!-- Services Section -->
+            <div class="invoice-section">
+              <h4 class="invoice-section-title"><i class="fa-solid fa-bell-concierge"></i> Services</h4>
+              <div class="invoice-table-wrapper">
+                <table class="invoice-table">
+                  <thead>
+                    <tr>
+                      <th>Service Name</th>
+                      <th>Date</th>
+                      <th class="text-right">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody id="bill-services-body">
+                    <!-- Dynamic services rows -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Kitchen Orders Section -->
+            <div class="invoice-section">
+              <h4 class="invoice-section-title"><i class="fa-solid fa-utensils"></i> Kitchen Orders</h4>
+              <div class="invoice-table-wrapper">
+                <table class="invoice-table">
+                  <thead>
+                    <tr>
+                      <th>Item Name</th>
+                      <th>Qty</th>
+                      <th class="text-right">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody id="bill-kitchen-body">
+                    <!-- Dynamic kitchen rows -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Entertainment Section -->
+            <div class="invoice-section">
+              <h4 class="invoice-section-title"><i class="fa-solid fa-masks-theater"></i> Entertainment & Activities</h4>
+              <div class="invoice-table-wrapper">
+                <table class="invoice-table">
+                  <thead>
+                    <tr>
+                      <th>Activity Name</th>
+                      <th>Date</th>
+                      <th class="text-right">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody id="bill-entertainment-body">
+                    <!-- Dynamic entertainment rows -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Invoice Calculation Totals -->
+            <div class="invoice-totals">
+              <div class="total-row">
+                <span>Subtotal</span>
+                <span><span class="hotel-currency">₹</span><span id="bill-subtotal">2,320</span></span>
+              </div>
+              <div class="total-row">
+                <span>GST / Taxes (18%)</span>
+                <span><span class="hotel-currency">₹</span><span id="bill-taxes">418</span></span>
+              </div>
+              <div class="total-row grand-total">
+                <span>TOTAL AMOUNT</span>
+                <span><span class="hotel-currency">₹</span><span id="bill-grand-total">2,738</span></span>
+              </div>
+            </div>
+
+            <div class="invoice-actions">
+              <button class="btn btn-outline-gold" id="view-invoice-modal-btn">
+                <i class="fa-solid fa-file-invoice"></i> View Detailed Invoice
+              </button>
+              <button class="btn btn-gold" id="print-bill-btn">
+                <i class="fa-solid fa-download"></i> Download / Print Bill
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: REVIEWS -->
+      <section id="reviews" class="page-section">
+        <div class="section-header">
+          <span class="section-subtitle">GUEST FEEDBACK</span>
+          <h2>Share Your <span class="hotel-name">AURA</span> Experience</h2>
+          <p>We value your thoughts to continuously elevate our hospitality standards</p>
+        </div>
+
+        <div class="reviews-wrapper">
+          <!-- Rating Form -->
+          <div class="review-form-card">
+            <h3><i class="fa-solid fa-pen-to-square"></i> Leave a Review</h3>
+            <form id="review-form">
+              <div class="form-group">
+                <label for="review-name">Your Full Name</label>
+                <input type="text" id="review-name" class="form-control" placeholder="Enter your name" required>
+              </div>
+
+              <div class="form-group">
+                <label>How was your experience?</label>
+                <div class="star-rating-picker" id="star-picker">
+                  <i class="fa-solid fa-star star-btn" data-value="1"></i>
+                  <i class="fa-solid fa-star star-btn" data-value="2"></i>
+                  <i class="fa-solid fa-star star-btn" data-value="3"></i>
+                  <i class="fa-solid fa-star star-btn" data-value="4"></i>
+                  <i class="fa-solid fa-star star-btn" data-value="5"></i>
+                </div>
+                <div class="rating-label-display" id="rating-label-text">Select your rating</div>
+                <input type="hidden" id="selected-rating-val" value="5">
+              </div>
+
+              <div class="form-group">
+                <label for="review-text">Your Comments / Feedback</label>
+                <textarea id="review-text" rows="4" class="form-control" placeholder="Describe your stay, dining, or service experience..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-gold btn-block">
+                <i class="fa-solid fa-paper-plane"></i> Submit Review
+              </button>
+            </form>
+          </div>
+
+          <!-- Existing Reviews Feed -->
+          <div class="reviews-feed">
+            <h3><i class="fa-solid fa-comments"></i> Guest Reviews</h3>
+            <div class="reviews-list" id="reviews-list">
+              <!-- Dynamic reviews loaded via script.js -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: MY PROFILE -->
+      <section id="profile" class="page-section">
+        <div class="section-header">
+          <span class="section-subtitle">GUEST MANAGEMENT</span>
+          <h2>My Profile</h2>
+          <p>Manage your guest profile information and current stay credentials</p>
+        </div>
+
+        <div class="profile-card">
+          <div class="profile-header">
+            <div class="profile-avatar">
+              <i class="fa-solid fa-user-large"></i>
+            </div>
+            <div class="profile-title">
+              <h3 id="profile-display-name">Chaithanya</h3>
+              <p><span class="badge gold">VIP Guest</span> | Booking ID: <strong id="profile-display-booking">AURA1025</strong></p>
+            </div>
+          </div>
+
+          <form id="profile-edit-form" class="profile-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="prof-name"><i class="fa-solid fa-user"></i> Guest Name</label>
+                <input type="text" id="prof-name" class="form-control" value="Chaithanya" required>
+              </div>
+
+              <div class="form-group">
+                <label for="prof-email"><i class="fa-solid fa-envelope"></i> Email Address</label>
+                <input type="email" id="prof-email" class="form-control" value="chaithanya@example.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="prof-phone"><i class="fa-solid fa-phone"></i> Phone Number</label>
+                <input type="tel" id="prof-phone" class="form-control" value="+91 98765 43210" required>
+              </div>
+
+              <div class="form-group">
+                <label for="prof-booking"><i class="fa-solid fa-hashtag"></i> Booking ID (Read-Only)</label>
+                <input type="text" id="prof-booking" class="form-control" value="AURA1025" readonly>
+              </div>
+
+              <div class="form-group">
+                <label for="prof-checkin"><i class="fa-solid fa-calendar-day"></i> Check-in Date</label>
+                <input type="date" id="prof-checkin" class="form-control" value="2026-09-15" required>
+              </div>
+
+              <div class="form-group">
+                <label for="prof-checkout"><i class="fa-solid fa-calendar-xmark"></i> Check-out Date</label>
+                <input type="date" id="prof-checkout" class="form-control" value="2026-09-18" required>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-gold">
+                <i class="fa-solid fa-floppy-disk"></i> Save Profile Changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- SECTION 8: CONTACT -->
+      <section id="contact" class="page-section">
+        <div class="section-header">
+          <span class="section-subtitle">24/7 GUEST SUPPORT</span>
+          <h2>Contact & Concierge</h2>
+          <p>We are available around the clock to assist you with any request</p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Info Cards -->
+          <div class="contact-info-cards">
+            <div class="info-card">
+              <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div class="info-body">
+                <h4>Resort Address</h4>
+                <p class="hotel-address">108 Luxury Boulevard, Beachfront Enclave, Chennai, Tamil Nadu, India</p>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-icon"><i class="fa-solid fa-phone-flip"></i></div>
+              <div class="info-body">
+                <h4>Direct Phone & WhatsApp</h4>
+                <p class="hotel-phone">+91 98765 43210</p>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+              <div class="info-body">
+                <h4>Guest Email</h4>
+                <p class="hotel-email">concierge@aurahotel.com</p>
+              </div>
+            </div>
+
+            <div class="info-card emergency">
+              <div class="info-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+              <div class="info-body">
+                <h4>Emergency Reception Hotline</h4>
+                <p>Dial <strong>#0</strong> or <strong>#9</strong> from your suite phone anytime.</p>
+              </div>
+            </div>
+
+            <!-- Stylized Map Placeholder -->
+            <div class="map-card">
+              <div class="map-overlay">
+                <i class="fa-solid fa-compass fa-spin-slow"></i>
+                <p><strong class="hotel-name">AURA</strong> Beachfront Resort & Spa</p>
+                <small>Chennai Coastal Corridor</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form-card">
+            <h3><i class="fa-solid fa-paper-plane"></i> Send Direct Message</h3>
+            <form id="contact-form">
+              <div class="form-group">
+                <label for="contact-name">Your Name</label>
+                <input type="text" id="contact-name" class="form-control" placeholder="Enter your full name" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-email">Email Address</label>
+                <input type="email" id="contact-email" class="form-control" placeholder="name@example.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-phone">Phone Number</label>
+                <input type="tel" id="contact-phone" class="form-control" placeholder="+91 98765 43210" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message">Message / Request</label>
+                <textarea id="contact-message" rows="4" class="form-control" placeholder="How may our concierge assist you?" required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-gold btn-block">
+                <i class="fa-solid fa-paper-plane"></i> Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- MODALS -->
+
+  <!-- Booking / Reservation Modal -->
+  <div class="modal" id="booking-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3><i class="fa-solid fa-calendar-plus"></i> Reserve Vacant Suite at <span class="hotel-name">AURA</span></h3>
+          <button class="modal-close" class="close-modal-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="vacancy-notice-banner" id="modal-vacancy-notice">
+            <i class="fa-solid fa-circle-check"></i> <span id="modal-vacancy-text">Checking live suite vacancy...</span>
+          </div>
+
+          <form id="reservation-form">
+            <div class="form-group">
+              <label for="res-room-type">Select Room / Suite Category</label>
+              <select id="res-room-type" class="form-control" required>
+                <option value="Executive Deluxe Suite">Executive Deluxe Suite (₹3,500/night)</option>
+                <option value="Royal Ocean Villa">Royal Ocean Villa (₹6,800/night)</option>
+                <option value="Presidential Penthouse">Presidential Penthouse (₹12,000/night)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="res-name">Guest Name</label>
+              <input type="text" id="res-name" class="form-control" placeholder="Enter full name" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col">
+                <label for="res-email">Email</label>
+                <input type="email" id="res-email" class="form-control" placeholder="email@example.com" required>
+              </div>
+              <div class="form-group col">
+                <label for="res-phone">Phone Number</label>
+                <input type="tel" id="res-phone" class="form-control" placeholder="+91 9876543210" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col">
+                <label for="res-checkin">Check-in Date</label>
+                <input type="date" id="res-checkin" class="form-control" required>
+              </div>
+              <div class="form-group col">
+                <label for="res-checkout">Check-out Date</label>
+                <input type="date" id="res-checkout" class="form-control" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="res-guests">Number of Guests</label>
+              <select id="res-guests" class="form-control" required>
+                <option value="1">1 Guest</option>
+                <option value="2" selected>2 Guests</option>
+                <option value="3">3 Guests</option>
+                <option value="4">4+ Guests</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="res-requests">Special Requests / Preferences</label>
+              <textarea id="res-requests" rows="2" class="form-control" placeholder="High floor, airport shuttle, dietary requirements..."></textarea>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-light close-modal-btn">Cancel</button>
+              <button type="submit" class="btn btn-gold" id="res-submit-btn">
+                <i class="fa-solid fa-check"></i> Reserve Vacant Suite Now
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Booking Success Modal -->
+  <div class="modal" id="booking-success-modal">
+    <div class="modal-dialog">
+      <div class="modal-content success-content">
+        <div class="success-icon">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <h2>Reservation Confirmed!</h2>
+        <p class="success-sub">Thank you for choosing <span class="hotel-name">AURA</span>.</p>
+        
+        <div class="booking-ticket">
+          <div class="ticket-row">
+            <span>Booking ID:</span>
+            <strong id="success-booking-id">AURA1025</strong>
+          </div>
+          <div class="ticket-row">
+            <span>Suite Reserved:</span>
+            <strong id="success-room-type">Executive Deluxe Suite</strong>
+          </div>
+          <div class="ticket-row">
+            <span>Guest Name:</span>
+            <strong id="success-guest-name">Chaithanya</strong>
+          </div>
+          <div class="ticket-row">
+            <span>Check-in:</span>
+            <span id="success-dates">15 Sep - 18 Sep 2026</span>
+          </div>
+        </div>
+
+        <button class="btn btn-gold btn-block close-modal-btn">
+          Back to Portal
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Printable Invoice Modal -->
+  <div class="modal" id="invoice-modal">
+    <div class="modal-dialog large">
+      <div class="modal-content printable-invoice">
+        <div class="modal-header">
+          <h3><i class="fa-solid fa-file-invoice-dollar"></i> Official Guest Statement</h3>
+          <button class="modal-close close-modal-btn">&times;</button>
+        </div>
+        <div class="modal-body" id="printable-area">
+          <div class="inv-header">
+            <div>
+              <h2 class="hotel-name">AURA HOTEL</h2>
+              <p class="hotel-address">108 Luxury Boulevard, Beachfront Enclave, Chennai</p>
+              <p>Phone: <span class="hotel-phone">+91 98765 43210</span> | Email: <span class="hotel-email">concierge@aurahotel.com</span></p>
+            </div>
+            <div class="inv-meta text-right">
+              <h3>STATEMENT OF ACCOUNT</h3>
+              <p>Invoice #: <strong id="modal-inv-id">AURA1025</strong></p>
+              <p>Date: <span id="modal-inv-date">17 Sep 2026</span></p>
+            </div>
+          </div>
+          
+          <hr class="inv-divider">
+
+          <div class="inv-guest-details">
+            <p><strong>Guest:</strong> <span id="modal-inv-guest">Chaithanya</span></p>
+            <p><strong>Room:</strong> <span id="modal-inv-room">Suite 402</span></p>
+            <p><strong>Status:</strong> <span id="modal-inv-status">Pending Checkout</span></p>
+          </div>
+
+          <div id="modal-inv-items">
+            <!-- Full breakdown rendered dynamically -->
+          </div>
+
+          <div class="inv-totals-box">
+            <div class="t-row"><span>Subtotal:</span><span><span class="hotel-currency">₹</span><span id="modal-inv-subtotal">0</span></span></div>
+            <div class="t-row"><span>Taxes (18%):</span><span><span class="hotel-currency">₹</span><span id="modal-inv-tax">0</span></span></div>
+            <div class="t-row grand"><span>Total Amount:</span><span><span class="hotel-currency">₹</span><span id="modal-inv-total">0</span></span></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-light close-modal-btn">Close</button>
+          <button class="btn btn-gold" onclick="window.print()">
+            <i class="fa-solid fa-print"></i> Print / Save PDF
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- JavaScript App Logic -->
+  <script src="script.js"></script>
+</body>
+</html>
