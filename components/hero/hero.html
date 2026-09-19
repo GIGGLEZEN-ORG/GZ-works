@@ -1,0 +1,261 @@
+<!-- GiggleZen Suites — hero component markup -->
+<section
+  id="home"
+  class="relative w-full overflow-hidden bg-[#faf5f0] -mt-20 pt-28 pb-20 lg:pt-36 lg:pb-28 border-b border-outline-variant/40"
+>
+  <div class="absolute inset-0 w-full h-full overflow-hidden z-0">
+    <img
+      alt="GiggleZen Suites Modern Luxury Sanctuary Courtyard &amp; Travertine Architecture"
+      class="w-full h-full object-cover object-center scale-105 transition-transform duration-1000 ease-out"
+      src="https://lh3.googleusercontent.com/aida/AEtjO1XJVYmMXxWVx73YIy43B2kudREqUuqRQjGavPR4TJtW55gXIFnY5zUTn9VT2cl4JFNTeU2x0xzVtMJ0jBJoBuSY3Bbslruq6AczS5Oc602SDkfqkxtq6TKc_C2IhdWqaJs0m-RLF5FqO1REmHFhzL8iFWtJCrdwgCbS1Z6zeGMiUrdbrZ9fXQg2gaT62dEpTtoh1iU2nwxGxPmHTEBafRHoXdTgyU-JZ_GtkOnNlb2OjKrDPC_1FKxtUu4"
+    />
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-[#fff8f5]/90 via-[#fff8f5]/60 to-transparent"
+    ></div>
+  </div>
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-12">
+    <!-- Top Tagline & Badge -->
+    <div class="flex items-center gap-3 mb-6">
+      <span
+        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary font-label-sm uppercase tracking-[0.22em] font-semibold"
+      >
+        <span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+        Premium Business Boutique Hotel • 39 Keys Only
+      </span>
+      <span class="hidden sm:inline-block h-px w-12 bg-outline-variant"></span>
+      <span
+        class="hidden sm:inline-block font-label-sm text-[11px] text-on-surface-variant tracking-widest uppercase"
+        >Madhapur, Hyderabad</span
+      >
+    </div>
+    <!-- Hero Typography Hierarchy -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end mb-12">
+      <div class="lg:col-span-8 space-y-4">
+        <h1
+          class="font-headline-lg text-4xl sm:text-5xl lg:text-[58px] text-[#1f1b18] tracking-tight leading-[1.08]"
+        >
+          Where Business Meets Comfort. <br class="hidden sm:inline" />
+          <span class="italic text-primary font-serif font-normal"
+            >Work by day,</span
+          >
+          unwind by night.
+        </h1>
+        <p
+          class="font-body-lg text-on-surface-variant max-w-2xl pt-2 font-normal leading-relaxed"
+        >
+          39 thoughtfully designed suites crafted for global tech leaders,
+          founders, and modern guests who value serene comfort, executive
+          privacy, and seamless productivity.
+        </p>
+      </div>
+      <div
+        class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-3 lg:items-end justify-end"
+      >
+        <a
+          class="w-full sm:w-auto text-center px-8 py-3.5 rounded-lg bg-primary text-on-primary font-label-sm uppercase tracking-widest shadow-md hover:bg-[#9a6c22] transition-all duration-300 font-semibold"
+          href="#rooms-suites"
+        >
+          Explore Rooms
+        </a>
+        <a
+          class="w-full sm:w-auto text-center px-8 py-3.5 rounded-lg bg-surface-container-lowest border border-outline-variant/60 text-on-surface hover:text-primary font-label-sm uppercase tracking-widest transition-colors duration-200 shadow-sm font-semibold"
+          href="#property-architecture"
+        >
+          Take a Property Tour ↓
+        </a>
+      </div>
+    </div>
+    <!-- FLOATING RESERVATION ENGINE -->
+    <div
+      class="relative z-20 mt-4 rounded-xl bg-surface-container-lowest border border-outline-variant/50 shadow-[0_12px_40px_rgba(41,24,0,0.06)] p-5 lg:p-6"
+    >
+      <form
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 items-center"
+        id="hero-reservation-form"
+      >
+        <!-- Check In Bay -->
+        <div
+          class="lg:col-span-3 flex flex-col p-3 rounded-lg bg-surface-container-low border border-outline-variant/40 transition-colors group focus-within:border-primary/50"
+        >
+          <span
+            class="font-label-sm text-[11px] text-primary uppercase tracking-widest flex items-center gap-1.5 mb-1 font-semibold"
+          >
+            <span class="material-symbols-outlined text-[15px]"
+              >calendar_today</span
+            >
+            Check-in
+          </span>
+          <input
+            class="bg-transparent font-title-md text-base text-on-surface focus:outline-none cursor-pointer font-medium"
+            title="Select Check-in Date"
+            type="date"
+            value="2025-09-18"
+          />
+          <span class="font-body-sm text-xs text-on-surface-variant"
+            >Standard arrival from 14:00</span
+          >
+        </div>
+        <!-- Check Out Bay -->
+        <div
+          class="lg:col-span-3 flex flex-col p-3 rounded-lg bg-surface-container-low border border-outline-variant/40 transition-colors group focus-within:border-primary/50"
+        >
+          <span
+            class="font-label-sm text-[11px] text-primary uppercase tracking-widest flex items-center gap-1.5 mb-1 font-semibold"
+          >
+            <span class="material-symbols-outlined text-[15px]"
+              >event_available</span
+            >
+            Check-out
+          </span>
+          <input
+            class="bg-transparent font-title-md text-base text-on-surface focus:outline-none cursor-pointer font-medium"
+            title="Select Check-out Date"
+            type="date"
+            value="2025-09-20"
+          />
+          <span class="font-body-sm text-xs text-on-surface-variant"
+            >Late check-out on direct booking</span
+          >
+        </div>
+        <!-- Room & Guests Bay -->
+        <div
+          class="lg:col-span-3 relative flex flex-col p-3 rounded-lg bg-surface-container-low border border-outline-variant/40 transition-colors group"
+        >
+          <span
+            class="font-label-sm text-[11px] text-primary uppercase tracking-widest flex items-center gap-1.5 mb-1 font-semibold"
+          >
+            <span class="material-symbols-outlined text-[15px]">group</span>
+            Guests &amp; Keys
+          </span>
+          <div class="flex items-center justify-between gap-3">
+            <span
+              class="font-title-md text-base text-on-surface font-medium"
+              id="guest-summary"
+              >1 Room, 2 Guests</span
+            >
+            <details class="relative" data-guest-selector>
+              <summary
+                class="list-none cursor-pointer font-label-sm text-[12px] text-primary bg-primary/10 border border-primary/20 px-4 py-2 rounded font-semibold min-w-20 text-center"
+              >
+                Select
+              </summary>
+              <div
+                class="absolute right-0 bottom-full z-30 mb-2 w-72 rounded-lg bg-surface-container-lowest border border-outline-variant/60 p-5 shadow-[0_12px_32px_rgba(41,24,0,0.14)]"
+              >
+                <p
+                  class="font-label-sm text-[11px] text-on-surface uppercase tracking-widest mb-3 font-semibold"
+                >
+                  Choose your stay
+                </p>
+                <label
+                  class="flex items-center justify-between gap-3 font-body-sm text-sm text-on-surface mb-3"
+                >
+                  Adults
+                  <select
+                    class="min-w-20 rounded border border-outline-variant/60 bg-surface-container-low px-3 py-2 text-base focus:outline-none focus:border-primary"
+                    aria-label="Number of adults"
+                    data-guest-adults
+                  >
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                  </select>
+                </label>
+                <label
+                  class="flex items-center justify-between gap-3 font-body-sm text-sm text-on-surface mb-3"
+                >
+                  Children
+                  <select
+                    class="min-w-20 rounded border border-outline-variant/60 bg-surface-container-low px-3 py-2 text-base focus:outline-none focus:border-primary"
+                    aria-label="Number of children"
+                    data-guest-children
+                  >
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                  </select>
+                </label>
+                <label
+                  class="flex items-center justify-between gap-3 font-body-sm text-sm text-on-surface"
+                >
+                  Rooms
+                  <select
+                    class="min-w-20 rounded border border-outline-variant/60 bg-surface-container-low px-3 py-2 text-base focus:outline-none focus:border-primary"
+                    aria-label="Number of rooms"
+                    data-guest-rooms
+                  >
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                  </select>
+                </label>
+              </div>
+            </details>
+          </div>
+          <span
+            class="font-body-sm text-xs text-on-surface-variant"
+            id="guest-details"
+            >1 Adult, 0 Children</span
+          >
+        </div>
+        <!-- CTA Submit Bay -->
+        <div class="lg:col-span-3 flex flex-col justify-end">
+          <button
+            class="w-full py-3.5 px-6 rounded-lg bg-primary text-on-primary font-label-sm uppercase tracking-widest hover:bg-[#9a6c22] transition-all duration-300 shadow-sm flex items-center justify-center gap-2 font-semibold"
+            id="availability-button"
+            type="button"
+          >
+            <span class="material-symbols-outlined text-[18px]">key</span>
+            <span class="">Check Availability</span>
+          </button>
+          <div
+            class="flex items-center justify-center gap-1.5 mt-2 font-body-sm text-xs text-on-surface-variant"
+          >
+            <span class="material-symbols-outlined text-[14px] text-primary"
+              >verified</span
+            >
+            <span class="">Best Rate Direct Guarantee • Zero Fees</span>
+          </div>
+        </div>
+      </form>
+    </div>
+    <dialog
+      class="w-[min(90vw,28rem)] rounded-xl bg-surface-container-lowest border border-outline-variant/60 p-0 shadow-[0_20px_60px_rgba(41,24,0,0.2)] backdrop:bg-[#1f1b18]/40"
+      id="availability-dialog"
+    >
+      <div class="p-6">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <p
+              class="font-label-sm text-[11px] text-primary uppercase tracking-widest mb-2 font-semibold"
+            >
+              Reservation check
+            </p>
+            <h2
+              class="font-headline-md text-2xl text-on-surface font-semibold"
+              id="availability-title"
+            >
+              Checking resources...
+            </h2>
+            <p
+              class="font-body-sm text-sm text-on-surface-variant mt-2"
+              id="availability-message"
+            >
+              Please wait while we check the selected dates.
+            </p>
+          </div>
+          <button
+            aria-label="Close availability message"
+            class="text-on-surface-variant hover:text-primary text-2xl leading-none"
+            id="availability-close"
+            type="button"
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+    </dialog>
+  </div>
+</section>

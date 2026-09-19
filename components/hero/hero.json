@@ -1,0 +1,6 @@
+{
+  "component": "hero",
+  "brand": "GiggleZen Suites",
+  "source": "Replica of supplied ELA Lux Suites reference design",
+  "runtime": "The JSON is a content/reference file. Runtime markup is embedded in the matching JS so giggle.html works from file:// without a server."
+}

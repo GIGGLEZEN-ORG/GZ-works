@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GiggleZen Suites architectural gallery.">
+  <title>GiggleZen Suites | Full Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.17/src/css/preflight.css" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1f1b18;
+      --muted: #66594d;
+      --gold: #7d5307;
+      --paper: #fff8f5;
+      --line: #d4c4b3;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: Manrope, sans-serif; }
+    .page { width: min(1180px, calc(100% - 3rem)); margin: 0 auto; }
+    .header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 2rem 0 3rem; }
+    .eyebrow { color: var(--gold); font-size: .72rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; }
+    h1 { margin: .35rem 0 0; font-family: "EB Garamond", serif; font-size: clamp(2.5rem, 6vw, 4.8rem); font-weight: 500; line-height: .95; }
+    .back { color: var(--gold); border: 1px solid var(--line); border-radius: .5rem; padding: .7rem 1rem; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-decoration: none; text-transform: uppercase; white-space: nowrap; }
+    .back:hover { background: #f5ede4; }
+    .gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem; padding-bottom: 4rem; }
+    figure { position: relative; min-height: 18rem; margin: 0; overflow: hidden; border: 1px solid var(--line); border-radius: .75rem; background: #f0e6e1; }
+    figure:nth-child(1), figure:nth-child(2) { grid-column: span 6; min-height: 25rem; }
+    figure:nth-child(n+3) { grid-column: span 4; }
+    figure img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
+    figure:hover img { transform: scale(1.04); }
+    figcaption { position: absolute; right: 0; bottom: 0; left: 0; padding: 3rem 1.25rem 1.1rem; color: white; background: linear-gradient(transparent, rgba(26,20,16,.85)); font-family: "EB Garamond", serif; font-size: 1.4rem; }
+    @media (max-width: 700px) {
+      .page { width: min(100% - 2rem, 34rem); }
+      .header { align-items: flex-start; padding: 1.5rem 0 2rem; }
+      .header h1 { font-size: 3rem; }
+      .back { margin-top: .25rem; }
+      figure:nth-child(n) { grid-column: span 12; min-height: 19rem; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <div>
+        <div class="eyebrow">GiggleZen Suites</div>
+        <h1>Full Gallery</h1>
+      </div>
+      <a class="back" href="giggle.html#property-architecture">Back to Suites</a>
+    </header>
+    <section class="gallery" aria-label="GiggleZen Suites image gallery">
+      <figure>
+        <img alt="The Double-Height Lobby at GiggleZen Suites" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIRIvOtP0OZ5STItW9oxNuCaCfwnyZBh0sd3vERHFosl-P2pjZPY-R5P0FMek_hTwZkU3-uY4DB1oCeskBWtXf63RRqOFeZEgDWzWDyDcGpd4OEN_HH6GVW63iSk2kx95Y307IZ7HvEqRiwn4QOvQinNhws91gydZI_bBVlqSP-izW7Jfz4Z3X23aI_FSj8R7QR5YAGrsrGG3jm6icozE42oUPndDd6niCEVxoYJMXTjEikTW0vXms">
+        <figcaption>The Double-Height Lobby</figcaption>
+      </figure>
+      <figure>
+        <img alt="The Cafe and Work Lounge at GiggleZen Suites" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtLE0wk8TOoajV_o3L4CiiK-4l52YBMlOXQ1xekbTTMZ8tuE1VMBaU3Au_E7J81qY9-QsuiSl697PFaFnACwN05VAq7BalxUyl-Me_cwQoq8oYQH9YqSCz31U3VMAesnOs2ItBfw3wgq2ElqTvmq7wQtPFe49yB9_4Wop-WlnBnKfeLitTIR6s43ZgTk1GMnbxyCmJ2hG2B_cKC8p7YpHXqXj6MXvmXF82oB6fTo_rMN4E404nm6NU">
+        <figcaption>The Cafe &amp; Bar</figcaption>
+      </figure>
+      <figure>
+        <img alt="Executive boardroom meeting space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBETASxOMO1-TDEANDv0cnXhKdoL0lr9RlATAxFMfHOISsNs5kbfAsN8RirVDD9ebKdzi_hsxd_Iufu3bcEgXQncdlJRDXKH5BvlhcHrWRPCxY4ybfirZ77vGKAVCvYCC8hXLGviH8UAHXZ1Ef1gTZZvkqsyj3CJEPGAI0T7SbvBoTrLHCVcFxpRkbfxanvzZfQ0eOOnOzToTvlmhQqZMcsRgQ29p7uDe0ttC9nEdiNTFVhtl7p-xV-">
+        <figcaption>Meeting Spaces</figcaption>
+      </figure>
+      <figure>
+        <img alt="GiggleZen Suites fitness centre" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8Jblh_2V5S2VYFfbrWSvOXZ3nyoLlwgd24Xup4z8dcYpJ4S8oi6KVedBK9CPaNygPAXYTp-KayUVY8HV-EobAgE-oduIVbKRklyQI38VLtjAOJiadivhcYEJCel_Xc28jRVRKUq3AOtRwbgxOwmw-1e8VDTI1Zl_u7mrYC879IVXqFMx2J_j65A-4JU5p98QyKb0L_FHEU7veEfndq_8aRWnVGOT79hxuDjpxgJAJDvZyu0BJGKe-">
+        <figcaption>Fitness Centre</figcaption>
+      </figure>
+      <figure>
+        <img alt="Modern exterior architecture of GiggleZen Suites" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyk_tkdEruBqJpWel35sO1fGSZxcy2gk90m0zk9n70y623emGC2t6jc_WjkHdP1tDuCurUdLyUdLvmpJGqpm7GH_eOmoJ0uR_mQ8x2ABCbL1zRdSwfwFsEgTKxk6QAlN-cKil3HEirWsFH4BQSPBNGCCjKlTCxUtI4d0tlLMRpgK4MzJfLs0SwVrii-JFZyuAEZXvpRC77VoxgjV2h32TvvjRvA3jEF4vyqeY3CAKDW_TqqZ939LgH">
+        <figcaption>Ground + 4 Elevation</figcaption>
+      </figure>
+    </section>
+  </main>
+</body>
+</html>

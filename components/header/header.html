@@ -1,0 +1,132 @@
+<!-- GiggleZen Suites — header component markup -->
+<header
+  class="fixed top-0 margin-left-5% margin-right-5% border-radius-20px left-0 right-0 z-50 bg-[#fff8f5]/90 backdrop-blur-xl border-b border-outline-variant/40 shadow-[0_2px_12px_rgba(40,24,0,0.03)]"
+>
+  <div
+    class="h-20 max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between gap-6"
+  >
+    <div class="flex items-center gap-4 shrink-0">
+      <div
+        class="px-2.5 py-1.5 rounded-lg bg-[#1a1410] flex items-center justify-center shadow-sm border border-primary/20"
+      >
+        <span class="font-serif font-bold text-lg tracking-wider text-[#ffddb2]"
+          >GZ</span
+        >
+      </div>
+      <a class="flex flex-col" data-path="home" href="#home"
+        ><span
+          class="font-headline-md text-xl tracking-wide font-serif text-primary font-bold leading-none"
+          >SUITES</span
+        ></a
+      >
+    </div>
+    <nav
+      class="hidden xl:flex items-center gap-7"
+      data-active-classes="bg-primary/10 text-primary font-semibold rounded-md px-3 py-1"
+    >
+      <a
+        class="font-label-sm uppercase text-on-surface-variant hover:text-primary tracking-wider transition-colors py-1"
+        data-path="rooms-and-suites"
+        href="#rooms-suites"
+        >Rooms &amp; Suites</a
+      ><a
+        class="font-label-sm uppercase text-on-surface-variant hover:text-primary tracking-wider transition-colors py-1"
+        data-path="amenities"
+        href="#amenities"
+        >Amenities</a
+      ><a
+        class="font-label-sm uppercase text-on-surface-variant hover:text-primary tracking-wider transition-colors py-1"
+        data-path="dining"
+        href="#dining"
+        >Dining</a
+      ><a
+        class="font-label-sm uppercase text-on-surface-variant hover:text-primary tracking-wider transition-colors py-1"
+        data-path="curated-offers"
+        href="#offers"
+        >Offers</a
+      ><a
+        class="font-label-sm uppercase text-on-surface-variant hover:text-primary tracking-wider transition-colors py-1"
+        data-path="about-the-sanctuary"
+        href="#about-the-sanctuary"
+        >About</a
+      ><a
+        class="font-label-sm uppercase text-on-surface-variant hover:text-primary tracking-wider transition-colors py-1"
+        data-path="contact-and-location"
+        href="#contact-and-location"
+        >Contact</a
+      >
+    </nav>
+    <details class="relative xl:hidden">
+      <summary
+        aria-label="Open navigation menu"
+        class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-lg bg-surface-container-low border border-outline-variant/60 text-on-surface hover:text-primary hover:border-primary/50 transition-colors"
+      >
+        <span class="material-symbols-outlined text-[24px]">more_vert</span>
+      </summary>
+      <nav
+        class="absolute right-0 top-12 z-50 w-56 rounded-lg bg-surface-container-lowest border border-outline-variant/60 p-2 shadow-[0_12px_32px_rgba(41,24,0,0.14)]"
+        aria-label="Mobile navigation"
+      >
+        <a
+          class="block rounded-md px-3 py-2.5 font-label-sm uppercase text-on-surface-variant hover:bg-primary/10 hover:text-primary tracking-wider transition-colors"
+          href="#rooms-suites"
+          >Rooms &amp; Suites</a
+        ><a
+          class="block rounded-md px-3 py-2.5 font-label-sm uppercase text-on-surface-variant hover:bg-primary/10 hover:text-primary tracking-wider transition-colors"
+          href="#amenities"
+          >Amenities</a
+        ><a
+          class="block rounded-md px-3 py-2.5 font-label-sm uppercase text-on-surface-variant hover:bg-primary/10 hover:text-primary tracking-wider transition-colors"
+          href="#dining"
+          >Dining</a
+        ><a
+          class="block rounded-md px-3 py-2.5 font-label-sm uppercase text-on-surface-variant hover:bg-primary/10 hover:text-primary tracking-wider transition-colors"
+          href="#offers"
+          >Offers</a
+        ><a
+          class="block rounded-md px-3 py-2.5 font-label-sm uppercase text-on-surface-variant hover:bg-primary/10 hover:text-primary tracking-wider transition-colors"
+          href="#about-the-sanctuary"
+          >About</a
+        ><a
+          class="block rounded-md px-3 py-2.5 font-label-sm uppercase text-on-surface-variant hover:bg-primary/10 hover:text-primary tracking-wider transition-colors"
+          href="#contact-and-location"
+          >Contact</a
+        >
+      </nav>
+    </details>
+    <div class="flex items-center gap-4 shrink-0">
+      <a
+        class="hidden md:inline-flex items-center gap-2 text-on-surface hover:text-primary font-body-sm text-xs font-semibold tracking-wider transition-colors"
+        href="tel:+917311234567"
+        ><span class="material-symbols-outlined text-primary text-[18px]"
+          >phone</span
+        ><span class="">+91 98765 43210</span></a
+      ><button
+        class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/60 text-on-surface hover:border-primary/50 transition-all cursor-pointer shadow-sm"
+        id="theme-toggle"
+        type="button"
+      >
+        <span
+          class="material-symbols-outlined text-[17px] text-primary"
+          id="theme-icon"
+          >dark_mode</span
+        ><span
+          class="font-label-sm text-[11px] uppercase tracking-wider font-semibold text-on-surface-variant"
+          id="theme-text"
+          >Dark</span
+        ></button
+      ><a
+        class="px-5 py-2.5 rounded-lg bg-primary text-on-primary font-label-sm uppercase tracking-wider hover:bg-[#9a6c22] transition-colors shadow-sm font-semibold text-xs"
+        href="#hero-reservation-form"
+        >Book Now</a
+      ><a
+        aria-label="Guest Account"
+        class="w-9 h-9 rounded-full bg-surface-container-low border border-outline-variant/60 flex items-center justify-center text-on-surface hover:text-primary hover:border-primary/50 transition-colors shadow-sm"
+        href="#"
+        ><span class="material-symbols-outlined text-[20px]"
+          >account_circle</span
+        ></a
+      >
+    </div>
+  </div>
+</header>

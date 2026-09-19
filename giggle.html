@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GiggleZen Suites — warm architectural luxury in Madhapur, Hyderabad.">
+  <title>GiggleZen Suites | Boutique Business Hotel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: { extend: { colors: {
+        primary: "#7d5307", "primary-container":"#9a6c22", "on-primary":"#ffffff",
+        surface:"#fff8f5", "surface-bright":"#fff8f5", "surface-container-lowest":"#ffffff",
+        "surface-container-low":"#fbf2ec", "surface-container":"#f6ece7", "surface-container-high":"#f0e6e1",
+        "surface-container-highest":"#eae1db", "on-surface":"#1f1b18", "on-surface-variant":"#504538",
+        "outline-variant":"#d4c4b3", secondary:"#7f560f", "secondary-container":"#fcc575",
+        "primary-fixed":"#ffddb2", "primary-fixed-dim":"#f5bc6b", "stone-card":"#f7f2ed", "stone-card-hover":"#f0e9e1"
+      }, fontFamily: {
+        "headline-md":["EB Garamond"], "headline-lg":["EB Garamond"], "headline-sm":["EB Garamond"],
+        "display-lg":["EB Garamond"], "display-lg-mobile":["EB Garamond"], "headline-lg-mobile":["EB Garamond"],
+        "title-md":["Manrope"], "body-md":["Manrope"], "body-lg":["Manrope"], "body-sm":["Manrope"], "label-md":["Manrope"], "label-sm":["Manrope"]
+      }} }
+    };
+  </script>
+  <link rel="stylesheet" href="./giggle.css">
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+  <div id="component-header"></div>
+  <main class="w-full pt-20 bg-surface min-h-screen">
+    <div class="flex flex-col w-full text-on-surface">
+      <div id="component-hero"></div>
+      <div id="component-features"></div>
+      <div id="component-architecture"></div>
+      <div id="component-rooms"></div>
+      <div id="component-sanctuary"></div>
+      <div id="component-dining"></div>
+      <div id="component-offers"></div>
+      <div id="component-reviews"></div>
+      <div id="component-location"></div>
+    </div>
+  </main>
+  <div id="component-footer"></div>
+  <script src="./app.js"></script>
+</body>
+</html>

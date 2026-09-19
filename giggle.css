@@ -1,0 +1,93 @@
+/* ================================================================
+   GIGGLEZEN SUITES — GIGGLE.CSS
+   Visual system adapted directly from the supplied ELA Lux Suites
+   reference: warm architectural luxury, EB Garamond + Manrope.
+   ================================================================ */
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Manrope:wght@200..800&display=swap");
+
+:root {
+  --gz-surface: #fff8f5;
+  --gz-surface-dim: #e1d8d3;
+  --gz-surface-lowest: #ffffff;
+  --gz-surface-low: #fbf2ec;
+  --gz-surface-container: #f6ece7;
+  --gz-surface-high: #f0e6e1;
+  --gz-surface-highest: #eae1db;
+  --gz-ink: #1f1b18;
+  --gz-muted: #504538;
+  --gz-primary: #7d5307;
+  --gz-primary-container: #9a6c22;
+  --gz-gold: #f5bc6b;
+  --gz-outline: #827566;
+  --gz-outline-variant: #d4c4b3;
+  --gz-stone: #f7f2ed;
+}
+
+html, body { margin:0; padding:0; min-height:100%; }
+html { scroll-behavior:smooth; }
+body {
+  background:var(--gz-surface);
+  color:var(--gz-ink);
+  font-family:"Manrope", sans-serif;
+  overscroll-behavior:none;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+main > :first-child { margin-top:0 !important; }
+main > :last-child { margin-bottom:0 !important; }
+::selection { background:var(--gz-primary-container); color:#fffbff; }
+
+/* Keep the reference's editorial type hierarchy even if a Tailwind class is missed. */
+.font-headline-md,.font-headline-lg,.font-headline-sm,.font-display-lg,.font-display-lg-mobile,.font-headline-lg-mobile { font-family:"EB Garamond", Georgia, serif !important; }
+.font-title-md,.font-body-md,.font-body-lg,.font-body-sm,.font-label-md,.font-label-sm { font-family:"Manrope", Arial, sans-serif !important; }
+
+/* Architectural luxury surfaces */
+button, a { -webkit-tap-highlight-color:transparent; }
+img { display:block; max-width:100%; }
+section, header, footer { box-sizing:border-box; }
+
+/* Crisp image behavior from the reference */
+[class*="overflow-hidden"] img { backface-visibility:hidden; }
+
+/* Theme toggle */
+.dark-luxury { color-scheme:dark; }
+.dark-luxury body { background:#140c0a !important; color:#f5efe6 !important; }
+.dark-luxury header { background-color:rgba(25,18,15,.92) !important; border-color:#332620 !important; }
+.dark-luxury header a,.dark-luxury header span { color:#f5efe6; }
+.dark-luxury section { background-color:#140c0a !important; border-color:#332620 !important; color:#f5efe6 !important; }
+.dark-luxury section.bg-surface-container-lowest,.dark-luxury div.bg-surface-container-lowest,.dark-luxury div.bg-surface-container-low { background-color:#1d1512 !important; border-color:#382c26 !important; }
+.dark-luxury h1,.dark-luxury h2,.dark-luxury h3,.dark-luxury h4 { color:#fff8f5 !important; }
+.dark-luxury p,.dark-luxury span.text-on-surface-variant { color:#cbbcb3 !important; }
+.dark-luxury .text-primary { color:#f3bd6e !important; }
+.dark-luxury footer { background-color:#120b09 !important; border-color:#2b201a !important; color:#f5efe6 !important; }
+.dark-luxury footer p,.dark-luxury footer span,.dark-luxury footer li { color:#cbbcb3 !important; }
+
+/* Small screens */
+@media (min-width: 768px) {
+  .max-w-7xl { max-width:90rem; }
+}
+
+@media (max-width: 767px) {
+  .max-w-7xl { max-width:100%; }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior:auto !important; animation-duration:.01ms !important; transition-duration:.01ms !important; }
+}
+
+
+/* Shared component-loader toast */
+.gz-toast {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 99999;
+  padding: 12px 18px;
+  background: #1f1b18;
+  color: #fff8f5;
+  border: 1px solid #7d5307;
+  box-shadow: 0 14px 35px rgba(31,27,24,.18);
+  font-family: Manrope, Arial, sans-serif;
+  font-size: 13px;
+}
