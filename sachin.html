@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sachin Automobiles HUB | Car Spare Parts</title>
+
+    <link rel="stylesheet" href="sachin.css">
+</head>
+
+<body>
+
+    <div class="parts-ad" role="region" aria-label="Parts offers">
+        <p class="sr-only">Shop engine, brake, electrical, interior, and exterior parts. Get ₹500 off your first order.</p>
+        <span class="parts-ad-label" aria-hidden="true">⚡ HOT DEAL</span>
+        <div class="parts-ad-track" aria-hidden="true">
+            <span>GEAR UP YOUR RIDE</span>
+            <span>ENGINE • BRAKE • ELECTRICAL • INTERIOR • EXTERIOR PARTS</span>
+            <span>₹500 OFF YOUR FIRST ORDER</span>
+            <span>SHOP PARTS FOR YOUR CAR</span>
+            <span>GEAR UP YOUR RIDE</span>
+            <span>ENGINE • BRAKE • ELECTRICAL • INTERIOR • EXTERIOR PARTS</span>
+            <span>₹500 OFF YOUR FIRST ORDER</span>
+            <span>SHOP PARTS FOR YOUR CAR</span>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="logo" role="img" aria-label="Sachin Automobile Hub logo">
+            <span class="logo-mark" aria-hidden="true">
+                <svg viewBox="0 0 64 64" role="img">
+                    <path d="M12 35 17 22a7 7 0 0 1 6-4h18a7 7 0 0 1 6 4l5 13 4 4v11h-5a7 7 0 0 1-14 0H27a7 7 0 0 1-14 0H8V39l4-4Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="m19 33 3-9h20l4 9H19Z" fill="currentColor" opacity=".25"/>
+                    <path d="M12 36h40" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+                    <circle cx="20" cy="48" r="4" fill="#ff6b00"/>
+                    <circle cx="44" cy="48" r="4" fill="#ff6b00"/>
+                </svg>
+            </span>
+        </div>
+
+        <button type="button" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-expanded="false" aria-controls="site-navigation" aria-label="Open navigation menu" onclick="toggleMobileNavigation()">
+            <span class="mobile-menu-icon" aria-hidden="true">☰</span>
+            <span class="mobile-menu-label">Menu</span>
+        </button>
+
+        <nav id="site-navigation" class="site-navigation" aria-label="Main navigation" tabindex="-1">
+            <button type="button" class="nav-item active" data-target-page="home" onclick="showPage('home')" aria-label="Home page">
+                <span class="nav-icon" aria-hidden="true">🏠</span>
+                <span class="nav-label">Home</span>
+            </button>
+            <button type="button" class="nav-item" data-target-page="about" onclick="showPage('about')" aria-label="About us">
+                <span class="nav-icon" aria-hidden="true">ℹ️</span>
+                <span class="nav-label">About</span>
+            </button>
+            <button type="button" class="nav-item" data-target-page="products" onclick="showPage('products')" aria-label="Spare parts catalog">
+                <span class="nav-icon" aria-hidden="true">⚙️</span>
+                <span class="nav-label">Parts</span>
+            </button>
+            <button type="button" class="nav-item" data-target-page="contact" onclick="showPage('contact')" aria-label="Customer support">
+                <span class="nav-icon" aria-hidden="true">📞</span>
+                <span class="nav-label">Contact</span>
+            </button>
+        </nav>
+
+        <div class="header-actions">
+            <button type="button" class="account-header-card account-icon-button" id="account-header-btn" onclick="openAccountPage('login')" aria-label="Log in or sign up" title="Account">
+                <span class="account-avatar-wrap" aria-hidden="true">
+                    <span class="account-avatar-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="8" r="4"></circle>
+                            <path d="M5 21v-2a7 7 0 0 1 14 0v2"></path>
+                        </svg>
+                    </span>
+                </span>
+            </button>
+            <button class="cart-button" type="button" onclick="openCart()" aria-label="Open shopping cart">
+                <span class="cart-button-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1.5"></circle>
+                        <circle cx="19" cy="21" r="1.5"></circle>
+                        <path d="M1 1h4l2.6 12.5a2 2 0 0 0 2 1.5h9.8a2 2 0 0 0 2-1.5L23 5H6"></path>
+                    </svg>
+                </span>
+                <span class="cart-button-label">Cart</span>
+                <span id="cart-count">0</span>
+            </button>
+        </div>
+
+    </header>
+
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home" data-page="home">
+        <div class="hero-content">
+            <p class="hero-eyebrow"><span></span> <em>Sachin Automobiles</em></p>
+            <h1>
+                Every journey
+                <span>starts here.</span>
+            </h1>
+            <p>Find the right parts for your ride. Explore engine, brake, electrical, interior, and exterior essentials with certified OEM precision.</p>
+            <div class="hero-actions">
+                <button type="button" onclick="scrollToVehicle()" class="shop-button">
+                    Choose Your Car <span aria-hidden="true">→</span>
+                </button>
+                <span class="hero-offer"><strong>₹500 OFF</strong> your first order</span>
+                <button type="button" class="hero-secondary-btn" onclick="scrollToShowcase()">
+                    <span>🎬</span> Watch Showcase Reel
+                </button>
+            </div>
+        </div>
+
+        <div class="hero-showcase" role="group" aria-label="Automotive parts slideshow">
+            <div class="showcase-orbit showcase-orbit-one"></div>
+            <div class="showcase-orbit showcase-orbit-two"></div>
+            <div class="showcase-card">
+                <div class="showcase-card-top">
+                    <span class="showcase-dot"></span>
+                    <span>PARTS FOR YOUR RIDE</span>
+                </div>
+                <div class="showcase-image-stage">
+                    <img id="showcase-image" src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?auto=format&amp;fit=crop&amp;w=1800&amp;q=85" alt="Engine parts for your car">
+                </div>
+                <div class="showcase-card-bottom">
+                    <span>Explore our range</span>
+                    <div class="showcase-controls" aria-label="Showcase controls">
+                        <button type="button" class="showcase-arrow" id="showcase-previous" aria-label="Previous showcase image">←</button>
+                        <span id="showcase-category" class="sr-only" aria-live="polite">ENGINE</span>
+                        <button type="button" class="showcase-pause" id="showcase-pause" aria-label="Pause automatic slideshow">Pause</button>
+                        <button type="button" class="showcase-arrow" id="showcase-next" aria-label="Next showcase image">→</button>
+                    </div>
+                </div>
+            </div>
+            <span id="showcase-floating-category" class="sr-only" aria-hidden="true">ENGINE</span>
+        </div>
+    </section>
+
+    <!-- VEHICLE SELECTION -->
+    <section class="vehicle-selection" id="vehicle-selection" data-page="home" aria-labelledby="vehicle-heading">
+        <div class="vehicle-selection-card">
+            <div class="vehicle-card-header">
+                <span class="small-title"><span class="title-pulse-dot" aria-hidden="true"></span> PARTS FOR YOUR CAR</span>
+                <h2 id="vehicle-heading">Which car do you have?</h2>
+                <p class="vehicle-subheading">Select your car brand, model, and year before browsing our parts for a guaranteed exact fit.</p>
+            </div>
+
+            <!-- FORM 1: STANDARD BRAND / MODEL / YEAR -->
+            <form id="vehicle-form" class="vehicle-form" onsubmit="findVehicleParts(event)">
+                <div class="form-group">
+                    <label for="vehicle-brand">
+                        <span class="label-icon" aria-hidden="true">🏷️</span> Car brand
+                    </label>
+                    <select id="vehicle-brand" required onchange="updateVehicleModels(); syncSelectedVehicleFromForm()">
+                        <option value="">Select a brand</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="vehicle-model">
+                        <span class="label-icon" aria-hidden="true">🚘</span> Car model
+                    </label>
+                    <select id="vehicle-model" required disabled onchange="syncSelectedVehicleFromForm()">
+                        <option value="">Select a model</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="vehicle-year">
+                        <span class="label-icon" aria-hidden="true">📅</span> Model year
+                    </label>
+                    <select id="vehicle-year" required onchange="syncSelectedVehicleFromForm()">
+                        <option value="">Select year</option>
+                    </select>
+                </div>
+                <button type="submit" class="find-parts-button">Continue to Parts →</button>
+            </form>
+
+            <!-- FORM 2: REGISTRATION / VIN SEARCH -->
+            <form id="vehicle-vin-form" class="vehicle-vin-form" onsubmit="lookupVehicleByReg(event)" hidden>
+                <div class="vin-input-group">
+                    <label for="vehicle-reg-input">
+                        <span class="label-icon" aria-hidden="true">🔢</span> Vehicle Registration Plate (e.g. MH 02 CZ 5678, DL 01 AB 1234) or 17-digit ISO 3779 VIN
+                    </label>
+                    <div class="vin-input-row">
+                        <input type="text" id="vehicle-reg-input" placeholder="Enter Indian Reg Plate or 17-digit VIN" maxlength="20" autocomplete="off">
+                        <button type="submit" class="find-parts-button">Verify &amp; Match Parts</button>
+                    </div>
+                    <div class="vin-samples-tray">
+                        <span class="vin-samples-label">💡 Test Valid Registrations:</span>
+                        <div class="vin-samples-pills">
+                            <button type="button" class="vin-sample-chip" onclick="quickFillVehicleSearch('MH 02 CZ 5678')">MH 02 CZ 5678 (Thar 4x4)</button>
+                            <button type="button" class="vin-sample-chip" onclick="quickFillVehicleSearch('DL 01 AB 1234')">DL 01 AB 1234 (Creta)</button>
+                            <button type="button" class="vin-sample-chip" onclick="quickFillVehicleSearch('KA 05 MN 4321')">KA 05 MN 4321 (Swift)</button>
+                            <button type="button" class="vin-sample-chip" onclick="quickFillVehicleSearch('TN 09 BQ 8877')">TN 09 BQ 8877 (City)</button>
+                            <button type="button" class="vin-sample-chip" onclick="quickFillVehicleSearch('22 BH 5432 AB')">22 BH 5432 AB (BH-Series)</button>
+                        </div>
+                        <span class="vin-samples-label">🔍 Test ISO 3779 VINs:</span>
+                        <div class="vin-samples-pills">
+                            <button type="button" class="vin-sample-chip vin-sample-chip-vin" onclick="quickFillVehicleSearch('MA3EJKD12S0012345')">MA3EJKD12S0012345 (Maruti 2018)</button>
+                            <button type="button" class="vin-sample-chip vin-sample-chip-vin" onclick="quickFillVehicleSearch('MALC351CXLKM12345')">MALC351CXLKM12345 (Hyundai 2020)</button>
+                            <button type="button" class="vin-sample-chip vin-sample-chip-vin" onclick="quickFillVehicleSearch('YV1A22PK8B1123456')">YV1A22PK8B1123456 (Volvo 2011)</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div id="vehicle-spec-card" class="vehicle-spec-card" hidden>
+                <div class="spec-card-header">
+                    <span class="spec-verified-pill">✓ GOVT RTO / ISO 3779 VERIFIED</span>
+                    <h3 id="spec-car-title">Vehicle Technical Profile</h3>
+                </div>
+                <div class="spec-card-grid" id="spec-card-grid">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+
+            <p id="vehicle-message" class="vehicle-message" role="status"></p>
+
+            <div class="vehicle-help" role="note">
+                <span class="vehicle-help-icon" aria-hidden="true">ℹ️</span>
+                <span>All catalog parts remain available for every selected car. Contact our specialists to confirm exact fitment for your vehicle variant.</span>
+            </div>
+        </div>
+        <div class="first-order-offer" id="first-order-offer" role="status" hidden style="display: none !important;">
+            <span class="offer-tag">WELCOME OFFER</span>
+            <strong>Get ₹500 OFF your first order</strong>
+            <span>Applied automatically at checkout.</span>
+        </div>
+    </section>
+
+    <!-- FULL-WIDTH EDGE-TO-EDGE AUTOMOTIVE SLIDING REEL -->
+    <section class="hero-slider-section" id="hero-slider-section" data-page="home" aria-label="Automotive high-performance parts sliding showcase">
+        <div class="slider-header-bar">
+            <div class="slider-heading-info">
+                <span class="slider-badge-pulse"><span class="pulse-dot"></span> LIVE VEHICLE &amp; PARTS STRIP</span>
+                <h2>High-Octane Spares &amp; Performance Parts In Motion</h2>
+                <p>Images &amp; dynamic video previews glide across your screen. Hover any slide to inspect, click to watch 4K clips or jump to parts.</p>
+            </div>
+        </div>
+
+        <div class="slider-track-container" id="slider-track-container" onmouseenter="pauseMarqueeHover(true)" onmouseleave="pauseMarqueeHover(false)">
+            <div class="slider-track" id="slider-track">
+                <!-- Slide Cards (duplicated for infinite seamless edge-to-edge sliding) -->
+                <!-- Set 1 -->
+                <article class="slide-card" onclick="openVideoModal(0)">
+                    <div class="slide-media-wrap">
+                        <img src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Twin-Turbo V8 Engine assembly" loading="lazy">
+                        <span class="slide-video-badge">🎬 4K Clip</span>
+                        <span class="slide-cat-badge">🔥 ENGINE</span>
+                    </div>
+                    <div class="slide-content">
+                        <h4>Twin-Turbo V8 Engine Assembly</h4>
+                        <p class="slide-specs">Forged pistons • High-lift camshafts • 650+ HP Dyno</p>
+                        <div class="slide-actions">
+                            <button type="button" class="slide-action-btn view-clip" onclick="event.stopPropagation(); openVideoModal(0)">Watch Clip</button>
+                            <button type="button" class="slide-action-btn shop-now" onclick="event.stopPropagation(); quickFilterFromShowcase('Engine')">Parts →</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="slide-card" onclick="openVideoModal(1)">
+                    <div class="slide-media-wrap">
+                        <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Brembo Carbon-Ceramic Brakes" loading="lazy">
+                        <span class="slide-video-badge">🎬 Brake Test</span>
+                        <span class="slide-cat-badge">⚡ BRAKES</span>
+                    </div>
+                    <div class="slide-content">
+                        <h4>Brembo Carbon-Ceramic System</h4>
+                        <p class="slide-specs">6-Piston calipers • Drilled ceramic rotors • Zero fade</p>
+                        <div class="slide-actions">
+                            <button type="button" class="slide-action-btn view-clip" onclick="event.stopPropagation(); openVideoModal(1)">Watch Clip</button>
+                            <button type="button" class="slide-action-btn shop-now" onclick="event.stopPropagation(); quickFilterFromShowcase('Brake')">Parts →</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="slide-card" onclick="openVideoModal(2)">
+                    <div class="slide-media-wrap">
+                        <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Supercar Aerodynamics & Diffuser" loading="lazy">
+                        <span class="slide-video-badge">🎬 Aero Dynamics</span>
+                        <span class="slide-cat-badge">🏎️ EXTERIOR</span>
+                    </div>
+                    <div class="slide-content">
+                        <h4>Active Carbon Aero &amp; Diffuser</h4>
+                        <p class="slide-specs">Pre-preg carbon weave • High-downforce splitters</p>
+                        <div class="slide-actions">
+                            <button type="button" class="slide-action-btn view-clip" onclick="event.stopPropagation(); openVideoModal(2)">Watch Clip</button>
+                            <button type="button" class="slide-action-btn shop-now" onclick="event.stopPropagation(); quickFilterFromShowcase('Exterior')">Parts →</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="slide-card" onclick="openVideoModal(3)">
+                    <div class="slide-media-wrap">
+                        <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Matrix LED Laser Headlamps" loading="lazy">
+                        <span class="slide-video-badge">🎬 Night Vision</span>
+                        <span class="slide-cat-badge">💡 ELECTRICAL</span>
+                    </div>
+                    <div class="slide-content">
+                        <h4>Matrix Dynamic Laser Headlamps</h4>
+                        <p class="slide-specs">Sequential turn indicators • 6500K bright beam</p>
+                        <div class="slide-actions">
+                            <button type="button" class="slide-action-btn view-clip" onclick="event.stopPropagation(); openVideoModal(3)">Watch Clip</button>
+                            <button type="button" class="slide-action-btn shop-now" onclick="event.stopPropagation(); quickFilterFromShowcase('Electrical')">Parts →</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="slide-card" onclick="openVideoModal(4)">
+                    <div class="slide-media-wrap">
+                        <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Twin-Scroll Racing Turbocharger" loading="lazy">
+                        <span class="slide-video-badge">🎬 Dyno Spool</span>
+                        <span class="slide-cat-badge">💨 TURBOS</span>
+                    </div>
+                    <div class="slide-content">
+                        <h4>Twin-Scroll Racing Turbocharger</h4>
+                        <p class="slide-specs">Ceramic ball-bearing • Inconel wheel • 2.4 Bar boost</p>
+                        <div class="slide-actions">
+                            <button type="button" class="slide-action-btn view-clip" onclick="event.stopPropagation(); openVideoModal(4)">Watch Clip</button>
+                            <button type="button" class="slide-action-btn shop-now" onclick="event.stopPropagation(); quickFilterFromShowcase('Engine')">Parts →</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="slide-card" onclick="openVideoModal(5)">
+                    <div class="slide-media-wrap">
+                        <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Monotube Coilover Suspension" loading="lazy">
+                        <span class="slide-video-badge">🎬 Track Grip</span>
+                        <span class="slide-cat-badge">🛠️ SUSPENSION</span>
+                    </div>
+                    <div class="slide-content">
+                        <h4>Monotube Coilover Kit</h4>
+                        <p class="slide-specs">32-Click rebound damping • Height adjustable</p>
+                        <div class="slide-actions">
+                            <button type="button" class="slide-action-btn view-clip" onclick="event.stopPropagation(); openVideoModal(5)">Watch Clip</button>
+                            <button type="button" class="slide-action-btn shop-now" onclick="event.stopPropagation(); quickFilterFromShowcase('Exterior')">Parts →</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="slide-card" onclick="openVideoModal(6)">
+                    <div class="slide-media-wrap">
+                        <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Forged Alloy Performance Wheels" loading="lazy">
+                        <span class="slide-video-badge">🎬 Wheel Spin</span>
+                        <span class="slide-cat-badge">🏁 WHEELS</span>
+                    </div>
+                    <div class="slide-content">
+                        <h4>Forged Lightweight Racing Alloys</h4>
+                        <p class="slide-specs">T6-6061 Aerospace aluminum • Extreme rigidity</p>
+                        <div class="slide-actions">
+                            <button type="button" class="slide-action-btn view-clip" onclick="event.stopPropagation(); openVideoModal(6)">Watch Clip</button>
+                            <button type="button" class="slide-action-btn shop-now" onclick="event.stopPropagation(); quickFilterFromShowcase('Exterior')">Parts →</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="slide-card" onclick="openVideoModal(7)">
+                    <div class="slide-media-wrap">
+                        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Sports Car High Speed Drive" loading="lazy">
+                        <span class="slide-video-badge">🎬 Track Run</span>
+                        <span class="slide-cat-badge">🏎️ MOTORSPORT</span>
+                    </div>
+                    <div class="slide-content">
+                        <h4>Track-Tested High Speed Spares</h4>
+                        <p class="slide-specs">Endurance tested • 100% Genuine OEM &amp; OES</p>
+                        <div class="slide-actions">
+                            <button type="button" class="slide-action-btn view-clip" onclick="event.stopPropagation(); openVideoModal(7)">Watch Clip</button>
+                            <button type="button" class="slide-action-btn shop-now" onclick="event.stopPropagation(); showAllProducts()">Browse →</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Set 2 (Identical for seamless infinite continuous sliding loop) -->
+                <article class="slide-card" aria-hidden="true" onclick="openVideoModal(0)">
+                    <div class="slide-media-wrap">
+                        <img src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Twin-Turbo V8 Engine assembly" loading="lazy">
+                        <span class="slide-video-badge">🎬 4K Clip</span>
+                        <span class="slide-cat-badge">🔥 ENGINE</span>
+                    </div>
+                    <div class="slide-content">
+                        <h4>Twin-Turbo V8 Engine Assembly</h4>
+                        <p class="slide-specs">Forged pistons • High-lift camshafts • 650+ HP Dyno</p>
+                        <div class="slide-actions">
+                            <button type="button" class="slide-action-btn view-clip" onclick="event.stopPropagation(); openVideoModal(0)">Watch Clip</button>
+                            <button type="button" class="slide-action-btn shop-now" onclick="event.stopPropagation(); quickFilterFromShowcase('Engine')">Parts →</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="slide-card" aria-hidden="true" onclick="openVideoModal(1)">
+                    <div class="slide-media-wrap">
+                        <img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Brembo Carbon-Ceramic Brakes" loading="lazy">
+                        <span class="slide-video-badge">🎬 Brake Test</span>
+                        <span class="slide-cat-badge">⚡ BRAKES</span>
+                    </div>
+                    <div class="slide-content">
+                        <h4>Brembo Carbon-Ceramic System</h4>
+                        <p class="slide-specs">6-Piston calipers • Drilled ceramic rotors • Zero fade</p>
+                        <div class="slide-actions">
+                            <button type="button" class="slide-action-btn view-clip" onclick="event.stopPropagation(); openVideoModal(1)">Watch Clip</button>
+                            <button type="button" class="slide-action-btn shop-now" onclick="event.stopPropagation(); quickFilterFromShowcase('Brake')">Parts →</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="slide-card" aria-hidden="true" onclick="openVideoModal(2)">
+                    <div class="slide-media-wrap">
+                        <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Supercar Aerodynamics & Diffuser" loading="lazy">
+                        <span class="slide-video-badge">🎬 Aero Dynamics</span>
+                        <span class="slide-cat-badge">🏎️ EXTERIOR</span>
+                    </div>
+                    <div class="slide-content">
+                        <h4>Active Carbon Aero &amp; Diffuser</h4>
+                        <p class="slide-specs">Pre-preg carbon weave • High-downforce splitters</p>
+                        <div class="slide-actions">
+                            <button type="button" class="slide-action-btn view-clip" onclick="event.stopPropagation(); openVideoModal(2)">Watch Clip</button>
+                            <button type="button" class="slide-action-btn shop-now" onclick="event.stopPropagation(); quickFilterFromShowcase('Exterior')">Parts →</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="slide-card" aria-hidden="true" onclick="openVideoModal(3)">
+                    <div class="slide-media-wrap">
+                        <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Matrix LED Laser Headlamps" loading="lazy">
+                        <span class="slide-video-badge">🎬 Night Vision</span>
+                        <span class="slide-cat-badge">💡 ELECTRICAL</span>
+                    </div>
+                    <div class="slide-content">
+                        <h4>Matrix Dynamic Laser Headlamps</h4>
+                        <p class="slide-specs">Sequential turn indicators • 6500K bright beam</p>
+                        <div class="slide-actions">
+                            <button type="button" class="slide-action-btn view-clip" onclick="event.stopPropagation(); openVideoModal(3)">Watch Clip</button>
+                            <button type="button" class="slide-action-btn shop-now" onclick="event.stopPropagation(); quickFilterFromShowcase('Electrical')">Parts →</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="slide-card" aria-hidden="true" onclick="openVideoModal(4)">
+                    <div class="slide-media-wrap">
+                        <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Twin-Scroll Racing Turbocharger" loading="lazy">
+                        <span class="slide-video-badge">🎬 Dyno Spool</span>
+                        <span class="slide-cat-badge">💨 TURBOS</span>
+                    </div>
+                    <div class="slide-content">
+                        <h4>Twin-Scroll Racing Turbocharger</h4>
+                        <p class="slide-specs">Ceramic ball-bearing • Inconel wheel • 2.4 Bar boost</p>
+                        <div class="slide-actions">
+                            <button type="button" class="slide-action-btn view-clip" onclick="event.stopPropagation(); openVideoModal(4)">Watch Clip</button>
+                            <button type="button" class="slide-action-btn shop-now" onclick="event.stopPropagation(); quickFilterFromShowcase('Engine')">Parts →</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="slide-card" aria-hidden="true" onclick="openVideoModal(5)">
+                    <div class="slide-media-wrap">
+                        <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Monotube Coilover Suspension" loading="lazy">
+                        <span class="slide-video-badge">🎬 Track Grip</span>
+                        <span class="slide-cat-badge">🛠️ SUSPENSION</span>
+                    </div>
+                    <div class="slide-content">
+                        <h4>Monotube Coilover Kit</h4>
+                        <p class="slide-specs">32-Click rebound damping • Height adjustable</p>
+                        <div class="slide-actions">
+                            <button type="button" class="slide-action-btn view-clip" onclick="event.stopPropagation(); openVideoModal(5)">Watch Clip</button>
+                            <button type="button" class="slide-action-btn shop-now" onclick="event.stopPropagation(); quickFilterFromShowcase('Exterior')">Parts →</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="slide-card" aria-hidden="true" onclick="openVideoModal(6)">
+                    <div class="slide-media-wrap">
+                        <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Forged Alloy Performance Wheels" loading="lazy">
+                        <span class="slide-video-badge">🎬 Wheel Spin</span>
+                        <span class="slide-cat-badge">🏁 WHEELS</span>
+                    </div>
+                    <div class="slide-content">
+                        <h4>Forged Lightweight Racing Alloys</h4>
+                        <p class="slide-specs">T6-6061 Aerospace aluminum • Extreme rigidity</p>
+                        <div class="slide-actions">
+                            <button type="button" class="slide-action-btn view-clip" onclick="event.stopPropagation(); openVideoModal(6)">Watch Clip</button>
+                            <button type="button" class="slide-action-btn shop-now" onclick="event.stopPropagation(); quickFilterFromShowcase('Exterior')">Parts →</button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="slide-card" aria-hidden="true" onclick="openVideoModal(7)">
+                    <div class="slide-media-wrap">
+                        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Sports Car High Speed Drive" loading="lazy">
+                        <span class="slide-video-badge">🎬 Track Run</span>
+                        <span class="slide-cat-badge">🏎️ MOTORSPORT</span>
+                    </div>
+                    <div class="slide-content">
+                        <h4>Track-Tested High Speed Spares</h4>
+                        <p class="slide-specs">Endurance tested • 100% Genuine OEM &amp; OES</p>
+                        <div class="slide-actions">
+                            <button type="button" class="slide-action-btn view-clip" onclick="event.stopPropagation(); openVideoModal(7)">Watch Clip</button>
+                            <button type="button" class="slide-action-btn shop-now" onclick="event.stopPropagation(); showAllProducts()">Browse →</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- AUTOMOTIVE TRUST & ASSURANCE BAR -->
+    <div class="auto-trust-strip" data-page="home" aria-label="Store guarantees">
+        <div class="trust-strip-item">
+            <span class="trust-strip-icon" aria-hidden="true">🛡️</span>
+            <div>
+                <strong>100% Genuine OEM Spares</strong>
+                <p>Brand certified &amp; quality verified</p>
+            </div>
+        </div>
+        <div class="trust-strip-item">
+            <span class="trust-strip-icon" aria-hidden="true">⚡</span>
+            <div>
+                <strong>Guaranteed Exact Fit</strong>
+                <p>Precise vehicle fitment match</p>
+            </div>
+        </div>
+        <div class="trust-strip-item">
+            <span class="trust-strip-icon" aria-hidden="true">🚚</span>
+            <div>
+                <strong>Free Express Dispatch</strong>
+                <p>Fast delivery across India</p>
+            </div>
+        </div>
+        <div class="trust-strip-item">
+            <span class="trust-strip-icon" aria-hidden="true">🔄</span>
+            <div>
+                <strong>10-Day Easy Returns</strong>
+                <p>Hassle-free replacement policy</p>
+            </div>
+        </div>
+        <div class="trust-strip-item">
+            <span class="trust-strip-icon" aria-hidden="true">👨‍🔧</span>
+            <div>
+                <strong>Mechanic Support Desk</strong>
+                <p>Free fitment advice &amp; guidance</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- PRODUCTS & CATEGORIES -->
+    <section class="categories products-section" id="products" data-page="products">
+        <div class="category-header-row">
+            <div class="category-heading">
+                <p class="small-title">FIND THE RIGHT PART</p>
+                <h2>Find Parts by Category</h2>
+                <p id="selected-vehicle" class="selected-vehicle"></p>
+                <p>Search the catalog or choose a category to find parts for your car.</p>
+            </div>
+
+            <!-- PRODUCT PAGE SEARCH ENGINE BESIDE "FIND PARTS BY CATEGORY" -->
+            <div class="product-search-box" role="search" aria-label="Search spare parts catalog">
+                <form class="product-search-form" id="product-search-form" onsubmit="event.preventDefault(); handleProductSearchSubmit();">
+                    <div class="product-search-input-wrap">
+                        <span class="product-search-icon" aria-hidden="true">🔍</span>
+                        <input
+                            type="text"
+                            id="search-input"
+                            placeholder="Search parts (e.g. Brake, Filter, Battery, Oil)..."
+                            aria-label="Search car parts catalog"
+                            maxlength="50"
+                            autocomplete="off"
+                            oninput="validateAndSearchProducts()"
+                        >
+                        <button type="button" id="search-clear-btn" class="search-clear-btn" aria-label="Clear search" onclick="clearProductSearch()" hidden>✕</button>
+                    </div>
+                    <button type="submit" class="product-search-btn">Search</button>
+                </form>
+                <div class="product-search-meta">
+                    <p id="search-status" class="search-status" role="status" aria-live="polite">Showing all parts</p>
+                    <p id="search-validation-msg" class="search-validation-msg" role="alert" aria-live="polite"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-container">
+            <button type="button" class="category-filter active" data-category="All" aria-pressed="true" onclick="showAllProducts()">
+                <span class="category-filter-icon" aria-hidden="true">✦</span>
+                <span class="category-filter-label">All Parts</span>
+                <span class="category-count" data-category-count="All"></span>
+            </button>
+            <button type="button" class="category-filter" data-category="Engine" aria-pressed="false" onclick="filterProducts('Engine')">
+                <span class="category-filter-icon" aria-hidden="true">⚙</span>
+                <span class="category-filter-label">Engine</span>
+                <span class="category-count" data-category-count="Engine"></span>
+            </button>
+            <button type="button" class="category-filter" data-category="Brake" aria-pressed="false" onclick="filterProducts('Brake')">
+                <span class="category-filter-icon" aria-hidden="true">◉</span>
+                <span class="category-filter-label">Brakes</span>
+                <span class="category-count" data-category-count="Brake"></span>
+            </button>
+            <button type="button" class="category-filter" data-category="Electrical" aria-pressed="false" onclick="filterProducts('Electrical')">
+                <span class="category-filter-icon" aria-hidden="true">ϟ</span>
+                <span class="category-filter-label">Electrical</span>
+                <span class="category-count" data-category-count="Electrical"></span>
+            </button>
+            <button type="button" class="category-filter" data-category="Exterior" aria-pressed="false" onclick="filterProducts('Exterior')">
+                <span class="category-filter-icon" aria-hidden="true">◇</span>
+                <span class="category-filter-label">Exterior</span>
+                <span class="category-count" data-category-count="Exterior"></span>
+            </button>
+            <button type="button" class="category-filter" data-category="Interior" aria-pressed="false" onclick="filterProducts('Interior')">
+                <span class="category-filter-icon" aria-hidden="true">▣</span>
+                <span class="category-filter-label">Interior</span>
+                <span class="category-count" data-category-count="Interior"></span>
+            </button>
+        </div>
+
+        <div class="category-results">
+            <div class="category-results-heading">
+                <div>
+                    <p class="small-title">AVAILABLE FOR YOUR SEARCH</p>
+                    <h3 id="category-results-title">All Available Parts</h3>
+                </div>
+                <p id="category-results-count" class="category-results-count" aria-live="polite"></p>
+            </div>
+            <div id="category-product-container" class="product-container">
+                <!-- Matching products are rendered here by JavaScript. -->
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section class="about" id="about" data-page="about">
+
+        <div>
+
+            <p class="small-title">WHY CHOOSE US</p>
+
+            <h2>Quality Parts. Reliable Service.</h2>
+
+            <p>
+                AutoParts Hub provides high-quality car spare parts
+                for different vehicle models. Our goal is to make
+                buying automobile parts simple, reliable and convenient.
+            </p>
+
+        </div>
+
+        <div class="about-right-column">
+
+            <div class="features">
+
+                <div>
+                    <span>🚚</span>
+                    <h3>Fast Delivery</h3>
+                    <p>Quick delivery across India.</p>
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    <h3>Quality Products</h3>
+                    <p>Reliable automotive products.</p>
+                </div>
+
+                <div>
+                    <span>🔒</span>
+                    <h3>Secure Shopping</h3>
+                    <p>Safe and simple checkout.</p>
+                </div>
+
+            </div>
+
+            <div class="about-details">
+
+                <!-- CUSTOMER FEEDBACK RATING SYSTEM (SMALL SIZE) -->
+                <section class="about-detail-card rating-card rating-card-compact" aria-labelledby="rating-heading">
+                    <p class="small-title">CUSTOMER FEEDBACK</p>
+                    <h3 id="rating-heading">Rate Your Experience</h3>
+
+                    <form id="rating-form" onsubmit="submitCustomerRating(event)">
+                        <fieldset class="rating-fieldset">
+                            <legend class="sr-only">Overall Rating (1 to 5 stars)</legend>
+                            <div class="rating-options" onmouseleave="resetRatingPreview()">
+                                <button type="button" class="rating-star selected" aria-label="Rate 1 out of 5 stars" aria-pressed="false" onmouseenter="previewCustomerRating(1)" onclick="selectCustomerRating(1)">★</button>
+                                <button type="button" class="rating-star selected" aria-label="Rate 2 out of 5 stars" aria-pressed="false" onmouseenter="previewCustomerRating(2)" onclick="selectCustomerRating(2)">★</button>
+                                <button type="button" class="rating-star selected" aria-label="Rate 3 out of 5 stars" aria-pressed="false" onmouseenter="previewCustomerRating(3)" onclick="selectCustomerRating(3)">★</button>
+                                <button type="button" class="rating-star selected" aria-label="Rate 4 out of 5 stars" aria-pressed="false" onmouseenter="previewCustomerRating(4)" onclick="selectCustomerRating(4)">★</button>
+                                <button type="button" class="rating-star selected" aria-label="Rate 5 out of 5 stars" aria-pressed="true" onmouseenter="previewCustomerRating(5)" onclick="selectCustomerRating(5)">★</button>
+                            </div>
+                            <div class="rating-selected-indicator" id="rating-selected-text" aria-live="polite">★★★★★ (5/5) Outstanding OEM Quality!</div>
+                        </fieldset>
+
+                        <button type="submit" class="rating-submit-button" id="rating-submit-btn">Submit Rating</button>
+                    </form>
+                    <p id="rating-status" class="rating-status" role="status" aria-live="polite"></p>
+                </section>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FAQS (ABOUT PAGE) -->
+    <section class="home-faq-section about-faq-section" id="faq-section" data-page="about" aria-labelledby="faq-heading">
+        <div class="faq-container">
+            <div class="faq-header">
+                <span class="faq-pill-badge">FREQUENTLY ASKED QUESTIONS</span>
+                <h2 id="faq-heading">Frequently Asked Questions</h2>
+                <p>Find quick answers regarding part fitment, delivery times across India, authenticity guarantees, warranty, and returns.</p>
+                <div class="faq-search-wrapper">
+                    <span class="faq-search-icon" aria-hidden="true">🔍</span>
+                    <input type="text" id="faq-search-input" placeholder="Search questions (e.g. fitment, delivery, warranty, return, COD)..." oninput="filterFaqQuestions(this.value)" aria-label="Search FAQ questions">
+                    <button type="button" id="faq-search-clear" onclick="clearFaqSearch()" aria-label="Clear search" hidden>✕</button>
+                </div>
+            </div>
+
+            <div class="faq-accordion" id="faq-accordion-list">
+                <!-- FAQ 1 -->
+                <details class="faq-item">
+                    <summary>
+                        <span class="faq-question-text">How do I ensure a spare part matches my exact car model and variant?</span>
+                        <span class="faq-toggle-icon" aria-hidden="true"></span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>
+                            Use our <strong>Choose Your Car</strong> selector at the top of the home page to specify your car brand, model, and manufacturing year. All catalog parts remain visible and can be added regardless of the selected car. If your car has a specific engine trim, facelift variant, or aftermarket modification, our automotive technicians can cross-check your Vehicle Identification Number (VIN) or registration details over WhatsApp or phone call to help confirm exact fitment.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- FAQ 2 -->
+                <details class="faq-item">
+                    <summary>
+                        <span class="faq-question-text">Are your automobile spare parts 100% genuine and brand new?</span>
+                        <span class="faq-toggle-icon" aria-hidden="true"></span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>
+                            Yes, 100%. Every spare part available on Sachin Automobiles HUB is brand new and sourced directly from certified Original Equipment Manufacturers (OEM) and tier-1 Original Equipment Suppliers (OES). All products come sealed in authentic packaging with tamper-evident holograms, manufacturer batch codes, and official tax invoices.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- FAQ 3 -->
+                <details class="faq-item">
+                    <summary>
+                        <span class="faq-question-text">What is the delivery timeline across India, and can I track my shipment?</span>
+                        <span class="faq-toggle-icon" aria-hidden="true"></span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>
+                            Orders placed before 2:00 PM IST are processed and dispatched the same day via premier courier partners (Bluedart, Delhivery, DTDC). Major metro cities receive delivery within <strong>24 to 48 hours</strong>, while other regions are serviced in <strong>2 to 4 business days</strong>. You receive live SMS and WhatsApp tracking links at every milestone of your parcel's journey.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- FAQ 4 -->
+                <details class="faq-item">
+                    <summary>
+                        <span class="faq-question-text">What is your Return, Exchanges and Refund Policy?</span>
+                        <span class="faq-toggle-icon" aria-hidden="true"></span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>
+                            We offer a generous <strong>10-day hassle-free return and exchange policy</strong> from the date of delivery. If an item doesn't fit or arrives with shipping damage, you can request a pickup through our Customer Support desk. Once the item is collected by our courier and inspected, your replacement is dispatched immediately or a 100% refund is issued to your original payment method within 24–48 hours.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- FAQ 5 -->
+                <details class="faq-item">
+                    <summary>
+                        <span class="faq-question-text">What warranty is provided with the car spare parts?</span>
+                        <span class="faq-toggle-icon" aria-hidden="true"></span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>
+                            All functional mechanical and electrical components (including brake discs, alternators, radiators, batteries, and sensors) carry standard manufacturer warranties ranging from <strong>6 months up to 2 years</strong> covering manufacturing defects. Your official GST purchase invoice acts as valid proof of warranty nationwide.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- FAQ 6 -->
+                <details class="faq-item">
+                    <summary>
+                        <span class="faq-question-text">Which payment methods are accepted, and is Cash on Delivery (COD) available?</span>
+                        <span class="faq-toggle-icon" aria-hidden="true"></span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>
+                            Yes! Cash on Delivery (COD) is available across all serviceable pin codes in India. We also accept UPI (Google Pay, PhonePe, Paytm, BHIM), Net Banking across 50+ banks, and all major Debit/Credit Cards (Visa, MasterCard, RuPay). Every online transaction is fortified with 256-bit bank-grade SSL encryption.
+                        </p>
+                    </div>
+                </details>
+
+                <!-- FAQ 7 -->
+                <details class="faq-item">
+                    <summary>
+                        <span class="faq-question-text">Can I visit your physical branch or pick up parts directly in Hyderabad?</span>
+                        <span class="faq-toggle-icon" aria-hidden="true"></span>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>
+                            Yes! You are warmly welcome to visit our main branch located in <strong>Lingampally, Hyderabad, Telangana</strong>. Our in-house technical team is available Monday through Saturday (9:00 AM – 8:30 PM IST) for on-the-spot fitment consultations, physical part inspections, and direct counter purchases.
+                        </p>
+                    </div>
+                </details>
+
+                <p id="faq-empty-state" class="faq-empty-state" hidden role="status">
+                    🔍 No FAQ questions match your search. Try searching for "fitment", "delivery", "warranty", "returns", or
+                    <button type="button" class="faq-inline-help-link" onclick="openSupportModal()">Contact Customer Support Desk</button>.
+                </p>
+            </div>
+
+            <!-- Callout for Further Support -->
+            <div class="faq-support-callout">
+                <div class="faq-callout-text">
+                    <h3>Still have a specific question about your car or order?</h3>
+                    <p>Our automotive parts technicians are available 6 days a week to cross-check fitment and guide your purchase.</p>
+                </div>
+                <div class="faq-callout-actions">
+                    <button type="button" class="callout-support-button" onclick="openSupportModal()">🎧 Open Support Desk</button>
+                    <a href="https://wa.me/919876543210?text=Hello%20Sachin%20Automobiles,%20I%20have%20a%20question%20about%20a%20car%20spare%20part" target="_blank" rel="noopener noreferrer" class="callout-whatsapp-button">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.24-8.24m4.52 11.64c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.14-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.23.89 2.42 1.02 2.59.13.17 1.76 2.69 4.26 3.77.6.26 1.06.41 1.42.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.18-.47-.3z"/></svg>
+                        WhatsApp Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact" data-page="contact">
+
+        <h2>Need Help?</h2>
+
+        <p>
+            Contact our automobile parts experts.
+        </p>
+
+        <article class="contact-visit-card">
+            <p class="small-title">VISIT US</p>
+            <h3>Main Branch</h3>
+            <p class="branch-location">Lingampally, Hyderabad, Telangana, India</p>
+            <p>Visit our main branch for help finding the right automobile parts. Please contact us to confirm directions and availability before visiting.</p>
+        </article>
+
+        <button type="button" onclick="openSupportModal()">
+            Open Customer Support Desk
+        </button>
+
+    </section>
+
+    <!-- LOGIN & SIGN UP -->
+    <section class="account-section" id="account" data-page="account" aria-labelledby="account-form-title" hidden>
+        <div class="account-card">
+            <div class="account-heading">
+                <span class="account-icon" aria-hidden="true">👤</span>
+                <p class="small-title account-eyebrow">YOUR ACCOUNT</p>
+                <h2 id="account-form-title">Login</h2>
+                <p id="account-form-description">Sign in to access your garage and saved car profiles.</p>
+            </div>
+
+            <div class="account-tabs" role="tablist" aria-label="Account access">
+                <button type="button" class="account-tab active" id="login-tab" role="tab" aria-controls="login-panel" aria-selected="true" onclick="showAccountForm('login')">Login</button>
+                <button type="button" class="account-tab" id="signup-tab" role="tab" aria-controls="signup-panel" aria-selected="false" onclick="showAccountForm('signup')">Sign up</button>
+            </div>
+
+            <form class="account-form" id="login-panel" role="tabpanel" aria-labelledby="login-tab" onsubmit="handleAccountLogin(event)">
+                <div class="form-group">
+                    <label for="login-email">Email address</label>
+                    <input id="login-email" type="email" placeholder="you@example.com" autocomplete="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <div class="account-password-field">
+                        <input id="login-password" type="password" placeholder="Enter your password" autocomplete="current-password" minlength="8" maxlength="128" pattern="^(?=.*[0-9])(?=.*[^A-Za-z0-9])[A-Z].{7,}$" title="Use at least 8 characters, starting with a capital letter, with a number and a special character." required>
+                        <button type="button" class="password-toggle" onclick="toggleAccountPassword('login-password', this)" aria-label="Show password" aria-pressed="false">Show</button>
+                    </div>
+                </div>
+                <button type="button" class="account-text-link forgot-password-link" onclick="showForgotPasswordMessage()">Forgot password?</button>
+                <button type="button" class="account-remember-login" id="remember-login-button" onclick="loginWithRememberedAccount()" hidden></button>
+                <button type="submit" class="account-submit-button">Log in</button>
+            </form>
+
+            <form class="account-form" id="signup-panel" role="tabpanel" aria-labelledby="signup-tab" onsubmit="handleAccountSignup(event)" hidden>
+                <div class="form-group">
+                    <label for="signup-name">Full name</label>
+                    <input id="signup-name" type="text" placeholder="Enter your full name" autocomplete="name" minlength="2" maxlength="80" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email address</label>
+                    <input id="signup-email" type="email" placeholder="you@example.com" autocomplete="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-address">Delivery address</label>
+                    <input id="signup-address" type="text" placeholder="Enter your complete delivery address" autocomplete="street-address" minlength="5" maxlength="250" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <div class="account-password-field">
+                        <input id="signup-password" type="password" placeholder="Create a strong password" autocomplete="new-password" minlength="8" maxlength="128" pattern="^(?=.*[0-9])(?=.*[^A-Za-z0-9])[A-Z].{7,}$" title="Use at least 8 characters, starting with a capital letter, with a number and a special character." oninput="checkPasswordStrength(this.value); checkPasswordMatch()" required>
+                        <button type="button" class="password-toggle" onclick="toggleAccountPassword('signup-password', this)" aria-label="Show password" aria-pressed="false">Show</button>
+                    </div>
+                    <div class="password-strength-container" aria-live="polite">
+                        <div class="strength-bar"><div class="strength-fill" id="strength-fill"></div></div>
+                        <span class="strength-text" id="strength-text">8+ characters, uppercase first, plus a number and symbol.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm-password">Confirm password</label>
+                    <div class="account-password-field">
+                        <input id="signup-confirm-password" type="password" placeholder="Enter your password again" autocomplete="new-password" minlength="8" maxlength="128" oninput="checkPasswordMatch()" required>
+                        <button type="button" class="password-toggle" onclick="toggleAccountPassword('signup-confirm-password', this)" aria-label="Show password" aria-pressed="false">Show</button>
+                    </div>
+                    <span id="password-match-feedback" class="password-match-feedback" aria-live="polite"></span>
+                </div>
+                <button type="submit" class="account-submit-button">Create account</button>
+            </form>
+
+            <section class="account-logged-in-panel" id="account-logged-in-panel" aria-labelledby="account-welcome-title" hidden>
+                <div class="logged-in-avatar-wrap">
+                    <span class="logged-in-avatar" aria-hidden="true">👤</span>
+                    <div>
+                        <h3 id="account-welcome-title">Welcome, <span id="account-welcome-name"></span>!</h3>
+                        <p id="account-welcome-email"></p>
+                    </div>
+                </div>
+                <section class="profile-orders" aria-labelledby="profile-orders-title">
+                    <div class="profile-orders-heading">
+                        <h3 id="profile-orders-title">My Orders</h3>
+                        <p>Track recent purchases and cancel orders that have not been dispatched.</p>
+                    </div>
+                    <div id="profile-orders-list" class="profile-orders-list" aria-live="polite"></div>
+                </section>
+                <button type="button" class="account-logout-btn" onclick="logoutUser()">Log out</button>
+            </section>
+
+            <p id="account-status" class="account-status" role="status" aria-live="polite"></p>
+        </div>
+    </section>
+
+    <!-- CART SIDEBAR -->
+    <div id="cart-overlay" class="cart-overlay">
+
+        <div class="cart">
+
+            <div class="cart-header">
+
+                <h2>Your Cart</h2>
+
+                <button onclick="closeCart()">✕</button>
+
+            </div>
+
+            <p id="cart-vehicle" class="cart-vehicle"></p>
+
+            <div id="cart-items">
+
+                <!-- Cart items appear here -->
+
+            </div>
+
+            <div class="cart-footer">
+
+                <div class="price-breakdown">
+                    <p>Subtotal <span>₹<span id="cart-subtotal">0</span></span></p>
+                    <p id="cart-discount-row" class="discount-row" hidden>First-order offer <span>-₹<span id="cart-discount">0</span></span></p>
+                    <h3>Total <span>₹<span id="cart-total">0</span></span></h3>
+                </div>
+
+                <button onclick="checkout()" class="checkout-button">
+                    Go to Cart
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <section class="billing-section" id="billing" data-page="billing">
+
+        <div class="billing-container">
+
+            <div class="billing-header">
+                <p class="small-title">BILLING DETAILS</p>
+                <h2>Complete Your Purchase</h2>
+            </div>
+
+            <div class="billing-layout">
+
+                <div class="billing-summary">
+                    <h3>Order Summary</h3>
+                    <p id="billing-vehicle" class="billing-vehicle"></p>
+                    <div id="billing-items"></div>
+
+                    <!-- COUPON & PROMO CODE ENGINE -->
+                    <div class="coupon-section">
+                        <label for="coupon-code-input" class="coupon-label">🏷️ Have a Coupon or Promo Code?</label>
+                        <div class="coupon-input-group">
+                            <input type="text" id="coupon-code-input" placeholder="e.g. WELCOME500, OEM10" maxlength="20" autocomplete="off">
+                            <button type="button" class="coupon-apply-btn" onclick="applyPromoCoupon()">Apply Code</button>
+                        </div>
+                        <div id="applied-coupon-tag" class="applied-coupon-tag" hidden>
+                            <span id="applied-coupon-text">✓ Coupon Applied</span>
+                            <button type="button" class="coupon-remove-btn" onclick="removePromoCoupon()" aria-label="Remove applied coupon">✕</button>
+                        </div>
+                        <p id="coupon-message" class="coupon-message" role="status" aria-live="polite"></p>
+
+                        <details class="available-coupons-tray">
+                            <summary>💡 View Available Offers &amp; Promo Codes</summary>
+                            <div class="coupon-chips-list">
+                                <button type="button" class="coupon-chip" onclick="quickApplyCoupon('WELCOME500')">
+                                    <strong>WELCOME500</strong><span>₹500 off on first purchase (Min ₹1,500)</span>
+                                </button>
+                                <button type="button" class="coupon-chip" onclick="quickApplyCoupon('OEM10')">
+                                    <strong>OEM10</strong><span>10% off genuine OEM parts (Min ₹2,000)</span>
+                                </button>
+                                <button type="button" class="coupon-chip" onclick="quickApplyCoupon('FREESHIP')">
+                                    <strong>FREESHIP</strong><span>Free Express Shipping across India</span>
+                                </button>
+                                <button type="button" class="coupon-chip" onclick="quickApplyCoupon('RACING500')">
+                                    <strong>RACING500</strong><span>₹500 off Engine &amp; Brake components</span>
+                                </button>
+                            </div>
+                        </details>
+                    </div>
+
+                    <div class="price-breakdown billing-price-breakdown">
+                        <p>Subtotal (Excl. Tax) <span>₹<span id="billing-subtotal">0</span></span></p>
+                        <p id="billing-discount-row" class="discount-row" hidden>Discount (<span id="billing-discount-label">Coupon</span>) <span>-₹<span id="billing-discount">0</span></span></p>
+                        <p id="billing-gst-row">GST (18% - CGST 9% + SGST 9%) <span>+₹<span id="billing-gst">0</span></span></p>
+                        <p id="billing-shipping-row">Pan-India Express Shipping <span><span id="billing-shipping">₹99</span></span></p>
+                        <p id="billing-cod-fee-row" class="cod-fee-row" hidden>COD Handling Surcharge <span>+₹49</span></p>
+                        <h3>Total Payable <span>₹<span id="billing-total">0</span></span></h3>
+                    </div>
+                </div>
+
+                <form class="billing-form" id="billing-form" onsubmit="event.preventDefault(); placeOrder();">
+
+                    <div class="form-group">
+                        <label for="customer-name">Full Name *</label>
+                        <input id="customer-name" type="text" placeholder="Enter your full name" minlength="2" maxlength="50" pattern="^[A-Za-z\s.'-]{2,50}$" autocomplete="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customer-phone">Phone Number *</label>
+                        <input id="customer-phone" type="tel" placeholder="10-digit mobile (e.g. 9876543210)" inputmode="numeric" pattern="^[6-9]\d{9}$" minlength="10" maxlength="10" autocomplete="tel" oninput="this.value = this.value.replace(/\D/g, '').slice(0, 10)" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customer-address">Shipping Address *</label>
+                        <textarea id="customer-address" rows="3" placeholder="House/Flat no, Street, Area, Landmark" minlength="10" maxlength="250" autocomplete="street-address" required></textarea>
+                    </div>
+
+                    <div class="billing-form-row">
+                        <div class="form-group">
+                            <label for="customer-city">City *</label>
+                            <input id="customer-city" type="text" placeholder="City name" minlength="2" maxlength="50" pattern="^[A-Za-z\s.'-]{2,50}$" autocomplete="address-level2" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customer-pincode">Pincode *</label>
+                            <input id="customer-pincode" type="text" placeholder="6-digit Pincode (e.g. 400001)" pattern="^[1-9][0-9]{5}$" maxlength="6" autocomplete="postal-code" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="payment-method">Payment Method *</label>
+                        <select id="payment-method" required onchange="handlePaymentMethodChange(this.value)">
+                            <option value="UPI">UPI (Google Pay, PhonePe, Paytm, BHIM)</option>
+                            <option value="Credit Card">Credit Card (Visa, MasterCard, RuPay, Amex)</option>
+                            <option value="Debit Card">Debit Card (All Indian Banks)</option>
+                            <option value="Cash on Delivery">Cash on Delivery (₹49 handling fee)</option>
+                        </select>
+                    </div>
+
+                    <!-- DYNAMIC PAYMENT METHOD DETAILS -->
+                    <div id="payment-fields-dynamic" class="payment-fields-dynamic">
+                        <!-- UPI Mode Panel -->
+                        <div id="panel-pay-upi" class="pay-subpanel">
+                            <label for="customer-upi-id">Virtual Payment Address (VPA / UPI ID) *</label>
+                            <div class="upi-input-group">
+                                <input id="customer-upi-id" type="text" placeholder="e.g. yourname@okhdfcbank or 9876543210@paytm" autocomplete="off">
+                                <span class="upi-verified-badge" id="upi-valid-badge" hidden>✓ Valid VPA</span>
+                            </div>
+                            <div class="upi-qr-preview">
+                                <div class="upi-qr-mock" aria-hidden="true">
+                                    <div class="qr-corner top-left"></div>
+                                    <div class="qr-corner top-right"></div>
+                                    <div class="qr-corner bottom-left"></div>
+                                    <div class="qr-center-icon">⚡ UPI</div>
+                                </div>
+                                <div class="upi-qr-info">
+                                    <strong>Instant UPI QR Ready</strong>
+                                    <p>Merchant: Sachin Automobiles Hub (HDFC)</p>
+                                    <small>Accepts GPay, PhonePe, Paytm &amp; Cred</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Mode Panel -->
+                        <div id="panel-pay-card" class="pay-subpanel" hidden>
+                            <div class="form-group">
+                                <label for="card-number">Card Number (16 Digits) *</label>
+                                <div class="card-input-wrap">
+                                    <input id="card-number" type="text" placeholder="4000 1234 5678 9010" maxlength="19" autocomplete="cc-number" oninput="formatAndValidateCardNumber(this)">
+                                    <span class="card-network-badge" id="card-network-badge">💳 CARD</span>
+                                </div>
+                                <p id="card-luhn-error" class="input-inline-error" hidden>Invalid card checksum (Luhn check failed)</p>
+                            </div>
+                            <div class="card-row-split">
+                                <div class="form-group">
+                                    <label for="card-holder-name">Cardholder Name *</label>
+                                    <input id="card-holder-name" type="text" placeholder="Name on card" autocomplete="cc-name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="card-expiry">Expiry (MM/YY) *</label>
+                                    <input id="card-expiry" type="text" placeholder="MM/YY" maxlength="5" autocomplete="cc-exp" oninput="formatCardExpiry(this)">
+                                </div>
+                                <div class="form-group">
+                                    <label for="card-cvv">CVV / CVC *</label>
+                                    <input id="card-cvv" type="password" placeholder="•••" maxlength="4" autocomplete="cc-csc">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- COD Mode Panel -->
+                        <div id="panel-pay-cod" class="pay-subpanel" hidden>
+                            <div class="cod-notice-card">
+                                <span class="cod-icon">💵</span>
+                                <div>
+                                    <strong>Cash on Delivery Selected</strong>
+                                    <p>Pay upon physical doorstep verification. ₹49 COD handling charge applies. Courier will send an OTP via SMS prior to delivery.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p id="billing-form-error" class="billing-form-error" role="alert" aria-live="polite"></p>
+
+                    <button type="submit" class="place-order-button" id="place-order-submit-btn">
+                        Place Order
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ENHANCED ORDER SUCCESS MODAL -->
+    <div id="order-success-overlay" class="order-success-overlay" role="dialog" aria-modal="true" aria-labelledby="order-success-title" hidden>
+        <div class="order-success-card">
+            <div class="order-success-icon-wrap">
+                <span class="order-success-icon" aria-hidden="true">🎉</span>
+                <div class="order-success-pulse"></div>
+            </div>
+            <h2 id="order-success-title" class="order-success-title">Thank you for shopping with us!</h2>
+            <p class="order-success-msg">Your genuine automotive spare parts order has been verified &amp; placed successfully.</p>
+
+            <div class="order-success-meta-grid">
+                <div class="order-meta-pill">
+                    <small>ORDER NUMBER</small>
+                    <strong id="success-order-id">SAC-ORD-2026-0001</strong>
+                </div>
+                <div class="order-meta-pill">
+                    <small>EXPRESS TRACKING AWB</small>
+                    <strong id="success-tracking-id">BD-84291044IN</strong>
+                </div>
+                <div class="order-meta-pill">
+                    <small>LOGISTICS PARTNER</small>
+                    <strong>BlueDart Express Air</strong>
+                </div>
+                <div class="order-meta-pill">
+                    <small>ESTIMATED ARRIVAL</small>
+                    <strong id="success-delivery-eta">Within 48-72 Hours</strong>
+                </div>
+            </div>
+
+            <div class="order-success-items-list" id="success-order-items-list">
+                <!-- Populated dynamically -->
+            </div>
+
+            <div class="order-success-audio-indicator">
+                <span class="music-note-icon">🎵</span>
+                <span>Celebration chime played • GST Tax Invoice Generated</span>
+            </div>
+
+            <div class="order-success-actions">
+                <button type="button" class="btn-success-invoice" onclick="openTaxInvoiceModal()">
+                    🖨️ Download / Print GST Tax Invoice
+                </button>
+                <button type="button" class="btn-success-track" onclick="trackRecentOrder()">
+                    🚚 Live Track Shipment
+                </button>
+                <button type="button" class="btn-success-home" onclick="dismissOrderSuccessOverlay()">
+                    Continue Shopping
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- OFFICIAL GST AUTOMOTIVE TAX INVOICE MODAL -->
+    <dialog id="tax-invoice-modal" class="tax-invoice-dialog" aria-labelledby="invoice-modal-title" aria-modal="true">
+        <div class="tax-invoice-card" id="tax-invoice-print-area">
+            <div class="invoice-header">
+                <div class="invoice-company">
+                    <h2>SACHIN AUTOMOBILES HUB PRIVATE LIMITED</h2>
+                    <p>Automotive Component Spares &amp; Performance Warehouse</p>
+                    <p>Bhiwandi Logistics Park, Plot No. 44-B, Thane, Maharashtra - 421302</p>
+                    <p><strong>GSTIN:</strong> 27AABCS1429B1Z4 | <strong>CIN:</strong> U50100MH2026PTC192837</p>
+                    <p><strong>Email:</strong> billing@sachinautomobiles.com | <strong>Support:</strong> +91 1800-419-7224</p>
+                </div>
+                <div class="invoice-badge-wrap">
+                    <span class="invoice-tax-title">TAX INVOICE</span>
+                    <small>(Original for Recipient)</small>
+                    <div class="invoice-ref-box">
+                        <p><strong>Invoice No:</strong> <span id="inv-number">SAC-INV-2026-0001</span></p>
+                        <p><strong>Date:</strong> <span id="inv-date">08 Oct 2026</span></p>
+                        <p><strong>State Code:</strong> 27 (Maharashtra)</p>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="invoice-divider">
+
+            <div class="invoice-addresses-grid">
+                <div class="invoice-bill-to">
+                    <h4>BILLED &amp; SHIPPED TO:</h4>
+                    <p><strong id="inv-customer-name">Valued Customer</strong></p>
+                    <p id="inv-customer-address">Address details</p>
+                    <p><strong>City / Pincode:</strong> <span id="inv-customer-city">City</span></p>
+                    <p><strong>Contact:</strong> <span id="inv-customer-phone">+91 9876543210</span></p>
+                    <p><strong>Vehicle Fitment:</strong> <span id="inv-vehicle-fitment">Volvo S90 2010</span></p>
+                </div>
+                <div class="invoice-dispatch-details">
+                    <h4>DISPATCH &amp; PAYMENT:</h4>
+                    <p><strong>Order ID:</strong> <span id="inv-order-id">SAC-ORD-2026-0001</span></p>
+                    <p><strong>Courier:</strong> BlueDart Express Air</p>
+                    <p><strong>AWB Tracking:</strong> <span id="inv-tracking-no">BD-84291044IN</span></p>
+                    <p><strong>Payment Mode:</strong> <span id="inv-payment-mode">UPI</span></p>
+                    <p><strong>Payment Status:</strong> <span id="inv-payment-status" class="payment-paid-badge">PAID ✓</span></p>
+                </div>
+            </div>
+
+            <table class="invoice-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Item Description</th>
+                        <th>HSN / SAC</th>
+                        <th>Qty</th>
+                        <th>Unit Rate</th>
+                        <th>Taxable Value</th>
+                        <th>CGST (9%)</th>
+                        <th>SGST (9%)</th>
+                        <th>Total (₹)</th>
+                    </tr>
+                </thead>
+                <tbody id="invoice-items-body">
+                    <!-- Populated by JS -->
+                </tbody>
+            </table>
+
+            <div class="invoice-totals-grid">
+                <div class="invoice-words-box">
+                    <p><strong>Amount in Words:</strong></p>
+                    <p id="inv-amount-words" class="amount-words">Indian Rupees Only</p>
+                    <div class="invoice-declaration">
+                        <small>Declaration: We declare that this invoice shows the actual price of the goods described and that all particulars are true and correct. All spare parts are 100% genuine OEM/OES certified.</small>
+                    </div>
+                </div>
+                <div class="invoice-summary-table">
+                    <div class="inv-sum-row"><span>Total Taxable Subtotal:</span><strong id="inv-taxable-subtotal">₹0</strong></div>
+                    <div class="inv-sum-row"><span>CGST @ 9%:</span><strong id="inv-cgst">₹0</strong></div>
+                    <div class="inv-sum-row"><span>SGST @ 9%:</span><strong id="inv-sgst">₹0</strong></div>
+                    <div class="inv-sum-row"><span>Express Shipping:</span><strong id="inv-shipping">₹0</strong></div>
+                    <div class="inv-sum-row inv-discount-row" id="inv-discount-row" hidden><span>Coupon Discount:</span><strong id="inv-discount">-₹0</strong></div>
+                    <div class="inv-sum-row inv-grand-total"><span>Grand Total (Incl. GST):</span><strong id="inv-grand-total">₹0</strong></div>
+                </div>
+            </div>
+
+            <div class="invoice-footer">
+                <div class="invoice-qr-wrap">
+                    <div class="invoice-qr-stamp" aria-hidden="true">GST e-INVOICE VERIFIED</div>
+                    <small>Digitally signed &amp; IRN compliant</small>
+                </div>
+                <div class="invoice-signatory">
+                    <div class="signature-stamp">SACHIN AUTOMOBILES HUB PVT LTD</div>
+                    <p><strong>Authorized Signatory</strong></p>
+                    <small>Computer generated official tax invoice</small>
+                </div>
+            </div>
+
+            <div class="invoice-dialog-actions no-print">
+                <button type="button" class="btn-invoice-print" onclick="window.print()">🖨️ Print / Save as PDF</button>
+                <button type="button" class="btn-invoice-close" onclick="closeTaxInvoiceModal()">Close Invoice</button>
+            </div>
+        </div>
+    </dialog>
+
+
+    <footer class="site-footer">
+
+
+
+        <!-- MAIN 3-COLUMN FOOTER GRID -->
+        <div class="footer-main-grid">
+
+            <!-- COLUMN 1: Customer Support Options -->
+            <div class="footer-col footer-col-support">
+                <h4 class="footer-col-title">Customer Support</h4>
+                <p class="footer-col-desc">Dedicated automotive specialists ready to assist with part compatibility and orders.</p>
+                <ul class="footer-support-list">
+                    <li>
+                        <span class="support-list-icon" aria-hidden="true">📞</span>
+                        <div>
+                            <span class="support-label">Helpline (Toll-Free)</span>
+                            <a href="tel:+919876543210" class="support-contact-link">+91 98765 43210</a>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="support-list-icon" aria-hidden="true">💬</span>
+                        <div>
+                            <span class="support-label">WhatsApp Support (24/7)</span>
+                            <a href="https://wa.me/919876543210?text=Hi%20Sachin%20Automobiles,%20I%20need%20help%20with%20a%20car%20spare%20part" target="_blank" rel="noopener noreferrer" class="support-contact-link">Chat on WhatsApp</a>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="support-list-icon" aria-hidden="true">✉️</span>
+                        <div>
+                            <span class="support-label">Email Helpdesk</span>
+                            <a href="mailto:support@sachinautomobiles.com" class="support-contact-link">support@sachinautomobiles.com</a>
+                        </div>
+                    </li>
+                </ul>
+
+                <button type="button" class="footer-support-launch-btn" onclick="openSupportModal()">
+                    🎧 Open Help & Support Desk
+                </button>
+
+                <div class="footer-support-quick-links">
+                    <button type="button" class="footer-link-button" onclick="openSupportModal('track')">Track Your Order</button>
+                    <span>•</span>
+                    <button type="button" class="footer-link-button" onclick="openSupportModal('fitment')">Fitment Advice</button>
+                    <span>•</span>
+                    <button type="button" class="footer-link-button" onclick="openSupportModal('callback')">Request Callback</button>
+                </div>
+            </div>
+
+            <!-- COLUMN 2: Store Location Map -->
+            <div class="footer-col footer-col-map">
+                <h4 class="footer-col-title">Store Location</h4>
+                <div class="footer-map-card">
+                    <div class="footer-map-embed">
+                        <iframe
+                            title="Sachin Automobiles Hub Store Location - Lingampally, Hyderabad"
+                            src="https://maps.google.com/maps?q=Lingampally%2C%20Hyderabad%2C%20Telangana%2C%20India&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+                            width="100%"
+                            height="160"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <div class="footer-map-info">
+                        <p class="footer-map-address">📍 <strong>Main Branch:</strong> Lingampally, Hyderabad, Telangana, India</p>
+                        <p class="footer-map-hours">⏰ <strong>Counter Hours:</strong> Mon – Sat: 9:00 AM – 8:30 PM IST</p>
+                        <a href="https://www.google.com/maps/search/?api=1&amp;query=Lingampally+Hyderabad+Telangana+India" target="_blank" rel="noopener noreferrer" class="footer-directions-btn">
+                            🗺️ Get Directions on Google Maps →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUMN 3: Legal & Policies (Requested Links) -->
+            <div class="footer-col">
+                <h4 class="footer-col-title">Legal & Policies</h4>
+                <ul class="footer-legal-links">
+                    <li><a href="https://one8.com/account" target="_blank" rel="noopener noreferrer">Legal</a></li>
+                    <li><a href="https://one8.com/pages/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+                    <li><a href="https://one8.com/pages/terms-of-use-and-sale" target="_blank" rel="noopener noreferrer">Terms of Use</a></li>
+                    <li><a href="https://one8.com/pages/warranty-policy" target="_blank" rel="noopener noreferrer">Warranty Policy</a></li>
+                    <li><a href="https://one8.com/pages/return-exchanges-and-refund-policy" target="_blank" rel="noopener noreferrer">Return, Exchanges and Refund Policy</a></li>
+                    <li><a href="https://one8.com/pages/cookie-policy" target="_blank" rel="noopener noreferrer">Cookie Policy</a></li>
+                </ul>
+                <div class="policy-note">
+                    <span>🛡️ Verified e-commerce consumer compliance and quality assurance guarantee.</span>
+                </div>
+                <div class="security-seal">
+                    <span>🔒 256-Bit SSL Encrypted & Protected Checkout</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- FOOTER BOTTOM ROW -->
+        <div class="footer-bottom-bar">
+            <div class="footer-bottom-copy">
+                <p>© 2026 Sachin Automobiles HUB. All Rights Reserved. Engineered for genuine performance.</p>
+                <p class="footer-rating-line" aria-label="Rated 4.9 out of 5 from over 2,843 verified buyer reviews">★ 4.9/5 · 2,843+ verified buyer reviews</p>
+                <div class="footer-bottom-legal-row">
+                    <a href="https://one8.com/account" target="_blank" rel="noopener noreferrer">Legal</a>
+                    <span aria-hidden="true">•</span>
+                    <a href="https://one8.com/pages/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+                    <span aria-hidden="true">•</span>
+                    <a href="https://one8.com/pages/terms-of-use-and-sale" target="_blank" rel="noopener noreferrer">Terms of Use</a>
+                    <span aria-hidden="true">•</span>
+                    <a href="https://one8.com/pages/warranty-policy" target="_blank" rel="noopener noreferrer">Warranty Policy</a>
+                    <span aria-hidden="true">•</span>
+                    <a href="https://one8.com/pages/return-exchanges-and-refund-policy" target="_blank" rel="noopener noreferrer">Return, Exchanges and Refund Policy</a>
+                    <span aria-hidden="true">•</span>
+                    <a href="https://one8.com/pages/cookie-policy" target="_blank" rel="noopener noreferrer">Cookie Policy</a>
+                </div>
+            </div>
+
+            <!-- Follow & Connect: Icon-only social links replacing payment options -->
+            <div class="footer-bottom-social" aria-label="Follow and connect on social media">
+                <span class="footer-social-label">Follow &amp; Connect:</span>
+                <div class="footer-social-icons">
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn social-instagram" aria-label="Connect with Sachin Automobiles on Instagram" title="Instagram">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+                    </a>
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn social-facebook" aria-label="Connect with Sachin Automobiles on Facebook" title="Facebook">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2z"/></svg>
+                    </a>
+                    <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn social-x" aria-label="Connect with Sachin Automobiles on X" title="X (Twitter)">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn social-youtube" aria-label="Connect with Sachin Automobiles on YouTube" title="YouTube">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn social-linkedin" aria-label="Connect with Sachin Automobiles on LinkedIn" title="LinkedIn">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9h2.8v7.6h-2.8v-7.6M7.86 6.5a1.63 1.63 0 1 0 0 3.26 1.63 1.63 0 0 0 0-3.26z"/></svg>
+                    </a>
+                    <a href="https://whatsapp.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn social-whatsapp" aria-label="Join Sachin Automobiles on WhatsApp" title="WhatsApp Channel">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.24-8.24m4.52 11.64c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.26-1.5-1.41-1.75-.14-.25-.02-.39.11-.51.11-.11.25-.29.38-.44.13-.14.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.08 0 1.23.89 2.42 1.02 2.59.13.17 1.76 2.69 4.26 3.77.6.26 1.06.41 1.42.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.18-.47-.3z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <button type="button" class="back-to-top-button" onclick="scrollToTop()" aria-label="Back to top of page">
+                <span aria-hidden="true">↑</span> Back to Top
+            </button>
+        </div>
+
+    </footer>
+
+    <!-- CUSTOMER SUPPORT MODAL DIALOG -->
+    <dialog id="customer-support-modal" class="customer-support-dialog" aria-labelledby="support-dialog-title">
+        <div class="support-modal-header">
+            <div>
+                <span class="support-modal-pill">24/7 HELPDESK</span>
+                <h2 id="support-dialog-title">Customer Support & Fitment Center</h2>
+                <p>Get in touch with an automotive spare parts specialist or track your order.</p>
+            </div>
+            <button type="button" class="support-modal-close" onclick="closeSupportModal()" aria-label="Close customer support dialog">✕</button>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="support-modal-tabs" role="tablist">
+            <button type="button" class="support-tab-btn active" id="tab-btn-contact" onclick="switchSupportTab('contact')">
+                📞 Direct Channels
+            </button>
+            <button type="button" class="support-tab-btn" id="tab-btn-track" onclick="switchSupportTab('track')">
+                📦 Track My Order
+            </button>
+            <button type="button" class="support-tab-btn" id="tab-btn-callback" onclick="switchSupportTab('callback')">
+                🔧 Fitment Assistance
+            </button>
+        </div>
+
+        <!-- Tab 1: Direct Contact Channels -->
+        <div class="support-tab-panel active" id="tab-panel-contact">
+            <div class="support-cards-grid">
+                <div class="support-action-card">
+                    <span class="support-card-icon">💬</span>
+                    <h3>Instant WhatsApp Chat</h3>
+                    <p>Send car photos, part numbers, or chassis plate for instant fitment check.</p>
+                    <a href="https://wa.me/919876543210?text=Hello%20Sachin%20Automobiles,%20I%20need%20help%20with%20a%20car%20spare%20part" target="_blank" rel="noopener noreferrer" class="support-primary-action">
+                        Chat on WhatsApp Now
+                    </a>
+                </div>
+
+                <div class="support-action-card">
+                    <span class="support-card-icon">📞</span>
+                    <h3>Phone Helpline</h3>
+                    <p>Speak directly with our senior automotive technician.</p>
+                    <a href="tel:+919876543210" class="support-secondary-action">
+                        Call +91 98765 43210
+                    </a>
+                </div>
+
+                <div class="support-action-card">
+                    <span class="support-card-icon">🏢</span>
+                    <h3>Counter Visit in Hyderabad</h3>
+                    <p>Lingampally, Hyderabad, Telangana. Mon-Sat: 9 AM - 8:30 PM.</p>
+                    <button type="button" class="support-secondary-action" onclick="showPage('contact'); closeSupportModal();">
+                        View Branch Directions
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Track Active Order -->
+        <div class="support-tab-panel" id="tab-panel-track">
+            <div class="support-track-box">
+                <h3>Track Your Shipment</h3>
+                <p>Enter your Order ID (e.g. <code>SAC-84291</code>), BlueDart / Delhivery AWB number, or registered phone number.</p>
+                <form class="support-track-form" onsubmit="handleOrderTracking(event)">
+                    <div class="track-input-row">
+                        <input type="text" id="track-order-id" placeholder="e.g. SAC-84291, BD-84291044IN or 9876543210" required autocomplete="off">
+                        <button type="submit" class="track-submit-btn">Track Shipment</button>
+                    </div>
+                    <div class="track-samples-row">
+                        <span class="track-samples-label">💡 Instant Test Lookups:</span>
+                        <div class="track-samples-chips">
+                            <button type="button" class="track-sample-btn" onclick="quickFillTracking('SAC-84291')">SAC-84291 (In Transit)</button>
+                            <button type="button" class="track-sample-btn" onclick="quickFillTracking('SAC-77102')">SAC-77102 (Dispatched)</button>
+                            <button type="button" class="track-sample-btn" onclick="quickFillTracking('9876543210')">9876543210 (Phone Lookup)</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div id="track-result-stage" class="track-result-stage" hidden>
+                    <div class="shipment-status-card" id="shipment-status-card">
+                        <!-- Populated dynamically by JS -->
+                    </div>
+                </div>
+                <div id="track-not-found-stage" class="track-not-found-stage" hidden>
+                    <div class="track-empty-card">
+                        <span class="empty-icon">⚠️</span>
+                        <h4>No Active Consignment Found</h4>
+                        <p id="track-not-found-msg">We could not locate any active shipment matching this identifier.</p>
+                        <small>Please verify your 8-digit Order ID or contact 24/7 helpline at 1800-419-7224.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Fitment Advice & Callback Request -->
+        <div class="support-tab-panel" id="tab-panel-callback">
+            <form class="support-callback-form" onsubmit="handleCallbackRequest(event)">
+                <div class="callback-form-grid">
+                    <div class="form-group">
+                        <label for="callback-name">Your Full Name</label>
+                        <input id="callback-name" type="text" placeholder="e.g. Rahul Verma" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="callback-phone">Phone / WhatsApp Number</label>
+                        <input id="callback-phone" type="tel" placeholder="e.g. 9876543210" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="callback-car">Your Car Brand, Model & Year</label>
+                        <input id="callback-car" type="text" placeholder="e.g. Maruti Swift 2021 VXi" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="callback-part">Part Needed or Inquiry</label>
+                        <input id="callback-part" type="text" placeholder="e.g. Front Brake Disc or Spark Plugs" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="callback-notes">Additional Details / Questions (Optional)</label>
+                    <textarea id="callback-notes" rows="2" placeholder="Mention any specific issue, VIN number, or delivery city"></textarea>
+                </div>
+                <button type="submit" class="callback-submit-btn">Request Free Fitment Callback</button>
+                <p id="callback-status" class="callback-status" role="status" aria-live="polite"></p>
+            </form>
+        </div>
+    </dialog>
+
+    <!-- SAVE PASSWORD ALERT MODAL DIALOG -->
+    <dialog id="save-password-modal" class="save-password-dialog" aria-labelledby="save-pw-title" aria-modal="true">
+        <div class="save-password-card">
+            <div class="save-pw-icon-wrap">
+                <span class="save-pw-icon" aria-hidden="true">🔑</span>
+            </div>
+            <h3 id="save-pw-title">Save sign-in on this device?</h3>
+            <p id="save-pw-description">Save a secure sign-in for <strong id="save-pw-email-display">user@example.com</strong> so you can return without entering your password. Your password is never stored.</p>
+            <div class="save-pw-actions">
+                <button type="button" class="save-pw-btn save-pw-confirm" id="btn-save-password" onclick="handleSavePasswordDecision(true)">Save sign-in</button>
+                <button type="button" class="save-pw-btn save-pw-dismiss" id="btn-not-now" onclick="handleSavePasswordDecision(false)">Not now</button>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- MY GARAGE VEHICLE MANAGER MODAL -->
+    <dialog id="garage-modal" class="garage-dialog" aria-labelledby="garage-title" aria-modal="true">
+        <div class="garage-modal-content">
+            <div class="garage-modal-header">
+                <div class="garage-header-title-wrap">
+                    <span class="garage-modal-pill">VIRTUAL CAR GARAGE</span>
+                    <h2 id="garage-title">My Garage Vehicles</h2>
+                    <p>Save multiple cars and switch active fitment with 1-click.</p>
+                </div>
+                <button type="button" class="garage-modal-close" onclick="closeGarageModal()" aria-label="Close Garage dialog">✕</button>
+            </div>
+            <div class="garage-vehicles-list" id="garage-vehicles-list">
+                <!-- Garage items rendered by JS -->
+            </div>
+            <div class="garage-add-section">
+                <h4>+ Add Current Selected Car to Garage</h4>
+                <p id="garage-current-preview">Select a car in the homepage selector to save it here.</p>
+                <button type="button" class="garage-save-btn" id="garage-save-current-btn" onclick="saveCurrentCarToGarage()">
+                    Save Selected Car to Garage
+                </button>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- FULLSCREEN VIDEO & PARTS LIGHTBOX MODAL -->
+    <dialog id="video-showcase-modal" class="video-showcase-dialog" aria-labelledby="video-showcase-title" aria-modal="true">
+        <div class="video-modal-card">
+            <button type="button" class="video-modal-close" onclick="closeVideoModal()" aria-label="Close video dialog">✕</button>
+            <div class="video-modal-media">
+                <img id="video-modal-image" src="" alt="Automotive component inspection">
+                <div class="video-modal-overlay">
+                    <span class="video-live-badge">🎬 4K HIGH-OCTANE PREVIEW</span>
+                </div>
+            </div>
+            <div class="video-modal-info">
+                <span class="video-modal-category" id="video-modal-category">CATEGORY</span>
+                <h3 id="video-showcase-title">Component Name</h3>
+                <p id="video-modal-specs" class="video-modal-specs">Component Specifications</p>
+                <div class="video-modal-benefits">
+                    <div class="benefit-item">
+                        <span class="benefit-icon">🛡️</span>
+                        <div><strong>Certified OEM Quality</strong><p>100% genuine factory test certified</p></div>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">⚡</span>
+                        <div><strong>High-Performance Tuning</strong><p>Zero fade, maximum endurance</p></div>
+                    </div>
+                </div>
+                <div class="video-modal-actions">
+                    <button type="button" class="video-shop-btn" id="video-modal-shop-btn" onclick="filterFromVideoModal()">
+                        Browse Related Category Parts →
+                    </button>
+                    <button type="button" class="video-close-btn" onclick="closeVideoModal()">Close Preview</button>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    
+    <!-- INTERACTIVE 3D MULTI-ANGLE PART INSPECTOR MODAL -->
+    <dialog id="product-3d-modal" class="product-3d-dialog" aria-labelledby="product-3d-title" aria-modal="true">
+        <div class="product-3d-modal-card">
+            <div class="product-3d-header">
+                <div class="product-3d-title-group">
+                    <span class="product-3d-live-pill"><span class="pulse-dot"></span> REALTIME 3D CAD INSPECTOR</span>
+                    <h2 id="product-3d-title">Component 3D Inspection</h2>
+                    <p id="product-3d-subtitle">Rotate 360°, inspect multi-angle fitment, and test OEM alignment.</p>
+                </div>
+                <button type="button" class="product-3d-close-btn" onclick="close3DProductInspector()" aria-label="Close 3D viewer">✕</button>
+            </div>
+
+            <div class="product-3d-body">
+                <!-- 3D Interactive Viewport -->
+                <div class="product-3d-viewport-wrap" id="product-3d-viewport">
+                    <div class="product-3d-telemetry-hud">
+                        <span class="hud-item" id="hud-car-badge">🚗 Mahindra Thar 4x4 Spec</span>
+                        <span class="hud-item" id="hud-angle-readout">📐 Angle: 45° (Isometric 3D)</span>
+                        <span class="hud-item" id="hud-oem-badge">🛡️ OEM Fitment: 100% Certified</span>
+                    </div>
+
+                    <div class="product-3d-stage" id="product-3d-stage">
+                        <div class="product-3d-turntable-base">
+                            <div class="turntable-ring ring-outer"></div>
+                            <div class="turntable-ring ring-inner"></div>
+                            <div class="turntable-grid"></div>
+                        </div>
+                        <div class="product-3d-object" id="product-3d-object">
+                            <div class="part-3d-card" id="part-3d-card">
+                                <img id="product-3d-image" src="" alt="3D Part View" draggable="false">
+                                <div class="part-glare-light" id="part-glare-light"></div>
+                                <div class="part-shadow-plane" id="part-shadow-plane"></div>
+                            </div>
+                            <!-- Exploded CAD Callouts -->
+                            <div class="cad-callout callout-top" id="cad-callout-1">
+                                <span class="callout-dot"></span>
+                                <span class="callout-text" id="cad-text-1">Precision Forged Core Structure</span>
+                            </div>
+                            <div class="cad-callout callout-mid" id="cad-callout-2">
+                                <span class="callout-dot"></span>
+                                <span class="callout-text" id="cad-text-2">High-Capacity Thermal Heat Vanes</span>
+                            </div>
+                            <div class="cad-callout callout-bot" id="cad-callout-3">
+                                <span class="callout-dot"></span>
+                                <span class="callout-text" id="cad-text-3">Factory Bolt Mounting Interface</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-3d-drag-hint" id="product-3d-drag-hint">
+                        <span>👆 Drag or swipe to rotate 360° freely • Scroll to zoom</span>
+                    </div>
+
+                    <!-- Floating Canvas Controls -->
+                    <div class="product-3d-floating-controls">
+                        <button type="button" class="ctrl-icon-btn" onclick="toggle3DAutoSpin()" id="btn-autospin" title="Toggle Auto 360° Spin">▶ Auto Spin</button>
+                        <button type="button" class="ctrl-icon-btn" onclick="zoom3DStage(0.15)" title="Zoom In">+</button>
+                        <button type="button" class="ctrl-icon-btn" onclick="zoom3DStage(-0.15)" title="Zoom Out">−</button>
+                        <button type="button" class="ctrl-icon-btn" onclick="reset3DStage()" title="Reset View">↺ Reset</button>
+                    </div>
+                </div>
+
+                <!-- 3D Control Sidebar & Vehicle Matcher -->
+                <div class="product-3d-sidebar">
+                    <div class="sidebar-block">
+                        <h4>Multi-Angle Presets</h4>
+                        <div class="angle-presets-grid" role="group" aria-label="Angle view presets">
+                            <button type="button" class="angle-preset-btn active" onclick="set3DAnglePreset('front', this)">0° Front</button>
+                            <button type="button" class="angle-preset-btn" onclick="set3DAnglePreset('isometric', this)">45° Isometric</button>
+                            <button type="button" class="angle-preset-btn" onclick="set3DAnglePreset('profile', this)">90° Profile</button>
+                            <button type="button" class="angle-preset-btn" onclick="set3DAnglePreset('rear', this)">180° Rear Hub</button>
+                            <button type="button" class="angle-preset-btn" onclick="set3DAnglePreset('top', this)">Top Fitment</button>
+                            <button type="button" class="angle-preset-btn exploded-btn" onclick="set3DAnglePreset('exploded', this)">💥 Exploded CAD</button>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-block">
+                        <h4>Preview Part On Car</h4>
+                        <div class="sidebar-car-pills" role="group" aria-label="Preview on car">
+                            <button type="button" class="car-pill-btn active" id="modal-car-thar" onclick="switch3DPreviewCar('Mahindra', 'Thar', '2022')">🚗 Thar 4x4</button>
+                            <button type="button" class="car-pill-btn" id="modal-car-audi" onclick="switch3DPreviewCar('Audi', 'A4', '2021')">🏎️ Audi A4</button>
+                            <button type="button" class="car-pill-btn" id="modal-car-swift" onclick="switch3DPreviewCar('Maruti Suzuki', 'Swift', '2021')">🚙 Swift</button>
+                            <button type="button" class="car-pill-btn" id="modal-car-fortuner" onclick="switch3DPreviewCar('Toyota', 'Fortuner', '2023')">🚜 Fortuner</button>
+                            <button type="button" class="car-pill-btn" id="modal-car-nexon" onclick="switch3DPreviewCar('Tata', 'Nexon', '2022')">🛡️ Nexon</button>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-block specs-block">
+                        <h4>OEM Technical Dimensions</h4>
+                        <dl class="part-specs-dl" id="product-3d-specs-list">
+                            <!-- Populated dynamically by JS -->
+                        </dl>
+                    </div>
+
+                    <div class="sidebar-purchase-box">
+                        <div class="price-row">
+                            <span class="price-label">Price (Incl. 18% GST):</span>
+                            <span class="price-val" id="product-3d-price">₹2,499</span>
+                        </div>
+                        <button type="button" class="modal-add-cart-btn" id="product-3d-add-cart-btn" onclick="addCurrent3DProductToCart()">
+                            🛒 Add to Cart &amp; Verify Fitment
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- GLOBAL TOAST NOTIFICATION CONTAINER -->
+    <div id="app-toast" class="app-toast" role="status" aria-live="polite"></div>
+
+    <!-- FLOATING QUICK SUPPORT BUTTON -->
+    <button type="button" class="floating-support-btn" onclick="openSupportModal()" aria-label="Open 24/7 Customer Support Desk" title="Need Help? Open Customer Support Desk">
+        <span class="support-bubble-pulse" aria-hidden="true"></span>
+        <span class="support-bubble-icon" aria-hidden="true">🎧</span>
+        <span class="support-bubble-text">Help & Support</span>
+    </button>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="sachin.js"></script>
+
+</body>
+
+</html>
