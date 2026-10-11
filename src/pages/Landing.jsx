@@ -33,7 +33,7 @@ export default function Landing() {
           className="landing__form"
           onSubmit={(e) => {
             e.preventDefault();
-            navigate(`/signup?email=${encodeURIComponent(email)}`);
+            navigate(`/login?email=${encodeURIComponent(email.trim())}`);
           }}
         >
           <div className="field landing__email">

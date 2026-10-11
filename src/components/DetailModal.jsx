@@ -1,9 +1,10 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { navigate } from '../router';
+import { navigate, Link } from '../router';
 import { useApp } from '../context/AppContext';
 import { TITLES, byId } from '../data/titles';
 import { metaLine } from './Card';
 import { PlayIcon, PlusIcon, CheckIcon, ThumbUpIcon, ThumbDownIcon, CloseIcon, VolumeIcon } from './Icons';
+import { NAV } from './Navbar';
 
 function similar(item) {
   return TITLES.filter((t) => t.id !== item.id)
@@ -262,6 +263,24 @@ export default function DetailModal() {
             <p className="about__rating">
               <span className="modal__label">Maturity rating:</span> <span className="rating-box">{item.rating}</span>{' '}
               <span>{item.rating === 'U' ? 'Suitable for all ages.' : item.rating === 'A' ? 'Recommended for ages 18 and up.' : 'Parental guidance recommended.'}</span>
+            </p>
+
+            <p className="about__nav">
+              <span className="modal__label">Explore:</span>{' '}
+              <span className="about__nav-links">
+                {NAV.map((n, idx) => (
+                  <React.Fragment key={n.to}>
+                    {idx > 0 && <span className="about__nav-sep">, </span>}
+                    <Link
+                      to={n.to}
+                      className="about__nav-link"
+                      onClick={() => closeModal()}
+                    >
+                      {n.label}
+                    </Link>
+                  </React.Fragment>
+                ))}
+              </span>
             </p>
           </div>
         </div>

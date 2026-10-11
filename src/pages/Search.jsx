@@ -3,6 +3,7 @@ import { navigate, useRoute } from '../router';
 import { useApp } from '../context/AppContext';
 import { TITLES } from '../data/titles';
 import Card from '../components/Card';
+import { SearchIcon, CloseIcon } from '../components/Icons';
 
 function score(t, q) {
   const s = q.toLowerCase();
@@ -18,7 +19,8 @@ function score(t, q) {
 export default function Search() {
   const { query } = useRoute();
   const { profile } = useApp();
-  const q = (query.q || '').trim();
+  const rawQ = query.q || '';
+  const q = rawQ.trim();
 
   const results = useMemo(() => {
     if (!q) return [];
@@ -39,6 +41,30 @@ export default function Search() {
 
   return (
     <main className="search-page">
+      <div className="search-page__hero">
+        <div className="search-page__bar">
+          <SearchIcon width={22} height={22} className="search-page__icon" />
+          <input
+            type="text"
+            className="search-page__input"
+            value={rawQ}
+            onChange={(e) => navigate(`/search?q=${encodeURIComponent(e.target.value)}`, { replace: true })}
+            placeholder="Search titles, actors, genres, tags..."
+            aria-label="Search titles"
+            autoFocus
+          />
+          {rawQ && (
+            <button
+              type="button"
+              className="search-page__clear"
+              aria-label="Clear search"
+              onClick={() => navigate('/search', { replace: true })}
+            >
+              <CloseIcon width={18} height={18} />
+            </button>
+          )}
+        </div>
+      </div>
       {q && results.length > 0 && (
         <div className="search-page__related">
           <span>Explore titles related to:</span>

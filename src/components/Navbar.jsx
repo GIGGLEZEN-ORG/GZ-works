@@ -13,7 +13,7 @@ export function Logo({ className = '' }) {
   );
 }
 
-const NAV = [
+export const NAV = [
   { to: '/browse', label: 'Home' },
   { to: '/browse/series', label: 'TV Shows' },
   { to: '/browse/movies', label: 'Movies' },
@@ -69,7 +69,7 @@ export default function Navbar() {
     if (path === '/search') navigate(prevPath.current && prevPath.current !== '/search' ? prevPath.current : '/browse');
   };
 
-  const isActive = (to) => path === to;
+  const isActive = (to) => path === to || (to === '/browse' && (path === '/' || path === ''));
   const newTitles = TITLES.filter((t) => t.isNew).slice(0, 4);
 
   return (
@@ -120,7 +120,7 @@ export default function Navbar() {
           )}
         </div>
 
-        <Link to="/browse/kids" className="navbar__kids">
+        <Link to="/browse/kids" className={`navbar__kids ${isActive('/browse/kids') ? 'is-active' : ''}`}>
           Children
         </Link>
 

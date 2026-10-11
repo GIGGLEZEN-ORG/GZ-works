@@ -395,6 +395,28 @@
   flex-wrap: wrap;
 }
 
+.about__nav {
+  margin-top: 8px;
+  line-height: 1.6;
+}
+.about__nav-links {
+  display: inline;
+}
+.about__nav-link {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: color 0.2s, text-decoration-color 0.2s;
+}
+.about__nav-link:hover {
+  color: #e50914;
+  text-decoration-color: #e50914;
+}
+.about__nav-sep {
+  color: #d2d2d2;
+}
+
 @media (max-width: 700px) {
   .modal-backdrop {
     padding: 0;

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { RouterProvider, useRoute, matchPath, navigate, Link } from './router';
 import { AppProvider, useApp } from './context/AppContext';
-import Navbar from './components/Navbar';
+import Navbar, { NAV } from './components/Navbar';
 import Footer from './components/Footer';
 import DetailModal from './components/DetailModal';
 import Login from './pages/Login';
@@ -92,6 +92,24 @@ function Routes() {
       <Shell>
         <SimplePage title="Help Centre">
           <p>Keyboard shortcuts in the player: <kbd>Space</kbd> play/pause, <kbd>←</kbd>/<kbd>→</kbd> skip 10s, <kbd>↑</kbd>/<kbd>↓</kbd> volume, <kbd>M</kbd> mute, <kbd>F</kbd> full screen, <kbd>Esc</kbd> back.</p>
+        </SimplePage>
+      </Shell>
+    );
+  if (path === '/about')
+    return (
+      <Shell>
+        <SimplePage title="About JETIX">
+          <p>JETIX is a streaming demo platform featuring movies, TV shows, personalized profiles, watch progress, and custom lists.</p>
+          <div style={{ marginTop: '20px' }}>
+            <p style={{ fontWeight: 600, marginBottom: '10px' }}>Explore Categories:</p>
+            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginBottom: '24px' }}>
+              {NAV.map((n) => (
+                <Link key={n.to} to={n.to} style={{ color: '#fff', textDecoration: 'underline', fontSize: '0.95rem' }}>
+                  {n.label}
+                </Link>
+              ))}
+            </div>
+          </div>
         </SimplePage>
       </Shell>
     );

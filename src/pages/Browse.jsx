@@ -1,10 +1,10 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { navigate, useRoute } from '../router';
 import { useApp } from '../context/AppContext';
 import { TITLES, GENRES, buildRows } from '../data/titles';
 import Hero from '../components/Hero';
 import Row from '../components/Row';
-import { CaretIcon } from '../components/Icons';
+import { CaretIcon, ChevronDownIcon } from '../components/Icons';
 
 const PAGE_TITLES = {
   all: null,
@@ -19,6 +19,7 @@ export default function Browse({ filter = 'all' }) {
   const { query } = useRoute();
   const { profile, myList, progress, continueWatching, openModal, modalId } = useApp();
   const genre = query.genre || '';
+  const [collapsedRows, setCollapsedRows] = useState({});
 
   // Deep link: #/browse?jbv=<id> opens the detail modal (mirrors the real site's URL scheme).
   useEffect(() => {
@@ -62,6 +63,32 @@ export default function Browse({ filter = 'all' }) {
   const pageTitle = PAGE_TITLES[filter];
   const showGenrePicker = filter === 'series' || filter === 'movies' || (filter === 'all' && genre);
 
+  const allRowKeys = useMemo(() => {
+    const keys = [];
+    if (filter === 'all' && !genre && cw.length > 0) keys.push('cw');
+    if (filter === 'all' && !genre && myListItems.length > 0) keys.push('mylist');
+    rows.forEach((r) => keys.push(r.key));
+    return keys;
+  }, [filter, genre, cw.length, myListItems.length, rows]);
+
+  const allCollapsed = allRowKeys.length > 0 && allRowKeys.every((k) => !!collapsedRows[k]);
+
+  const toggleRowCollapse = (key) => {
+    setCollapsedRows((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  };
+
+  const toggleAllRows = () => {
+    const shouldCollapse = !allCollapsed;
+    const next = {};
+    allRowKeys.forEach((k) => {
+      next[k] = shouldCollapse;
+    });
+    setCollapsedRows(next);
+  };
+
   if (!heroItems.length) {
     return (
       <main className="browse browse--empty">
@@ -98,12 +125,55 @@ export default function Browse({ filter = 'all' }) {
       <Hero items={heroItems} />
 
       <div className="rows">
+        <div className="rows__controls">
+          <button
+            type="button"
+            className="rows__toggle-all"
+            onClick={toggleAllRows}
+            aria-expanded={!allCollapsed}
+            title={allCollapsed ? 'Display cards for all rows' : 'Collapse cards for all rows'}
+          >
+            <ChevronDownIcon
+              width={15}
+              height={15}
+              className={`rows__toggle-all-icon ${allCollapsed ? 'is-collapsed' : ''}`}
+            />
+            <span>{allCollapsed ? 'Expand All Rows' : 'Collapse All Rows'}</span>
+          </button>
+        </div>
+
         {filter === 'all' && !genre && cw.length > 0 && (
-          <Row title={`Continue Watching for ${profile?.name || 'you'}`} items={cw.map((p) => p.item)} progressMap={progressMap} />
+          <Row
+            title={`Continue Watching for ${profile?.name || 'you'}`}
+            items={cw.map((p) => p.item)}
+            progressMap={progressMap}
+            collapsed={!!collapsedRows['cw']}
+            onToggleCollapse={() => toggleRowCollapse('cw')}
+            variant="continue-watching"
+          />
         )}
-        {filter === 'all' && !genre && myListItems.length > 0 && <Row title="My List" items={myListItems} explore />}
+        {filter === 'all' && !genre && myListItems.length > 0 && (
+          <Row
+            title="My List"
+            items={myListItems}
+            explore
+            collapsed={!!collapsedRows['mylist']}
+            onToggleCollapse={() => toggleRowCollapse('mylist')}
+            variant="my-list"
+          />
+        )}
         {rows.map((r) => (
-          <Row key={r.key} title={r.title} items={r.items} top10={r.top10} progressMap={progressMap} explore />
+          <Row
+            key={r.key}
+            title={r.title}
+            items={r.items}
+            top10={r.top10}
+            progressMap={progressMap}
+            explore
+            collapsed={!!collapsedRows[r.key]}
+            onToggleCollapse={() => toggleRowCollapse(r.key)}
+            variant={r.key}
+          />
         ))}
       </div>
     </main>
