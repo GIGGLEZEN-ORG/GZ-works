@@ -15,10 +15,12 @@ import {
   Car,
   Armchair,
   Check,
-  Home
+  Home,
+  Star
 } from "lucide-react";
 import { cinemaAudio } from "../utils/soundEffects";
 import { formatCurrencyINR } from "../utils/currency";
+import BookingRatingModal from "./BookingRatingModal";
 
 export default function TicketReceipt3D({
   booking,
@@ -28,6 +30,7 @@ export default function TicketReceipt3D({
 }) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [shareSuccess, setShareSuccess] = useState(false);
+  const [showRating, setShowRating] = useState(false);
 
   // Trigger celebration confetti on mount
   useEffect(() => {
@@ -412,6 +415,17 @@ export default function TicketReceipt3D({
         <button
           onClick={() => {
             cinemaAudio.playHoverTick();
+            setShowRating(true);
+          }}
+          className="px-4 py-2.5 rounded-xl bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 hover:text-amber-200 text-xs font-bold border border-amber-500/30 flex items-center gap-1.5 cursor-pointer transition-all shadow-sm active:scale-95"
+        >
+          <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+          <span>Rate Experience</span>
+        </button>
+
+        <button
+          onClick={() => {
+            cinemaAudio.playHoverTick();
             if (onGoHome) {
               onGoHome();
             } else if (onBookAnother) {
@@ -426,6 +440,15 @@ export default function TicketReceipt3D({
           <span>Go Back Home</span>
         </button>
       </div>
+
+      {/* Booking Rating Modal (Can also be re-opened anytime from ticket pass) */}
+      {showRating && (
+        <BookingRatingModal
+          booking={booking}
+          isOpen={showRating}
+          onClose={() => setShowRating(false)}
+        />
+      )}
 
     </div>
   );

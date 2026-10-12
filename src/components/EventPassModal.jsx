@@ -16,6 +16,7 @@ import {
 import confetti from "canvas-confetti";
 import { cinemaAudio } from "../utils/soundEffects";
 import { formatCurrencyINR } from "../utils/currency";
+import BookingRatingModal from "./BookingRatingModal";
 
 export default function EventPassModal({
   event,
@@ -34,6 +35,7 @@ export default function EventPassModal({
   const [limitWarning, setLimitWarning] = useState("");
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [confirmedBooking, setConfirmedBooking] = useState(null);
+  const [showRatingModal, setShowRatingModal] = useState(false);
 
   if (!event) return null;
 
@@ -180,6 +182,11 @@ export default function EventPassModal({
     } catch {
       // ignore
     }
+
+    // Automatically trigger Booking Experience Rating Modal right after payment
+    setTimeout(() => {
+      setShowRatingModal(true);
+    }, 1200);
   };
 
   return (
@@ -519,6 +526,18 @@ export default function EventPassModal({
             </div>
 
           </div>
+        )}
+
+        {/* Rating Experience Popup (Appears right after payment) */}
+        {showRatingModal && confirmedBooking && (
+          <BookingRatingModal
+            booking={confirmedBooking}
+            isOpen={showRatingModal}
+            onClose={() => setShowRatingModal(false)}
+            onSubmitRating={(ratingData) => {
+              // rating submitted
+            }}
+          />
         )}
 
       </div>

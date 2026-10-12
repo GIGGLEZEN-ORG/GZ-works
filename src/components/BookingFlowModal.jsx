@@ -9,6 +9,7 @@ import ShowtimeSelector from "./ShowtimeSelector";
 import SeatPicker3D from "./SeatPicker3D";
 import ConcessionsDrawer from "./ConcessionsDrawer";
 import TicketReceipt3D from "./TicketReceipt3D";
+import BookingRatingModal from "./BookingRatingModal";
 
 export default function BookingFlowModal({
   movie,
@@ -47,6 +48,7 @@ export default function BookingFlowModal({
   const [discount, setDiscount] = useState(0);
   const [confirmedBooking, setConfirmedBooking] = useState(null);
   const [ticketNotice, setTicketNotice] = useState("");
+  const [showRatingModal, setShowRatingModal] = useState(false);
 
   // Generate next 7 days starting from today (today is selected by default)
   const dateOptions = useMemo(() => {
@@ -157,6 +159,11 @@ export default function BookingFlowModal({
     onSaveBooking(newBooking);
     setTicketNotice(`Sending ticket to ${currentUser?.email || "your email"}`);
     setStep("ticket");
+
+    // Automatically trigger Booking Experience Rating Modal right after payment
+    setTimeout(() => {
+      setShowRatingModal(true);
+    }, 1200);
   };
 
   const handleProceedToCheckout = (grandTotal) => {
@@ -458,6 +465,18 @@ export default function BookingFlowModal({
             booking={confirmedBooking}
             onGoHome={handleGoHome}
             onClose={onClose}
+          />
+        )}
+
+        {/* Rating Experience Popup (Appears right after payment) */}
+        {showRatingModal && confirmedBooking && (
+          <BookingRatingModal
+            booking={confirmedBooking}
+            isOpen={showRatingModal}
+            onClose={() => setShowRatingModal(false)}
+            onSubmitRating={(ratingData) => {
+              // rating submitted
+            }}
           />
         )}
 
