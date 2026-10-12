@@ -40,7 +40,7 @@ export default function Footer({ onNavigatePage, currentPage = "home" }) {
   };
 
   return (
-    <footer className="w-full bg-[#05070b] border-t border-white/10 pt-8 pb-28 lg:pb-12 text-left">
+    <footer className="w-full shrink-0 relative bg-[#05070b] border-t border-white/10 pt-8 pb-24 lg:pb-10 text-left overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         {/* Brand Section */}

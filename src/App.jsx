@@ -299,7 +299,7 @@ export default function App() {
   }, [searchQuery, selectedGenre, selectedFormat]);
 
   return (
-    <div className="relative min-h-screen bg-[#07090e] text-slate-100 font-sans selection:bg-rose-500 selection:text-white transition-colors duration-700">
+    <div className="relative min-h-screen flex flex-col justify-between bg-[#07090e] text-slate-100 font-sans selection:bg-rose-500 selection:text-white transition-colors duration-700">
       
       {/* Dynamic Ambient Background Illumination */}
       <div 
@@ -341,43 +341,45 @@ export default function App() {
       />
 
       {/* Page Content: Home Page vs Dedicated Movies Page vs Dedicated Events Page */}
-      {currentPage === "events" ? (
-        <EventsPage
-          selectedCity={selectedCity}
-          onSelectCity={handleSelectCity}
-          onNavigateHome={() => handleNavigatePage("home")}
-          onBookEvent={handleInitiateEventBooking}
-        />
-      ) : currentPage === "movies" ? (
-        <MoviesPage
-          movies={filteredMovies}
-          allMovies={moviesData}
-          selectedGenre={selectedGenre}
-          setSelectedGenre={setSelectedGenre}
-          selectedFormat={selectedFormat}
-          setSelectedFormat={setSelectedFormat}
-          selectedDate={selectedDate}
-          setSelectedDate={setSelectedDate}
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          selectedCity={selectedCity}
-          onSelectCity={handleSelectCity}
-          onInitiateBooking={handleInitiateBooking}
-          onOpenDetails={(movie) => setDetailMovie(movie)}
-          onWatchTrailer={(movie) => setDetailMovie(movie)}
-          onNavigateHome={() => handleNavigatePage("home")}
-        />
-      ) : (
-        <HomePage
-          selectedCity={selectedCity}
-          onSelectCity={handleSelectCity}
-          onNavigatePage={handleNavigatePage}
-          onSelectMovie={(movie) => handleInitiateBooking(movie)}
-          onOpenMovieDetails={(movie) => setDetailMovie(movie)}
-          onWatchTrailer={(movie) => setDetailMovie(movie)}
-          onBookEvent={handleInitiateEventBooking}
-        />
-      )}
+      <main className="flex-1 w-full">
+        {currentPage === "events" ? (
+          <EventsPage
+            selectedCity={selectedCity}
+            onSelectCity={handleSelectCity}
+            onNavigateHome={() => handleNavigatePage("home")}
+            onBookEvent={handleInitiateEventBooking}
+          />
+        ) : currentPage === "movies" ? (
+          <MoviesPage
+            movies={filteredMovies}
+            allMovies={moviesData}
+            selectedGenre={selectedGenre}
+            setSelectedGenre={setSelectedGenre}
+            selectedFormat={selectedFormat}
+            setSelectedFormat={setSelectedFormat}
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            selectedCity={selectedCity}
+            onSelectCity={handleSelectCity}
+            onInitiateBooking={handleInitiateBooking}
+            onOpenDetails={(movie) => setDetailMovie(movie)}
+            onWatchTrailer={(movie) => setDetailMovie(movie)}
+            onNavigateHome={() => handleNavigatePage("home")}
+          />
+        ) : (
+          <HomePage
+            selectedCity={selectedCity}
+            onSelectCity={handleSelectCity}
+            onNavigatePage={handleNavigatePage}
+            onSelectMovie={(movie) => handleInitiateBooking(movie)}
+            onOpenMovieDetails={(movie) => setDetailMovie(movie)}
+            onWatchTrailer={(movie) => setDetailMovie(movie)}
+            onBookEvent={handleInitiateEventBooking}
+          />
+        )}
+      </main>
 
       {/* Footer */}
       <Footer onNavigatePage={handleNavigatePage} currentPage={currentPage} />
