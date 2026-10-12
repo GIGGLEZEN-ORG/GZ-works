@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { 
   Ticket, 
   Star, 
@@ -9,7 +9,9 @@ import {
   MapPin, 
   Film, 
   Music, 
-  Clock
+  Clock,
+  Volume2,
+  VolumeX
 } from "lucide-react";
 import { cinemaAudio } from "../utils/soundEffects";
 import { formatCurrencyINR } from "../utils/currency";
@@ -26,7 +28,10 @@ export default function HomeShowcase3D({
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
   const [showHeartBurst, setShowHeartBurst] = useState(false);
+  const hoverTimeoutRef = useRef(null);
   const wishlist = useWishlist();
 
   const toggleLike = (item, e) => {
@@ -78,10 +83,17 @@ export default function HomeShowcase3D({
           displayAccent: topMovies[i].accentColor || "#f43f5e",
           displayCategory: topMovies[i].genres?.slice(0, 2).join(" • ") || "Cinema Feature",
           displayPrice: 280,
-          displayTagline: topMovies[i].tagline || "Experience cinema in breathtaking 4K IMAX"
+          displayTagline: topMovies[i].tagline || "Experience cinema in breathtaking 4K IMAX",
+          trailerEmbed: topMovies[i].trailerEmbed || "Way9Dexny3w"
         });
       }
       if (topEvents[i]) {
+        // Find matching movie trailer for event if linked via movieId
+        const linkedMovie = topEvents[i].movieId 
+          ? movies.find((m) => m.id === topEvents[i].movieId)
+          : null;
+        const eventTrailer = linkedMovie?.trailerEmbed || topMovies[0]?.trailerEmbed || "Way9Dexny3w";
+
         list.push({
           ...topEvents[i],
           isMovie: false,
@@ -92,7 +104,8 @@ export default function HomeShowcase3D({
           displayAccent: topEvents[i].accentColor || "#f59e0b",
           displayCategory: topEvents[i].category || "Live Event",
           displayPrice: topEvents[i].price || 1500,
-          displayTagline: topEvents[i].subtitle || "Experience electrifying live atmosphere"
+          displayTagline: topEvents[i].subtitle || "Experience electrifying live atmosphere",
+          trailerEmbed: eventTrailer
         });
       }
     }
@@ -113,13 +126,37 @@ export default function HomeShowcase3D({
     return () => clearInterval(timer);
   }, [total, isPaused]);
 
+  // Clean up any hover timer on unmount
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const handleMouseEnterAd = () => {
+    setIsPaused(true);
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    // Instant smooth transition to play trailer preview
+    hoverTimeoutRef.current = setTimeout(() => {
+      setIsHovered(true);
+    }, 150);
+  };
+
+  const handleMouseLeaveAd = () => {
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    setIsHovered(false);
+    setIsPaused(false);
+  };
+
   if (total === 0 || !activeItem) return null;
 
   return (
     <section 
       id="cinematic-spotlight-marquee"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
+      onMouseEnter={handleMouseEnterAd}
+      onMouseLeave={handleMouseLeaveAd}
       className="relative w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-2 pb-8 select-none"
     >
       {/* Dynamic Ambient Glow matching the active item (fast 300ms transition) */}
@@ -133,7 +170,7 @@ export default function HomeShowcase3D({
       {/* SINGLE DISPLAY OF CONTENT: Bigger, Taller Panoramic Cinematic Billboard Ad */}
       <div className="relative w-full min-h-[500px] sm:min-h-[580px] md:min-h-[640px] lg:min-h-[680px] rounded-3xl overflow-hidden border border-white/20 bg-slate-950 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] flex flex-col justify-end group">
         
-        {/* Background Images Cross-Fade with Fast 300ms Transition */}
+        {/* Background Images Cross-Fade */}
         {displayItems.map((item, idx) => {
           const isSelected = idx === activeIndex;
           return (
@@ -162,6 +199,25 @@ export default function HomeShowcase3D({
             </div>
           );
         })}
+
+        {/* Hover Trailer Video Player Overlay */}
+        {isHovered && activeItem.trailerEmbed && (
+          <div className="absolute inset-0 z-10 transition-opacity duration-500 ease-in-out opacity-100 bg-black">
+            <div className="relative w-full h-full overflow-hidden pointer-events-auto">
+              <iframe
+                key={`trailer-hover-${activeItem.id}-${activeItem.trailerEmbed}-${isMuted ? 'muted' : 'unmuted'}`}
+                src={`https://www.youtube-nocookie.com/embed/${activeItem.trailerEmbed}?autoplay=1&mute=${isMuted ? 1 : 0}&controls=0&loop=1&playlist=${activeItem.trailerEmbed}&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&playsinline=1&enablejsapi=1`}
+                title={`${activeItem.title} 4K Trailer Preview`}
+                className="w-[140%] h-[140%] -top-[20%] -left-[20%] absolute object-cover filter brightness-90 contrast-105 pointer-events-none select-none"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              />
+              
+              {/* Subtle cinema shading on top of video so title text stays razor sharp */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/30 to-transparent pointer-events-none" />
+            </div>
+          </div>
+        )}
 
         {/* Cinematic Vignettes and Shadow Overlays */}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent" />
@@ -192,23 +248,54 @@ export default function HomeShowcase3D({
             <span className="px-2.5 py-1 rounded-full text-[11px] font-semibold bg-black/85 text-slate-200 border border-white/15">
               {activeItem.displayBadge}
             </span>
+
+            {/* Video Trailer Status Badge */}
+            {isHovered && activeItem.trailerEmbed && (
+              <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-rose-600/90 text-white border border-rose-400/50 shadow-lg shadow-rose-600/30 flex items-center gap-1.5 animate-pulse">
+                <span className="w-2 h-2 rounded-full bg-white"></span>
+                <span>Trailer Playing</span>
+              </span>
+            )}
           </div>
 
-          {/* Favorite Wishlist Button */}
-          <button
-            type="button"
-            onClick={(e) => toggleLike(activeItem, e)}
-            aria-label="Save to wishlist"
-            className={`p-2.5 rounded-full border transition-all cursor-pointer ${
-              wishlist.some((i) => String(i.id) === String(activeItem.id))
-                ? "bg-rose-600 text-white border-rose-500 scale-110"
-                : "bg-black/80 text-slate-200 hover:text-white border-white/20 hover:bg-black"
-            }`}
-          >
-            <Heart 
-              className={`w-4 h-4 ${wishlist.some((i) => String(i.id) === String(activeItem.id)) ? "fill-white" : ""}`} 
-            />
-          </button>
+          <div className="flex items-center gap-2">
+            {/* Audio Mute/Unmute Toggle Button when trailer is playing */}
+            {isHovered && activeItem.trailerEmbed && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  cinemaAudio.playHoverTick();
+                  setIsMuted(!isMuted);
+                }}
+                title={isMuted ? "Unmute trailer audio" : "Mute trailer audio"}
+                aria-label={isMuted ? "Unmute trailer" : "Mute trailer"}
+                className="p-2.5 rounded-full border border-white/20 bg-black/80 hover:bg-black text-white transition-all cursor-pointer hover:scale-105 active:scale-95"
+              >
+                {isMuted ? (
+                  <VolumeX className="w-4 h-4 text-slate-300" />
+                ) : (
+                  <Volume2 className="w-4 h-4 text-rose-400" />
+                )}
+              </button>
+            )}
+
+            {/* Favorite Wishlist Button */}
+            <button
+              type="button"
+              onClick={(e) => toggleLike(activeItem, e)}
+              aria-label="Save to wishlist"
+              className={`p-2.5 rounded-full border transition-all cursor-pointer ${
+                wishlist.some((i) => String(i.id) === String(activeItem.id))
+                  ? "bg-rose-600 text-white border-rose-500 scale-110"
+                  : "bg-black/80 text-slate-200 hover:text-white border-white/20 hover:bg-black"
+              }`}
+            >
+              <Heart 
+                className={`w-4 h-4 ${wishlist.some((i) => String(i.id) === String(activeItem.id)) ? "fill-white" : ""}`} 
+              />
+            </button>
+          </div>
         </div>
 
         {/* Bottom Foreground Content & Call to Actions */}
