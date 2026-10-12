@@ -9,7 +9,8 @@ import {
   Volume2, 
   ChevronRight,
   Flame,
-  Armchair
+  Armchair,
+  AlertCircle
 } from "lucide-react";
 import { cinemaAudio } from "../utils/soundEffects";
 import { formatCurrencyINR } from "../utils/currency";
@@ -36,8 +37,10 @@ export default function SeatPicker3D({
   setSelectedSeats,
   onProceedToConcessions
 }) {
+  const MAX_SEATS = 6;
   const [viewMode, setViewMode] = useState("2d"); // "2d" | "pov"
   const [hoveredSeat, setHoveredSeat] = useState(null);
+  const [limitWarning, setLimitWarning] = useState("");
 
   // All seats are selectable by default.
   // Seats become booked when a user completes a booking for this movie, theater, date, and time.
@@ -86,13 +89,16 @@ export default function SeatPicker3D({
     let next;
 
     if (exists) {
+      setLimitWarning("");
       next = selectedSeats.filter((s) => s.id !== seatId);
       cinemaAudio.playSeatClick(false);
     } else {
-      if (selectedSeats.length >= 8) {
-        alert("Maximum 8 seats can be reserved in one transaction.");
+      if (selectedSeats.length >= MAX_SEATS) {
+        cinemaAudio.playSeatClick(false);
+        setLimitWarning("An account has a limit of 6 movie tickets per booking.");
         return;
       }
+      setLimitWarning("");
       next = [
         ...selectedSeats,
         {
@@ -360,6 +366,23 @@ export default function SeatPicker3D({
 
       </div>
 
+      {/* Account Limit Warning Notice */}
+      {limitWarning && (
+        <div className="p-3.5 rounded-xl bg-rose-500/15 border border-rose-500/40 text-rose-300 text-xs flex items-center justify-between gap-3 animate-in fade-in slide-in-from-top-1 duration-200">
+          <div className="flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 text-rose-400 shrink-0" />
+            <span className="font-semibold">{limitWarning}</span>
+          </div>
+          <button
+            type="button"
+            onClick={() => setLimitWarning("")}
+            className="text-rose-400 hover:text-white text-xs px-2 py-0.5 rounded hover:bg-rose-500/20 cursor-pointer transition-colors"
+          >
+            ✕
+          </button>
+        </div>
+      )}
+
       {/* Selected Seats Counter and Checkout Bar */}
       <div className="p-4 sm:p-6 rounded-2xl glass-panel border border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         
@@ -367,8 +390,11 @@ export default function SeatPicker3D({
         <div className="space-y-1">
           <div className="flex items-center gap-2">
             <Armchair className="w-5 h-5 text-rose-500" />
-            <span className="text-sm font-bold text-white">
-              Selected Seats: {selectedSeats.length > 0 ? `${selectedSeats.length} Seat(s)` : "None selected"}
+            <span className="text-sm font-bold text-white flex items-center gap-2">
+              <span>Selected Seats: {selectedSeats.length > 0 ? `${selectedSeats.length} of ${MAX_SEATS}` : "None selected"}</span>
+              <span className="text-[10px] px-2 py-0.5 rounded-md bg-white/10 text-slate-300 font-mono font-normal">
+                Max {MAX_SEATS} seats
+              </span>
             </span>
           </div>
 

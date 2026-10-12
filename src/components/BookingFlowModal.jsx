@@ -103,6 +103,12 @@ export default function BookingFlowModal({
   if (!movie) return null;
 
   const handleProceedToConcessions = () => {
+    if (!selectedSeats || selectedSeats.length === 0) return;
+    if (selectedSeats.length > 6) {
+      alert("An account has a limit of 6 movie tickets per booking.");
+      return;
+    }
+
     if (!user) {
       if (onOpenAuth) {
         onOpenAuth(
