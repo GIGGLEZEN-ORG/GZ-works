@@ -11,7 +11,6 @@
   html, body {
     margin: 0;
     padding: 0;
-    width: 100%;
     min-height: 100%;
     background-color: #07090e;
     color: #f1f5f9;
@@ -20,11 +19,18 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: geometricPrecision;
     overflow-x: hidden;
-    /* Prevent rubber-band dragging, bouncing & overscroll viewport expansion */
-    overscroll-behavior: none;
-    overscroll-behavior-y: none;
-    overscroll-behavior-x: none;
-    -webkit-overflow-scrolling: touch;
+    /* Hide side scroll bar while maintaining natural scrolling */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  /* Hide default side scroll bar in Chrome, Safari and Opera */
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar,
+  #root::-webkit-scrollbar {
+    display: none;
+    width: 0px;
+    height: 0px;
   }
 
   /* Ensure all typography is crisp and sharp across all dimensions */
@@ -41,22 +47,22 @@
     border: none;
     display: block;
     text-align: left;
-    overflow-x: hidden;
-    overscroll-behavior: none;
     -webkit-font-smoothing: subpixel-antialiased;
     text-rendering: geometricPrecision;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
-  /* Custom Sleek Scrollbar */
+  /* Custom Sleek Scrollbar for internal container carousels/drawers only */
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 5px;
+    height: 5px;
   }
   ::-webkit-scrollbar-track {
-    background: #0b0e14;
+    background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: #242c3d;
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {

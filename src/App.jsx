@@ -299,7 +299,7 @@ export default function App() {
   }, [searchQuery, selectedGenre, selectedFormat]);
 
   return (
-    <div className="relative min-h-screen w-full overflow-x-hidden overscroll-none bg-[#07090e] text-slate-100 font-sans selection:bg-rose-500 selection:text-white transition-colors duration-700">
+    <div className="relative min-h-screen bg-[#07090e] text-slate-100 font-sans selection:bg-rose-500 selection:text-white transition-colors duration-700">
       
       {/* Dynamic Ambient Background Illumination */}
       <div 

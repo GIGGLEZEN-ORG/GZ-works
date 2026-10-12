@@ -68,7 +68,7 @@ export default function HomePage({
   };
 
   return (
-    <div className="pt-32 sm:pt-36 pb-0 text-slate-100 min-h-screen w-full overflow-x-hidden overscroll-none">
+    <div className="pt-32 sm:pt-36 pb-0 text-slate-100 min-h-screen">
       
       {/* 1. TOP CINEMATIC BILLBOARD STAGE: MARQUEE ADS FOR BOTH MOVIES & EVENTS */}
       <HomeShowcase3D
