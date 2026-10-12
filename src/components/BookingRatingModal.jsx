@@ -159,11 +159,8 @@ export default function BookingRatingModal({
               </h2>
             </div>
 
-            {/* 1. Satisfactory Emojis Rating Selector */}
-            <div className="space-y-2">
-              <label className="text-xs font-bold text-slate-300 uppercase tracking-wider block">
-                Satisfactory Rating
-              </label>
+            {/* 1. Emojis Rating Selector */}
+            <div>
               <div className="grid grid-cols-5 gap-2 sm:gap-2.5">
                 {SATISFACTION_EMOJIS.map((item) => {
                   const isSelected = selectedEmoji.id === item.id;
