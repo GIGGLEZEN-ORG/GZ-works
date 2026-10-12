@@ -11,6 +11,7 @@ import {
   Award
 } from "lucide-react";
 import { cinemaAudio } from "../utils/soundEffects";
+import { saveUserRating } from "../utils/ratingsStore";
 import confetti from "canvas-confetti";
 
 const SATISFACTION_EMOJIS = [
@@ -54,14 +55,8 @@ export default function BookingRatingModal({
       submittedAt: new Date().toISOString()
     };
 
-    // Save locally
-    try {
-      const existing = JSON.parse(localStorage.getItem("cineverse_user_ratings") || "[]");
-      existing.unshift(reviewPayload);
-      localStorage.setItem("cineverse_user_ratings", JSON.stringify(existing.slice(0, 50)));
-    } catch {
-      // storage quota or ignore
-    }
+    // Save locally via ratingsStore
+    saveUserRating(reviewPayload);
 
     try {
       confetti({

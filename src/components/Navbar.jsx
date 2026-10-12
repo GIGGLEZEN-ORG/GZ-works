@@ -31,6 +31,7 @@ import { cinemaAudio } from "../utils/soundEffects";
 import { moviesData, cinemaEvents, cinemaAmbients } from "../data/moviesData";
 import { sketchAvatars, sketchAvatarCategories } from "../data/sketchAvatars";
 import { useWishlist, removeFromWishlist } from "../utils/wishlistStore";
+import { calculateAggregatedRatingStats } from "../utils/ratingsStore";
 
 const navItems = [
   { id: "movies", label: "Movies", Icon: Clapperboard, color: "text-rose-500" },
@@ -401,6 +402,21 @@ function QuickMenuModal({
   const [activeModalTab, setActiveModalTab] = useState(initialTab || null);
   const [faqSearch, setFaqSearch] = useState("");
   const [ticketQuerySubmitted, setTicketQuerySubmitted] = useState(false);
+  const [ratingStats, setRatingStats] = useState(() => calculateAggregatedRatingStats());
+
+  useEffect(() => {
+    const handleRatingsUpdate = () => {
+      setRatingStats(calculateAggregatedRatingStats());
+    };
+    window.addEventListener("cineverse_ratings_updated", handleRatingsUpdate);
+    return () => window.removeEventListener("cineverse_ratings_updated", handleRatingsUpdate);
+  }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      setRatingStats(calculateAggregatedRatingStats());
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     if (isOpen && initialTab) {
@@ -461,7 +477,120 @@ function QuickMenuModal({
         </div>
 
         {/* Main Menu Options */}
-        <div className="p-4 space-y-2 overflow-y-auto flex-1">
+        <div className="p-4 space-y-2.5 overflow-y-auto flex-1">
+
+          {/* 🌟 SPOTLIGHT: TOTAL AVERAGE RATINGS & FINAL USER SCORE */}
+          <div className="rounded-2xl border border-amber-500/30 bg-gradient-to-b from-amber-500/10 via-slate-900/90 to-slate-950 p-4 shadow-lg shadow-amber-500/10 relative overflow-hidden">
+            {/* Glow accent */}
+            <div className="absolute top-0 right-0 w-28 h-28 bg-amber-400/10 rounded-full blur-2xl pointer-events-none" />
+
+            <div className="flex items-start justify-between gap-3">
+              <div className="space-y-1">
+                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md text-[10px] font-black uppercase tracking-wider bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                  <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+                  <span>Final Verified Rating</span>
+                </span>
+                <div className="flex items-baseline gap-2 pt-1">
+                  <span className="text-3xl font-black text-white font-mono tracking-tight">
+                    {ratingStats.average.toFixed(1)}
+                  </span>
+                  <span className="text-sm font-bold text-slate-400">/ 5.0</span>
+                </div>
+                <div className="flex items-center gap-1 pt-0.5">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Star
+                      key={`final-star-${star}`}
+                      className={`w-3.5 h-3.5 ${
+                        star <= Math.round(ratingStats.average)
+                          ? "fill-amber-400 text-amber-400 filter drop-shadow-[0_0_6px_rgba(251,191,36,0.6)]"
+                          : "text-slate-600"
+                      }`}
+                    />
+                  ))}
+                  <span className="text-[11px] text-emerald-400 font-bold ml-1">
+                    {ratingStats.satisfactionRate} Positive
+                  </span>
+                </div>
+              </div>
+
+              {/* Total User Reviews Badge */}
+              <div className="text-right shrink-0">
+                <span className="text-[10px] text-slate-400 uppercase tracking-widest font-semibold block">
+                  All Users
+                </span>
+                <span className="text-base font-extrabold text-white font-mono block mt-0.5">
+                  {ratingStats.totalCount.toLocaleString()}
+                </span>
+                <span className="text-[10px] text-amber-400/90 font-medium block">
+                  Verified Ratings
+                </span>
+              </div>
+            </div>
+
+            {/* Expandable Breakdown and Verified User Feedback Accordion */}
+            <div className="mt-3 pt-3 border-t border-white/10">
+              <button
+                type="button"
+                onClick={() => setActiveModalTab(activeModalTab === "ratings_breakdown" ? null : "ratings_breakdown")}
+                className="w-full flex items-center justify-between text-[11px] text-slate-300 hover:text-white transition font-medium cursor-pointer"
+              >
+                <span>View Rating Breakdown & Reviews</span>
+                <ChevronDown className={`w-3.5 h-3.5 text-amber-400 transition-transform ${activeModalTab === "ratings_breakdown" ? "rotate-180" : ""}`} />
+              </button>
+
+              {activeModalTab === "ratings_breakdown" && (
+                <div className="mt-2.5 space-y-2 text-xs pt-1 animate-in fade-in">
+                  {/* Star breakdown bars */}
+                  <div className="space-y-1 bg-black/40 p-2.5 rounded-xl border border-white/5">
+                    {[5, 4, 3, 2, 1].map((s) => (
+                      <div key={`breakdown-${s}`} className="flex items-center gap-2 text-[10px]">
+                        <span className="w-5 text-slate-400 font-bold flex items-center gap-0.5">
+                          {s} <Star className="w-2.5 h-2.5 fill-amber-400 text-amber-400 inline" />
+                        </span>
+                        <div className="flex-1 h-1.5 rounded-full bg-slate-800 overflow-hidden">
+                          <div
+                            className="h-full bg-gradient-to-r from-amber-400 to-rose-500 rounded-full"
+                            style={{ width: `${ratingStats.breakdown[s]}%` }}
+                          />
+                        </div>
+                        <span className="w-8 text-right text-slate-400 font-mono">
+                          {ratingStats.breakdown[s]}%
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Recent Community Comments */}
+                  <div className="space-y-1.5 pt-1">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                      Recent User Comments
+                    </span>
+                    {ratingStats.recentReviews.slice(0, 3).map((r, i) => (
+                      <div
+                        key={`review-item-${r.bookingId || i}`}
+                        className="p-2 rounded-xl bg-slate-900/90 border border-white/5 text-[11px] space-y-1"
+                      >
+                        <div className="flex items-center justify-between text-slate-300">
+                          <span className="font-bold text-white flex items-center gap-1.5">
+                            <span>{r.emoji || "🤩"}</span>
+                            <span>{r.userName || "Verified Cinephile"}</span>
+                          </span>
+                          <span className="text-amber-400 font-mono font-bold flex items-center gap-0.5">
+                            ★ {r.rating}.0
+                          </span>
+                        </div>
+                        {r.comment && (
+                          <p className="text-slate-300 text-[10px] line-clamp-2 leading-relaxed">
+                            "{r.comment}"
+                          </p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
 
           {/* 1. My Tickets (Recent Bookings List) */}
           <div className="rounded-2xl border border-white/5 bg-white/3 overflow-hidden transition hover:border-white/15">
@@ -1709,7 +1838,7 @@ export default function Navbar({
                   <span className="h-0.5 w-2.5 bg-rose-400 rounded-full"></span>
                   <span className="h-0.5 w-3.5 bg-rose-400 rounded-full"></span>
                 </div>
-                More Options (My Tickets, Notifications, Wishlist, Rewards, Support)
+                More Options (User Ratings, My Tickets, Wishlist, Rewards, Support)
               </span>
               <ChevronDown className="w-3.5 h-3.5 -rotate-90 text-slate-400" />
             </button>
