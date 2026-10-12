@@ -10,7 +10,9 @@ import {
   ChevronRight,
   Flame,
   Armchair,
-  AlertCircle
+  AlertCircle,
+  AlertTriangle,
+  X
 } from "lucide-react";
 import { cinemaAudio } from "../utils/soundEffects";
 import { formatCurrencyINR } from "../utils/currency";
@@ -41,6 +43,7 @@ export default function SeatPicker3D({
   const [viewMode, setViewMode] = useState("2d"); // "2d" | "pov"
   const [hoveredSeat, setHoveredSeat] = useState(null);
   const [limitWarning, setLimitWarning] = useState("");
+  const [showLimitModal, setShowLimitModal] = useState(false);
 
   // All seats are selectable by default.
   // Seats become booked when a user completes a booking for this movie, theater, date, and time.
@@ -95,7 +98,8 @@ export default function SeatPicker3D({
     } else {
       if (selectedSeats.length >= MAX_SEATS) {
         cinemaAudio.playSeatClick(false);
-        setLimitWarning("An account has a limit of 6 movie tickets per booking.");
+        setLimitWarning("Limit per user is 6 seats.");
+        setShowLimitModal(true);
         return;
       }
       setLimitWarning("");
@@ -451,6 +455,55 @@ export default function SeatPicker3D({
         </div>
 
       </div>
+
+      {/* Popup Message Modal: Limit per user is 6 seats */}
+      {showLimitModal && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/85 animate-in fade-in duration-200"
+          onClick={() => setShowLimitModal(false)}
+        >
+          <div 
+            className="relative w-full max-w-sm rounded-3xl border border-rose-500/40 bg-[#0d121f] p-6 text-center shadow-2xl shadow-rose-950/60 animate-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close cross button */}
+            <button
+              type="button"
+              onClick={() => setShowLimitModal(false)}
+              className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
+            >
+              <X className="w-4 h-4" />
+            </button>
+
+            {/* Warning Icon Badge */}
+            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-rose-500/20 to-amber-500/20 border border-rose-500/40 flex items-center justify-center shadow-lg shadow-rose-500/20">
+              <AlertTriangle className="w-8 h-8 text-rose-400 animate-pulse" />
+            </div>
+
+            {/* Title & Message */}
+            <h3 className="text-lg font-black text-white tracking-tight mb-2">
+              Seat Limit Reached
+            </h3>
+            
+            <p className="text-sm font-semibold text-rose-300 mb-2">
+              Limit per user is 6 seats.
+            </p>
+            
+            <p className="text-xs text-slate-400 leading-relaxed mb-6">
+              You already have <strong className="text-white">{MAX_SEATS} seats</strong> selected ({selectedSeats.map(s => s.id).join(", ")}). To select a different seat, please unselect one of your current seats first.
+            </p>
+
+            {/* Action CTA */}
+            <button
+              type="button"
+              onClick={() => setShowLimitModal(false)}
+              className="w-full py-3 px-4 rounded-xl font-bold text-xs uppercase tracking-wider bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 text-white shadow-lg shadow-rose-600/30 transition-all cursor-pointer active:scale-95"
+            >
+              Got it, Continue
+            </button>
+          </div>
+        </div>
+      )}
 
     </div>
   );
