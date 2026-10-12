@@ -1304,15 +1304,15 @@ export default function Navbar({
           }}
           aria-label="CINEVERSE Home"
           title="Go to Home"
-          className="flex shrink-0 items-center gap-2.5 cursor-pointer group select-none"
+          className="flex flex-col sm:flex-row shrink-0 items-center gap-1 sm:gap-2.5 cursor-pointer group select-none"
         >
-          <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-linear-to-tr from-rose-600 via-pink-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-rose-600/30 group-hover:scale-105 transition-transform duration-300">
-            <Film className="w-5 h-5 text-white group-hover:rotate-12 transition-transform duration-500" />
+          <div className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-linear-to-tr from-rose-600 via-pink-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-rose-600/30 group-hover:scale-105 transition-transform duration-300">
+            <Film className="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:rotate-12 transition-transform duration-500" />
             <div className="absolute -inset-1 rounded-xl bg-rose-500/20 blur-sm -z-10 group-hover:bg-rose-500/40 transition-all"></div>
           </div>
-          <div>
-            <div className="flex items-center gap-1.5">
-              <span className="font-extrabold tracking-wider text-base sm:text-xl text-transparent bg-clip-text bg-linear-to-r from-white via-slate-100 to-rose-400 group-hover:from-white group-hover:to-pink-300 transition-all">
+          <div className="text-center sm:text-left">
+            <div className="flex items-center justify-center sm:justify-start gap-1">
+              <span className="font-black tracking-wider text-[11px] sm:text-xl text-transparent bg-clip-text bg-linear-to-r from-white via-slate-100 to-rose-400 group-hover:from-white group-hover:to-pink-300 transition-all leading-tight">
                 CINEVERSE
               </span>
             </div>

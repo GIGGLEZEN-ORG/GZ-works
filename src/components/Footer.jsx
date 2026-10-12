@@ -59,16 +59,16 @@ export default function Footer({ onNavigatePage, currentPage = "home" }) {
             }}
             aria-label="CINEVERSE Home"
             title="Go to Home"
-            className="flex items-center gap-3 cursor-pointer group select-none"
+            className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3 cursor-pointer group select-none"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-600 via-pink-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-rose-600/30 group-hover:scale-105 transition-transform duration-300">
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-rose-600 via-pink-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-rose-600/30 group-hover:scale-105 transition-transform duration-300">
               <Film className="w-5 h-5 group-hover:rotate-12 transition-transform duration-500" />
             </div>
             <div>
-              <span className="font-black text-2xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-rose-400 group-hover:from-white group-hover:to-pink-300 transition-colors">
+              <span className="font-black text-xl sm:text-2xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-rose-400 group-hover:from-white group-hover:to-pink-300 transition-colors">
                 CINEVERSE
               </span>
-              <p className="text-[10px] text-slate-400 uppercase tracking-widest group-hover:text-rose-400 transition-colors">
+              <p className="text-[9px] sm:text-[10px] text-slate-400 uppercase tracking-widest group-hover:text-rose-400 transition-colors">
                 Next-Gen Cinema & Arena Experiences
               </p>
             </div>
