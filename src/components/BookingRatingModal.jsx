@@ -153,9 +153,6 @@ export default function BookingRatingModal({
                   <Sparkles className="w-3 h-3 text-rose-400" />
                   <span>Rate Your Booking Experience</span>
                 </span>
-                <span className="text-[11px] font-mono text-slate-400">
-                  #{booking.bookingId}
-                </span>
               </div>
               <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
                 How was your experience?
@@ -230,12 +227,9 @@ export default function BookingRatingModal({
 
             {/* 3. Comment Section */}
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-slate-300 flex items-center justify-between">
-                <span className="flex items-center gap-1.5">
-                  <MessageSquare className="w-3.5 h-3.5 text-rose-400" />
-                  <span>Comments & Suggestions</span>
-                </span>
-                <span className="text-[10px] text-slate-500 font-normal">Optional</span>
+              <label className="text-xs font-bold text-slate-300 flex items-center gap-1.5">
+                <MessageSquare className="w-3.5 h-3.5 text-rose-400" />
+                <span>Comments & Suggestions</span>
               </label>
               <textarea
                 rows={3}
