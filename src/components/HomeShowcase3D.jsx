@@ -151,7 +151,7 @@ export default function HomeShowcase3D({
       id="cinematic-spotlight-marquee"
       onMouseEnter={handleMouseEnterAd}
       onMouseLeave={handleMouseLeaveAd}
-      className="relative w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-2 pb-8 select-none"
+      className="relative w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-2 pb-0 select-none"
     >
       {/* Dynamic Ambient Glow matching the active item (fast 300ms transition) */}
       <div 

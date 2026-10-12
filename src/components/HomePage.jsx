@@ -81,7 +81,7 @@ export default function HomePage({
       />
 
       {/* 3. SECTION: TOP RATED MOVIES (HORIZONTAL CARDS MOVING LEFT TO RIGHT) */}
-      <section id="top-rated-movies" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 space-y-6">
+      <section id="top-rated-movies" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-2 space-y-3">
         
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
@@ -134,7 +134,7 @@ export default function HomePage({
           {/* Scrollable Column Track */}
           <div
             ref={moviesScrollRef}
-            className="flex gap-4 sm:gap-6 overflow-x-auto pb-6 pt-2 scroll-smooth snap-x snap-mandatory scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent select-none"
+            className="flex gap-4 sm:gap-6 overflow-x-auto pb-2 pt-1 scroll-smooth snap-x snap-mandatory scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent select-none"
             style={{
               WebkitOverflowScrolling: "touch"
             }}
@@ -159,7 +159,7 @@ export default function HomePage({
       </section>
 
       {/* 4. SECTION: TOP TRENDING LIVE EVENTS (HORIZONTAL CARDS MOVING LEFT TO RIGHT) */}
-      <section id="trending-live-events" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 mb-0 space-y-6">
+      <section id="trending-live-events" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 mb-0 space-y-3">
         
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4">
