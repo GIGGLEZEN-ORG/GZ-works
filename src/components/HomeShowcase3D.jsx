@@ -88,12 +88,6 @@ export default function HomeShowcase3D({
         });
       }
       if (topEvents[i]) {
-        // Find matching movie trailer for event if linked via movieId
-        const linkedMovie = topEvents[i].movieId 
-          ? movies.find((m) => m.id === topEvents[i].movieId)
-          : null;
-        const eventTrailer = linkedMovie?.trailerEmbed || topMovies[0]?.trailerEmbed || "Way9Dexny3w";
-
         list.push({
           ...topEvents[i],
           isMovie: false,
@@ -105,7 +99,7 @@ export default function HomeShowcase3D({
           displayCategory: topEvents[i].category || "Live Event",
           displayPrice: topEvents[i].price || 1500,
           displayTagline: topEvents[i].subtitle || "Experience electrifying live atmosphere",
-          trailerEmbed: eventTrailer
+          trailerEmbed: null
         });
       }
     }
@@ -188,7 +182,11 @@ export default function HomeShowcase3D({
                   e.currentTarget.onerror = null;
                   e.currentTarget.src = item.displayImage;
                 }}
-                className="w-full h-full object-cover object-center filter brightness-[0.62] contrast-110 transition-transform duration-[3000ms] ease-out group-hover:scale-105"
+                className={`w-full h-full object-cover object-center filter brightness-[0.62] contrast-110 transition-transform duration-700 ease-out ${
+                  isSelected && isHovered && !item.isMovie
+                    ? "scale-110"
+                    : "scale-100 group-hover:scale-105"
+                }`}
               />
               
               {/* Dynamic Accent Color Tint */}
@@ -200,8 +198,8 @@ export default function HomeShowcase3D({
           );
         })}
 
-        {/* Hover Trailer Video Player Overlay */}
-        {isHovered && activeItem.trailerEmbed && (
+        {/* Hover Trailer Video Player Overlay (Only for Movie Ads, NOT for Event Ads) */}
+        {isHovered && activeItem.isMovie && activeItem.trailerEmbed && (
           <div className="absolute inset-0 z-10 transition-opacity duration-500 ease-in-out opacity-100 bg-black">
             <div className="relative w-full h-full overflow-hidden pointer-events-auto">
               <iframe
@@ -249,8 +247,8 @@ export default function HomeShowcase3D({
               {activeItem.displayBadge}
             </span>
 
-            {/* Video Trailer Status Badge */}
-            {isHovered && activeItem.trailerEmbed && (
+            {/* Video Trailer Status Badge (Only for movies) */}
+            {isHovered && activeItem.isMovie && activeItem.trailerEmbed && (
               <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-rose-600/90 text-white border border-rose-400/50 shadow-lg shadow-rose-600/30 flex items-center gap-1.5 animate-pulse">
                 <span className="w-2 h-2 rounded-full bg-white"></span>
                 <span>Trailer Playing</span>
@@ -260,7 +258,7 @@ export default function HomeShowcase3D({
 
           <div className="flex items-center gap-2">
             {/* Audio Mute/Unmute Toggle Button when trailer is playing */}
-            {isHovered && activeItem.trailerEmbed && (
+            {isHovered && activeItem.isMovie && activeItem.trailerEmbed && (
               <button
                 type="button"
                 onClick={(e) => {
