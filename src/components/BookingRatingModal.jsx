@@ -21,15 +21,6 @@ const SATISFACTION_EMOJIS = [
   { id: "loved", emoji: "🤩", label: "Mind-Blowing!", score: 5, color: "text-rose-400 border-rose-500/40 bg-rose-950/30" }
 ];
 
-const QUICK_TAGS = [
-  "⚡ Super Fast Checkout",
-  "💺 Smooth Seat Picker",
-  "🍿 Great Concessions",
-  "🎟️ Loved 3D Pass",
-  "🔊 Clear Audio Info",
-  "💎 Premium VIP Experience"
-];
-
 export default function BookingRatingModal({
   booking,
   isOpen = true,
@@ -40,25 +31,14 @@ export default function BookingRatingModal({
   const [starRating, setStarRating] = useState(5);
   const [hoveredStar, setHoveredStar] = useState(0);
   const [comment, setComment] = useState("");
-  const [selectedTags, setSelectedTags] = useState(["⚡ Super Fast Checkout", "🎟️ Loved 3D Pass"]);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   if (!isOpen || !booking) return null;
-
-  const itemTitle = booking.movie?.title || "Your Experience";
-  const venue = booking.theater?.name || booking.theater?.location || "Cineverse IMAX";
 
   const handleSelectEmoji = (item) => {
     cinemaAudio.playHoverTick();
     setSelectedEmoji(item);
     setStarRating(item.score);
-  };
-
-  const handleTagToggle = (tag) => {
-    cinemaAudio.playHoverTick();
-    setSelectedTags((prev) => 
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
-    );
   };
 
   const handleSubmit = (e) => {
@@ -67,12 +47,9 @@ export default function BookingRatingModal({
 
     const reviewPayload = {
       bookingId: booking.bookingId,
-      itemTitle,
-      venue,
       rating: starRating,
       satisfaction: selectedEmoji.label,
       emoji: selectedEmoji.emoji,
-      tags: selectedTags,
       comment: comment.trim(),
       submittedAt: new Date().toISOString()
     };
@@ -183,9 +160,6 @@ export default function BookingRatingModal({
               <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
                 How was your experience?
               </h2>
-              <p className="text-xs text-slate-400">
-                Booking for <span className="text-white font-bold">{itemTitle}</span> at <span className="text-slate-300">{venue}</span>
-              </p>
             </div>
 
             {/* 1. Satisfactory Emojis Rating Selector */}
@@ -254,32 +228,6 @@ export default function BookingRatingModal({
               </div>
             </div>
 
-            {/* Quick Experience Tags */}
-            <div className="space-y-1.5">
-              <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
-                Highlights
-              </label>
-              <div className="flex flex-wrap gap-1.5">
-                {QUICK_TAGS.map((tag) => {
-                  const active = selectedTags.includes(tag);
-                  return (
-                    <button
-                      key={tag}
-                      type="button"
-                      onClick={() => handleTagToggle(tag)}
-                      className={`text-[11px] font-medium px-2.5 py-1 rounded-lg border transition-all cursor-pointer ${
-                        active
-                          ? "bg-rose-500/20 text-rose-300 border-rose-500/40 font-bold"
-                          : "bg-slate-900/90 text-slate-400 border-white/10 hover:border-white/20 hover:text-white"
-                      }`}
-                    >
-                      {tag}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
             {/* 3. Comment Section */}
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-slate-300 flex items-center justify-between">
@@ -293,7 +241,7 @@ export default function BookingRatingModal({
                 rows={3}
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
-                placeholder="Share your thoughts about seat comfort, sound, snacks, or ticketing speed..."
+                placeholder="Share your thoughts about your booking experience..."
                 className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-white/10 text-white placeholder:text-slate-500 text-xs focus:outline-none focus:border-rose-500 transition-colors resize-none"
               />
             </div>
