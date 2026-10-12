@@ -41,7 +41,7 @@ export default function MoviesPage({
   };
 
   return (
-    <div className="pt-32 sm:pt-36 pb-20 lg:pb-8 min-h-screen text-slate-100">
+    <div className="pt-32 sm:pt-36 pb-20 lg:pb-8 min-h-screen text-slate-100 w-full overflow-x-hidden overscroll-none">
       
       {/* Rotating 3D Movie Cards Spotlight Showcase */}
       <ExperienceShowcase

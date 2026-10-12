@@ -162,7 +162,7 @@ export default function EventsPage({
   }, [viewMode, isAutoScrollPaused, filteredEvents.length]);
 
   return (
-    <div className="pt-36 sm:pt-40 pb-20 min-h-screen text-slate-100">
+    <div className="pt-36 sm:pt-40 pb-20 min-h-screen text-slate-100 w-full overflow-x-hidden overscroll-none">
       
       {/* 3D Rotating Events Cards Showcase (Matches Movies Rotating Showcase at Top) */}
       <EventsShowcase
