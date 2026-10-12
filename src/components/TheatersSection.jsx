@@ -33,7 +33,7 @@ export default function TheatersSection({
   };
 
   return (
-    <section id="theaters" className="w-full pt-8 pb-2 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-6">
+    <section id="theaters" className="w-full pt-1 pb-2 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-6">
       
       {/* Title Header with Location Selector */}
       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-2 border-b border-white/5">

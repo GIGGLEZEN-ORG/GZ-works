@@ -52,7 +52,7 @@ export default function MoviesPage({
       />
 
       {/* Main Movies Gallery & Filter Area */}
-      <main id="now-showing" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
+      <main id="now-showing" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-1 space-y-6">
         
         {/* Section Title Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
@@ -104,7 +104,7 @@ export default function MoviesPage({
             {/* Horizontal Track */}
             <div
               ref={moviesScrollRef}
-              className="flex gap-4 sm:gap-6 overflow-x-auto pb-6 pt-2 scroll-smooth snap-x snap-mandatory scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent select-none"
+              className="flex gap-4 sm:gap-6 overflow-x-auto pb-1 pt-2 scroll-smooth snap-x snap-mandatory scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent select-none"
               style={{
                 WebkitOverflowScrolling: "touch"
               }}
