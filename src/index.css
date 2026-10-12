@@ -1,0 +1,292 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: geometricPrecision;
+  }
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background-color: #07090e;
+    color: #f1f5f9;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: geometricPrecision;
+    overflow-x: hidden;
+  }
+
+  /* Ensure all typography is crisp and sharp across all dimensions */
+  h1, h2, h3, h4, h5, h6, p, span, button, a, input, select, label, code {
+    -webkit-font-smoothing: subpixel-antialiased !important;
+    text-rendering: geometricPrecision !important;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    border: none;
+    display: block;
+    text-align: left;
+    -webkit-font-smoothing: subpixel-antialiased;
+    text-rendering: geometricPrecision;
+  }
+
+  /* Custom Sleek Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0b0e14;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #242c3d;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #e11d48;
+  }
+}
+
+/* 3D and Spatial Transform Utilities with Sharp Rendering */
+.preserve-3d {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-rendering: geometricPrecision;
+}
+
+.perspective-screen {
+  perspective: 1200px;
+}
+
+.perspective-theater {
+  perspective: 1600px;
+  perspective-origin: 50% 20%;
+}
+
+.perspective-topdown {
+  perspective: none;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* 3D Cinema Curved Screen */
+.curved-screen-3d {
+  transform: rotateX(25deg) translateZ(0);
+  box-shadow: 0 25px 60px -15px rgba(56, 189, 248, 0.45), 0 0 100px 10px rgba(225, 29, 72, 0.25);
+  border-radius: 12px 12px 120px 120px;
+}
+
+/* Screen Projector Light Beam Simulation */
+.projector-glow {
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(56, 189, 248, 0.35) 0%, rgba(139, 92, 246, 0.15) 45%, transparent 80%);
+}
+
+.projector-beam-cone {
+  clip-path: polygon(45% 0%, 55% 0%, 98% 100%, 2% 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, rgba(56, 189, 248, 0.12) 30%, rgba(225, 29, 72, 0.04) 75%, transparent 100%);
+  pointer-events: none;
+}
+
+/* Crisp Non-Blurry Panels & Cards for All Screen Dimensions (PC, Tablet, iPad, Mobile) */
+.glass-panel {
+  background: #0d121f !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+}
+
+.glass-card {
+  background: #0d121f !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+}
+
+/* Prevent subpixel downsampling on mobile, tablet & iPad */
+@media (max-width: 1024px) {
+  .preserve-3d {
+    transform-style: flat !important;
+  }
+}
+
+.glass-card:hover {
+  border-color: rgba(225, 29, 72, 0.5);
+  box-shadow: 0 10px 30px -10px rgba(225, 29, 72, 0.3);
+}
+
+/* 3D Hologram Ticket Flip & Sharp Unblurred Text Rendering */
+.ticket-container {
+  perspective: 1200px;
+  -webkit-perspective: 1200px;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+}
+
+.ticket-card {
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.ticket-flipped {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+}
+
+.ticket-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(0, 0, 1px);
+  -webkit-transform: translate3d(0, 0, 1px);
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.ticket-face-back {
+  transform: rotateY(180deg) translate3d(0, 0, 1px);
+  -webkit-transform: rotateY(180deg) translate3d(0, 0, 1px);
+}
+
+/* Pulsing ambient animations */
+@keyframes ambientPulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.04);
+  }
+}
+
+.animate-ambient {
+  animation: ambientPulse 6s ease-in-out infinite;
+}
+
+@keyframes beamScan {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+.animate-beam {
+  animation: beamScan 4s ease-in-out infinite;
+}
+
+/* Outward Blooming Love Heart Burst Animation */
+@keyframes heartBurstRing {
+  0% {
+    transform: scale(0.2);
+    opacity: 0.95;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@keyframes heartPopOutward {
+  0% {
+    transform: scale(0) rotate(-15deg);
+    opacity: 0;
+    filter: drop-shadow(0 0 0 rgba(244, 63, 94, 0));
+  }
+  40% {
+    transform: scale(1.35) rotate(0deg);
+    opacity: 1;
+    filter: drop-shadow(0 0 35px rgba(244, 63, 94, 0.95)) drop-shadow(0 0 60px rgba(251, 113, 133, 0.8));
+  }
+  70% {
+    transform: scale(1.1) rotate(3deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(-4px);
+    opacity: 0.95;
+  }
+}
+
+@keyframes particleFlyOut {
+  0% {
+    transform: translate(0, 0) scale(0.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx, 40px), var(--ty, -40px)) scale(1.1);
+    opacity: 0;
+  }
+}
+
+.animate-heart-ring {
+  animation: heartBurstRing 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-heart-pop {
+  animation: heartPopOutward 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-heart-particle {
+  animation: particleFlyOut 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes autoCloseProgress {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
+/* Continuous scrolling tape belt animation */
+@keyframes continuousScrollTape {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-tape-scroll {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: continuousScrollTape 35s linear infinite;
+}
+
+.animate-tape-scroll:hover {
+  animation-play-state: paused;
+}
+
