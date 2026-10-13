@@ -384,7 +384,8 @@ const vehicleCatalog = {
 let selectedVehicle = null;
 let cart = [];
 let appliedCouponCode = null;
-let selectedRating = 5;
+let selectedRating = 0;
+let isSubmittingReview = false;
 
 // Storage keys
 const ACTIVE_VEHICLE_KEY = "sachin_active_vehicle";
@@ -399,6 +400,8 @@ const HELPFUL_VOTES_KEY = "sachin_helpful_votes";
 const RATED_EMAILS_KEY = "sachinAutomobilesRatedEmails";
 const LOGIN_ID_KEY = "sachinAutomobilesLoginId";
 const FIRST_ORDER_OFFER_KEY = "sachinAutomobilesFirstOrderOfferUsed";
+const DEVICE_RATED_KEY = "sachin_device_has_rated";
+const DEVICE_REVIEW_ID_KEY = "sachin_device_review_id";
 
 // ==========================================
 // 3. CRYPTOGRAPHIC UTILITIES & PASSWORDS (PBKDF2-SHA256)
@@ -747,9 +750,12 @@ function cancelProfileOrder(orderId) {
     showToastNotification(`Order ${orderId} cancelled successfully.`);
 }
 
-function updateRememberedLoginButton() {
+function updateRememberedLoginSuggestion() {
+    const suggestionEl = document.getElementById("saved-login-suggestion");
+    const emailDisplay = document.getElementById("saved-login-email-display");
+    const btnEmail = document.getElementById("saved-login-btn-email");
+    const continueBtn = document.getElementById("saved-login-continue-btn");
     const button = document.getElementById("remember-login-button");
-    if (!button) return;
 
     let email = "";
     try {
@@ -758,14 +764,60 @@ function updateRememberedLoginButton() {
         console.error("Could not read saved sign-in email", error);
     }
 
+    if (!email) {
+        try {
+            const tokenList = JSON.parse(localStorage.getItem(REMEMBER_TOKENS_KEY) || "{}");
+            const keys = Object.keys(tokenList);
+            if (keys.length > 0) {
+                email = keys[keys.length - 1];
+            }
+        } catch (e) {}
+    }
+
     const remembered = email ? getRememberedLogin(email) : null;
-    const user = remembered ? findUserByEmail(email) : null;
-    button.hidden = !user;
-    if (user) {
-        button.textContent = `Continue as ${user.email}`;
-        button.dataset.email = user.email;
+    const user = (remembered || email) ? findUserByEmail(email) : null;
+
+    if (user && email) {
+        if (suggestionEl) {
+            suggestionEl.hidden = false;
+        }
+        if (emailDisplay) {
+            emailDisplay.textContent = user.email;
+        }
+        if (btnEmail) {
+            btnEmail.textContent = user.email;
+        }
+        if (continueBtn) {
+            continueBtn.dataset.email = user.email;
+        }
+        if (button) {
+            button.hidden = false;
+            button.textContent = `Continue as ${user.email}`;
+            button.dataset.email = user.email;
+        }
     } else {
-        button.removeAttribute("data-email");
+        if (suggestionEl) {
+            suggestionEl.hidden = true;
+        }
+        if (button) {
+            button.hidden = true;
+            button.removeAttribute("data-email");
+        }
+    }
+}
+
+function updateRememberedLoginButton() {
+    updateRememberedLoginSuggestion();
+}
+
+function dismissSavedLoginSuggestion() {
+    const suggestionEl = document.getElementById("saved-login-suggestion");
+    if (suggestionEl) {
+        suggestionEl.hidden = true;
+    }
+    const emailInput = document.getElementById("login-email");
+    if (emailInput) {
+        emailInput.focus();
     }
 }
 
@@ -980,6 +1032,24 @@ async function handleAccountLogin(event) {
     createAccountSession(user);
     pendingLoginEmail = user.email;
 
+    const rememberMeInput = document.getElementById("login-remember-me");
+    const shouldSave = !rememberMeInput || rememberMeInput.checked;
+    if (shouldSave) {
+        try {
+            const tokenList = JSON.parse(localStorage.getItem(REMEMBER_TOKENS_KEY) || "{}");
+            tokenList[user.email] = {
+                token: generateSecureToken(32),
+                email: user.email,
+                expiresAt: Date.now() + 30 * 86400000 // 30 days
+            };
+            localStorage.setItem(REMEMBER_TOKENS_KEY, JSON.stringify(tokenList));
+            localStorage.setItem(LOGIN_ID_KEY, user.email);
+            updateRememberedLoginSuggestion();
+        } catch (e) {
+            console.error("Could not auto-save remember token", e);
+        }
+    }
+
     if (statusEl) {
         statusEl.className = "account-status success";
         statusEl.textContent = "Login verified ✓ Secure session initialized.";
@@ -1025,22 +1095,23 @@ function handleSavePasswordDecision(shouldSave) {
             };
             localStorage.setItem(REMEMBER_TOKENS_KEY, JSON.stringify(tokenList));
             localStorage.setItem(LOGIN_ID_KEY, pendingLoginEmail);
-            updateRememberedLoginButton();
+            updateRememberedLoginSuggestion();
             showToastNotification("✅ Secure sign-in saved on this device.");
         } catch (e) {
             console.error("Could not save remember token", e);
         }
-    } else {
-        if (pendingLoginEmail) {
-            try {
-                const tokenList = JSON.parse(localStorage.getItem(REMEMBER_TOKENS_KEY) || "{}");
-                delete tokenList[pendingLoginEmail];
-                localStorage.setItem(REMEMBER_TOKENS_KEY, JSON.stringify(tokenList));
-            } catch (error) {
-                console.error("Could not remove saved sign-in", error);
+    } else if (!shouldSave && pendingLoginEmail) {
+        try {
+            const tokenList = JSON.parse(localStorage.getItem(REMEMBER_TOKENS_KEY) || "{}");
+            delete tokenList[pendingLoginEmail];
+            localStorage.setItem(REMEMBER_TOKENS_KEY, JSON.stringify(tokenList));
+            if (localStorage.getItem(LOGIN_ID_KEY) === pendingLoginEmail) {
+                localStorage.removeItem(LOGIN_ID_KEY);
             }
+            updateRememberedLoginSuggestion();
+        } catch (error) {
+            console.error("Could not remove saved sign-in", error);
         }
-        showToastNotification("Welcome back to Sachin Automobiles Hub!");
     }
 
     pendingLoginEmail = "";
@@ -1051,15 +1122,29 @@ function handleSavePasswordDecision(shouldSave) {
     }, 350);
 }
 
-function loginWithRememberedAccount() {
-    const button = document.getElementById("remember-login-button");
-    const email = button ? button.dataset.email : "";
+function loginWithRememberedAccount(explicitEmail) {
+    let email = typeof explicitEmail === "string" ? explicitEmail : "";
+    if (!email) {
+        const continueBtn = document.getElementById("saved-login-continue-btn");
+        email = continueBtn ? continueBtn.dataset.email : "";
+    }
+    if (!email) {
+        const button = document.getElementById("remember-login-button");
+        email = button ? button.dataset.email : "";
+    }
+    if (!email) {
+        email = localStorage.getItem(LOGIN_ID_KEY) || "";
+    }
+
     const remembered = email ? getRememberedLogin(email) : null;
-    const user = remembered ? findUserByEmail(email) : null;
+    let user = remembered ? findUserByEmail(email) : null;
+    if (!user && email) {
+        user = findUserByEmail(email);
+    }
     const statusEl = document.getElementById("account-status");
 
     if (!user) {
-        updateRememberedLoginButton();
+        updateRememberedLoginSuggestion();
         if (statusEl) {
             statusEl.className = "account-status error";
             statusEl.textContent = "Saved sign-in is unavailable. Please log in with your password.";
@@ -1067,7 +1152,7 @@ function loginWithRememberedAccount() {
         return;
     }
 
-    const lockRecord = getLoginAttemptsRecord(email);
+    const lockRecord = getLoginAttemptsRecord(user.email);
     if (lockRecord.lockedUntil && lockRecord.lockedUntil > Date.now()) {
         if (statusEl) {
             const remainingSeconds = Math.ceil((lockRecord.lockedUntil - Date.now()) / 1000);
@@ -1077,7 +1162,7 @@ function loginWithRememberedAccount() {
         return;
     }
 
-    clearLoginAttempts(email);
+    clearLoginAttempts(user.email);
     createAccountSession(user);
     showToastNotification(`Welcome back, ${user.name}!`);
     openAccountPage("login");
@@ -1085,6 +1170,10 @@ function loginWithRememberedAccount() {
 
 function logoutUser() {
     localStorage.removeItem(LOGGED_IN_USER_KEY);
+    const loginEmailInput = document.getElementById("login-email");
+    if (loginEmailInput) loginEmailInput.value = "";
+    const loginPasswordInput = document.getElementById("login-password");
+    if (loginPasswordInput) loginPasswordInput.value = "";
     clearShippingForm();
     updateAuthUI();
     updateGarageUI();
@@ -1092,6 +1181,7 @@ function logoutUser() {
     updateRatingFormState();
     showPage("account");
     showAccountForm("login");
+    updateRememberedLoginSuggestion();
     showToastNotification("Logged out successfully.");
 }
 
@@ -1267,13 +1357,6 @@ function showAccountForm(formName) {
     }
 
     if (isLogin) {
-        try {
-            const savedEmail = localStorage.getItem(LOGIN_ID_KEY);
-            const emailInput = document.getElementById("login-email");
-            if (savedEmail && emailInput && !emailInput.value) {
-                emailInput.value = savedEmail;
-            }
-        } catch (e) {}
         updateRememberedLoginButton();
     }
 }
@@ -3256,6 +3339,7 @@ const RATING_DESCRIPTIONS = {
 };
 
 function previewCustomerRating(rating) {
+    if (hasUserRated()) return;
     document.querySelectorAll(".rating-star").forEach((button, index) => {
         button.classList.toggle("preview-hover", index < rating);
     });
@@ -3266,26 +3350,37 @@ function previewCustomerRating(rating) {
 }
 
 function resetRatingPreview() {
+    if (hasUserRated()) return;
     document.querySelectorAll(".rating-star").forEach((button, index) => {
         button.classList.remove("preview-hover");
-        button.classList.toggle("selected", index < selectedRating);
+        button.classList.toggle("selected", selectedRating > 0 && index < selectedRating);
     });
     const labelEl = document.getElementById("rating-selected-text");
-    if (labelEl && RATING_DESCRIPTIONS[selectedRating]) {
-        labelEl.textContent = RATING_DESCRIPTIONS[selectedRating];
+    if (labelEl) {
+        labelEl.textContent = (selectedRating > 0 && RATING_DESCRIPTIONS[selectedRating])
+            ? RATING_DESCRIPTIONS[selectedRating]
+            : "Select a rating (1 to 5 stars)";
     }
 }
 
 function selectCustomerRating(rating) {
-    selectedRating = Math.max(1, Math.min(5, Number(rating) || 5));
+    if (hasUserRated()) return;
+    const num = Number(rating);
+    if (!num || num < 1) {
+        selectedRating = 0;
+    } else {
+        selectedRating = Math.max(1, Math.min(5, num));
+    }
     document.querySelectorAll(".rating-star").forEach((button, index) => {
-        const isSelected = index < selectedRating;
+        const isSelected = selectedRating > 0 && index < selectedRating;
         button.classList.toggle("selected", isSelected);
-        button.setAttribute("aria-pressed", String(index + 1 === selectedRating));
+        button.setAttribute("aria-pressed", String(selectedRating > 0 && index + 1 === selectedRating));
     });
     const labelEl = document.getElementById("rating-selected-text");
-    if (labelEl && RATING_DESCRIPTIONS[selectedRating]) {
-        labelEl.textContent = RATING_DESCRIPTIONS[selectedRating];
+    if (labelEl) {
+        labelEl.textContent = (selectedRating > 0 && RATING_DESCRIPTIONS[selectedRating])
+            ? RATING_DESCRIPTIONS[selectedRating]
+            : "Select a rating (1 to 5 stars)";
     }
     const statusEl = document.getElementById("rating-status");
     if (statusEl) {
@@ -3296,26 +3391,32 @@ function selectCustomerRating(rating) {
 
 function submitCustomerRating(event) {
     if (event) event.preventDefault();
-    const user = getLoggedInUser();
-    if (!user) {
-        showRatingStatus("Sign in to your account to submit one rating.", "error");
-        return;
-    }
-    if (hasAccountRated(user.email)) {
+
+    if (hasUserRated()) {
+        showRatingStatus("✓ You have already submitted your review. Each user can review only once. Thank you!", "info");
         updateRatingFormState();
         return;
     }
 
-    if (selectedRating < 1 || selectedRating > 5) {
-        selectedRating = 5;
-        selectCustomerRating(5);
+    if (!selectedRating || selectedRating < 1 || selectedRating > 5) {
+        showRatingStatus("⚠️ Please select a star rating (1 to 5 stars) before submitting.", "error");
+        const ratingFieldset = document.querySelector(".rating-fieldset");
+        if (ratingFieldset) {
+            ratingFieldset.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        return;
     }
 
+    if (isSubmittingReview) return;
+    isSubmittingReview = true;
+
+    const user = getLoggedInUser();
     const nameInput = document.getElementById("rating-author-name");
     const emailInput = document.getElementById("rating-author-email");
-    const name = nameInput && nameInput.value.trim() ? nameInput.value.trim() : user.name;
+    const name = nameInput && nameInput.value.trim() ? nameInput.value.trim() : (user && user.name ? user.name : "Verified Customer");
+    const email = (user && user.email) ? user.email.trim().toLowerCase() : (emailInput && emailInput.value.trim() ? emailInput.value.trim().toLowerCase() : "");
     if (emailInput) emailInput.classList.remove("input-error");
-    processReviewSubmission(user.email, name);
+    processReviewSubmission(email, name);
 }
 
 function updateReviewsScorecardUI(reviewsList) {
@@ -3374,19 +3475,55 @@ function updateReviewsScorecardUI(reviewsList) {
     }
 }
 
-function processReviewSubmission(email, authorName) {
+function hasUserRated() {
+    try {
+        if (localStorage.getItem(DEVICE_RATED_KEY) === "true") {
+            return true;
+        }
+    } catch (e) {}
+
     const user = getLoggedInUser();
-    const accountEmail = user ? user.email.trim().toLowerCase() : "";
-    if (!accountEmail || accountEmail !== email.trim().toLowerCase()) {
-        showRatingStatus("Sign in to the account you want to rate with.", "error");
-        return;
+    if (user && user.email) {
+        if (hasAccountRated(user.email)) {
+            return true;
+        }
     }
-    if (hasAccountRated(accountEmail)) {
+    return false;
+}
+
+function getUserSubmittedReview() {
+    const user = getLoggedInUser();
+    const reviews = getStoredReviews();
+    if (user && user.email) {
+        const userEmail = user.email.trim().toLowerCase();
+        const found = reviews.find(review =>
+            typeof review.accountEmail === "string"
+            && review.accountEmail.trim().toLowerCase() === userEmail
+        );
+        if (found) return found;
+    }
+    try {
+        const deviceReviewId = localStorage.getItem(DEVICE_REVIEW_ID_KEY);
+        if (deviceReviewId) {
+            const found = reviews.find(review => review.id === deviceReviewId);
+            if (found) return found;
+        }
+    } catch (e) {}
+    return null;
+}
+
+function processReviewSubmission(email, authorName) {
+    if (hasUserRated()) {
+        showRatingStatus("✓ You have already submitted your review. Each user can review only once. Thank you!", "info");
         updateRatingFormState();
+        isSubmittingReview = false;
         return;
     }
 
-    const name = authorName || (user ? user.name : email.split("@")[0].replace(/[._]/g, " ").toUpperCase());
+    const user = getLoggedInUser();
+    const accountEmail = (user && user.email) ? user.email.trim().toLowerCase() : (email ? email.trim().toLowerCase() : "");
+    const name = authorName || (user ? user.name : "Verified Motorist");
+
     const carModelInput = document.getElementById("rating-car-model");
     const partCatInput = document.getElementById("rating-part-category");
     const headlineInput = document.getElementById("rating-headline");
@@ -3399,17 +3536,24 @@ function processReviewSubmission(email, authorName) {
     const category = partCatInput ? partCatInput.value : "brake";
     const headline = headlineInput && headlineInput.value.trim()
         ? `"${headlineInput.value.trim()}"`
-        : '"Excellent OEM part and genuine customer service!"';
+        : (selectedRating === 5
+            ? '"Outstanding OEM quality and lightning fast delivery!"'
+            : selectedRating >= 4
+            ? '"Very good genuine components and reliable fitment."'
+            : selectedRating === 3
+            ? '"Decent spare parts, prompt customer support."'
+            : '"Fitment feedback recorded for review."');
 
     const text = commentInput && commentInput.value.trim()
         ? commentInput.value.trim()
-        : "Installed this component on my car. Fitment was verified accurately and mechanical performance has been flawless.";
+        : `Rated ${selectedRating} out of 5 stars for Sachin Automobiles HUB spare parts quality, fitment reliability, and customer service.`;
 
     const orders = getStoredOrders();
     const isVerifiedBuyer = orders.some(o => o.customerPhone && o.customerPhone.length >= 10) || true;
 
+    const reviewId = "REV-" + Math.floor(1000 + Math.random() * 9000);
     const newReview = {
-        id: "REV-" + Math.floor(1000 + Math.random() * 9000),
+        id: reviewId,
         name,
         accountEmail,
         city: "Verified Motorist, India",
@@ -3428,13 +3572,18 @@ function processReviewSubmission(email, authorName) {
     reviews.unshift(newReview);
     try {
         localStorage.setItem(REVIEWS_STORAGE_KEY, JSON.stringify(reviews));
+        localStorage.setItem(DEVICE_RATED_KEY, "true");
+        localStorage.setItem(DEVICE_REVIEW_ID_KEY, reviewId);
     } catch (error) {
         console.error("Could not save customer rating", error);
         showRatingStatus("Your rating could not be saved. Please try again.", "error");
+        isSubmittingReview = false;
         return;
     }
 
-    recordEmailRating(email);
+    if (accountEmail) {
+        recordEmailRating(accountEmail);
+    }
 
     // Prepend to public reviews grid
     const grid = document.getElementById("public-reviews-grid");
@@ -3476,18 +3625,14 @@ function processReviewSubmission(email, authorName) {
     // Recalculate scorecard
     updateReviewsScorecardUI(reviews);
 
-    showRatingStatus(`✓ Thank you! Your rating (${selectedRating}★) has been saved to your account.`, "success");
-
     if (commentInput) commentInput.value = "";
     if (headlineInput) headlineInput.value = "";
     if (carModelInput) carModelInput.value = "";
 
-    // Reset stars back to 5
-    selectedRating = 5;
-    selectCustomerRating(5);
+    isSubmittingReview = false;
 
     updateRatingFormState();
-    showToastNotification(`🌟 Thank you! Your rating (${newReview.rating}★) was submitted successfully.`);
+    showToastNotification(`🌟 Thank you! Your review (${newReview.rating}★) was submitted successfully.`);
 }
 
 function getRatedEmails() {
@@ -3523,40 +3668,52 @@ function showRatingStatus(message, type) {
 }
 
 function updateRatingFormState() {
-    const user = getLoggedInUser();
     const form = document.getElementById("rating-form");
     const statusEl = document.getElementById("rating-status");
     const fieldset = form && form.querySelector("fieldset");
     const submitButton = document.getElementById("rating-submit-btn");
+    const optionsContainer = form && form.querySelector(".rating-options");
     if (!form || !fieldset || !submitButton || !statusEl) return;
 
-    const existingReview = user
-        ? getStoredReviews().find(review =>
-            typeof review.accountEmail === "string"
-            && review.accountEmail.trim().toLowerCase() === user.email.trim().toLowerCase()
-        )
-        : null;
-    const hasRated = Boolean(user && hasAccountRated(user.email));
-    fieldset.disabled = !user || hasRated;
-    submitButton.disabled = !user || hasRated;
-    submitButton.textContent = hasRated ? "Rating Submitted" : "Submit Rating";
+    const alreadyRated = hasUserRated();
 
-    if (!user) {
-        showRatingStatus("Sign in to your account to submit one rating.", "");
-    } else if (hasRated) {
+    if (alreadyRated) {
+        fieldset.disabled = true;
+        submitButton.disabled = true;
+        submitButton.textContent = "Review Submitted (1 of 1)";
+        if (optionsContainer) optionsContainer.classList.add("locked");
+
+        const existingReview = getUserSubmittedReview();
         if (existingReview && Number.isInteger(Number(existingReview.rating))) {
-            selectedRating = Math.max(1, Math.min(5, Number(existingReview.rating)));
+            const userRating = Math.max(1, Math.min(5, Number(existingReview.rating)));
+            selectedRating = userRating;
             document.querySelectorAll(".rating-star").forEach((button, index) => {
-                const isSelected = index < selectedRating;
+                const isSelected = index < userRating;
                 button.classList.toggle("selected", isSelected);
-                button.setAttribute("aria-pressed", String(index + 1 === selectedRating));
+                button.classList.remove("preview-hover");
+                button.setAttribute("aria-pressed", String(index + 1 === userRating));
             });
             const labelEl = document.getElementById("rating-selected-text");
-            if (labelEl) labelEl.textContent = RATING_DESCRIPTIONS[selectedRating];
+            if (labelEl) labelEl.textContent = RATING_DESCRIPTIONS[userRating] || `Rating: ${userRating}/5 Stars`;
         }
-        showRatingStatus("Your account has already submitted a rating. Thank you!", "success");
+
+        showRatingStatus("✓ You have already submitted your review. Each user can review only once. Thank you!", "success");
     } else {
-        showRatingStatus("", "");
+        fieldset.disabled = false;
+        submitButton.disabled = false;
+        submitButton.textContent = "Submit Rating";
+        if (optionsContainer) optionsContainer.classList.remove("locked");
+
+        if (!selectedRating || selectedRating === 0) {
+            selectedRating = 0;
+            document.querySelectorAll(".rating-star").forEach((button) => {
+                button.classList.remove("selected", "preview-hover");
+                button.setAttribute("aria-pressed", "false");
+            });
+            const labelEl = document.getElementById("rating-selected-text");
+            if (labelEl) labelEl.textContent = "Select a rating (1 to 5 stars)";
+            showRatingStatus("", "");
+        }
     }
 }
 
@@ -4126,39 +4283,96 @@ const SHOWCASE_SLIDES_DATA = [
 ];
 
 let isMarqueePlaying = true;
+let isMarqueeHovered = false;
+let isManualSliding = false;
+let marqueeOffset = 0;
+let marqueeSpeedPxPerSec = 66; // ~2640px in 40s
+let lastMarqueeTimestamp = null;
+let manualSlideTimer = null;
 let currentModalSlideIndex = 0;
 
-function toggleMarqueePlay() {
+function animateMarqueeLoop(timestamp) {
+    if (!lastMarqueeTimestamp) lastMarqueeTimestamp = timestamp;
+    const delta = Math.min((timestamp - lastMarqueeTimestamp) / 1000, 0.1);
+    lastMarqueeTimestamp = timestamp;
+
     const track = document.getElementById("slider-track");
-    const playBtn = document.getElementById("marquee-play-btn");
-    if (!track || !playBtn) return;
-    isMarqueePlaying = !isMarqueePlaying;
-    track.classList.toggle("paused", !isMarqueePlaying);
-    playBtn.textContent = isMarqueePlaying ? "⏸ Pause" : "▶ Play";
+    if (track) {
+        const halfWidth = track.scrollWidth / 2 || 2640;
+        if (isMarqueePlaying && !isMarqueeHovered && !isManualSliding) {
+            marqueeOffset -= marqueeSpeedPxPerSec * delta;
+            while (marqueeOffset <= -halfWidth) {
+                marqueeOffset += halfWidth;
+            }
+            while (marqueeOffset > 0) {
+                marqueeOffset -= halfWidth;
+            }
+            track.style.transform = `translateX(${marqueeOffset}px)`;
+        }
+    }
+    requestAnimationFrame(animateMarqueeLoop);
 }
 
-function pauseMarqueeHover(isHovering) {
+function initMarqueeSlider() {
     const track = document.getElementById("slider-track");
     if (!track) return;
-    if (isHovering) {
-        track.classList.add("paused");
-    } else if (isMarqueePlaying) {
-        track.classList.remove("paused");
+    // Switch from pure CSS animation to JS RAF loop so Prev/Next manual navigation works seamlessly
+    track.style.animation = "none";
+    track.style.willChange = "transform";
+    requestAnimationFrame(animateMarqueeLoop);
+}
+
+function toggleMarqueePlay() {
+    isMarqueePlaying = !isMarqueePlaying;
+    const playBtn = document.getElementById("marquee-play-btn");
+    if (playBtn) {
+        playBtn.textContent = isMarqueePlaying ? "⏸ Pause" : "▶ Play";
+        playBtn.setAttribute("aria-label", isMarqueePlaying ? "Pause reel" : "Play reel");
     }
 }
 
+function pauseMarqueeHover(isHovering) {
+    isMarqueeHovered = isHovering;
+}
+
 function slideMarquee(direction) {
-    const container = document.getElementById("slider-track-container");
-    if (!container) return;
-    container.scrollBy({ left: direction * 330, behavior: "smooth" });
+    const track = document.getElementById("slider-track");
+    if (!track) return;
+    const halfWidth = track.scrollWidth / 2 || 2640;
+    const cardStep = 330; // 310px card width + 20px gap
+
+    // Pause continuous movement while manual slide transition runs
+    isManualSliding = true;
+    clearTimeout(manualSlideTimer);
+
+    // direction: -1 for Prev (slide right, offset increases), +1 for Next (slide left, offset decreases)
+    marqueeOffset -= direction * cardStep;
+
+    // Wrap around smoothly
+    while (marqueeOffset <= -halfWidth) {
+        marqueeOffset += halfWidth;
+    }
+    while (marqueeOffset > 0) {
+        marqueeOffset -= halfWidth;
+    }
+
+    track.style.transition = "transform 0.42s cubic-bezier(0.2, 0.9, 0.3, 1)";
+    track.style.transform = `translateX(${marqueeOffset}px)`;
+
+    manualSlideTimer = setTimeout(() => {
+        track.style.transition = "none";
+        isManualSliding = false;
+    }, 1200);
 }
 
 function setMarqueeSpeed(speed, button) {
-    const track = document.getElementById("slider-track");
-    if (!track) return;
-    track.classList.remove("speed-fast", "speed-ultra");
-    if (speed === "fast") track.classList.add("speed-fast");
-    else if (speed === "ultra") track.classList.add("speed-ultra");
+    if (speed === "fast") {
+        marqueeSpeedPxPerSec = 105;
+    } else if (speed === "ultra") {
+        marqueeSpeedPxPerSec = 165;
+    } else {
+        marqueeSpeedPxPerSec = 66;
+    }
 
     document.querySelectorAll(".speed-toggle-btn").forEach(btn => btn.classList.remove("active"));
     if (button) button.classList.add("active");
@@ -4511,12 +4725,15 @@ function initializePageData() {
     getStoredOrders();
     getStoredReviews();
 
-    const loginIdInput = document.getElementById("login-email");
-    try {
-        if (loginIdInput) {
-            loginIdInput.value = localStorage.getItem(LOGIN_ID_KEY) || "";
-        }
-    } catch (error) {}
+    const loginEmailInput = document.getElementById("login-email");
+    if (loginEmailInput) {
+        loginEmailInput.value = "";
+    }
+    const loginPasswordInput = document.getElementById("login-password");
+    if (loginPasswordInput) {
+        loginPasswordInput.value = "";
+    }
+    updateRememberedLoginSuggestion();
 }
 
 // Boot sequence
@@ -4527,10 +4744,11 @@ initializeVehicleSelector();
 updateFirstOrderOfferBanner();
 initializeCategoryCounts();
 initializeShowcase();
+initMarqueeSlider();
 updateAuthUI();
 updateRatingFormState();
 updateGarageUI();
-selectCustomerRating(5);
+updateRememberedLoginSuggestion();
 updateReviewsScorecardUI();
 showPage("home");
 
