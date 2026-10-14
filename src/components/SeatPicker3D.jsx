@@ -12,11 +12,13 @@ import {
   Armchair,
   AlertCircle,
   AlertTriangle,
-  X
+  X,
+  SlidersHorizontal
 } from "lucide-react";
 import { cinemaAudio } from "../utils/soundEffects";
 import { formatCurrencyINR } from "../utils/currency";
 import { getBookedSeatsForShowtime } from "../utils/seatBookingStore";
+import SeatQuantityModal, { SEAT_QUANTITY_OPTIONS, AutoRickshawIcon } from "./SeatQuantityModal";
 
 // Layout Configuration
 const ROWS = [
@@ -29,6 +31,78 @@ const ROWS = [
   { row: "G", tier: "VIP Recliner", price: 2324, seatsCount: 12, isVip: true, quality: "Heated Leather Recliner + Dine-in (98%)" },
   { row: "H", tier: "Couple Sofa", price: 3486, seatsCount: 6, isCouple: true, quality: "Double Plush Loveseat & Champagne Table (99%)" }
 ];
+
+// Helper to auto-allocate prime adjacent seats in the auditorium
+export function findBestAvailableSeats(count, occupiedSet, rows = ROWS) {
+  const targetCount = Math.max(1, Math.min(6, count));
+  
+  // Preferred row search order: sweet spot row E first, then D, F, C, B, G, A, H
+  const preferredRowOrder = ["E", "D", "F", "C", "B", "G", "A", "H"];
+  
+  for (const rowLetter of preferredRowOrder) {
+    const rowConfig = rows.find(r => r.row === rowLetter);
+    if (!rowConfig) continue;
+
+    const seatsCount = rowConfig.seatsCount;
+    // Try contiguous blocks closest to center
+    const centerIndex = Math.floor(seatsCount / 2);
+    
+    // Generate starting offsets sorted by closeness to center
+    const possibleStarts = [];
+    for (let s = 1; s <= seatsCount - targetCount + 1; s++) {
+      const blockCenter = s + (targetCount - 1) / 2;
+      const distFromCenter = Math.abs(blockCenter - centerIndex);
+      possibleStarts.push({ start: s, dist: distFromCenter });
+    }
+    possibleStarts.sort((a, b) => a.dist - b.dist);
+
+    for (const { start } of possibleStarts) {
+      let isBlockAvailable = true;
+      const candidateSeats = [];
+      for (let k = 0; k < targetCount; k++) {
+        const num = start + k;
+        const sId = `${rowConfig.row}-${num}`;
+        if (occupiedSet.has(sId)) {
+          isBlockAvailable = false;
+          break;
+        }
+        candidateSeats.push({
+          id: sId,
+          row: rowConfig.row,
+          number: num,
+          tier: rowConfig.tier,
+          price: rowConfig.price,
+          isCouple: !!rowConfig.isCouple
+        });
+      }
+
+      if (isBlockAvailable && candidateSeats.length === targetCount) {
+        return candidateSeats;
+      }
+    }
+  }
+
+  // Fallback: pick any available seats up to targetCount
+  const fallbackSeats = [];
+  for (const rowConfig of rows) {
+    for (let num = 1; num <= rowConfig.seatsCount; num++) {
+      const sId = `${rowConfig.row}-${num}`;
+      if (!occupiedSet.has(sId)) {
+        fallbackSeats.push({
+          id: sId,
+          row: rowConfig.row,
+          number: num,
+          tier: rowConfig.tier,
+          price: rowConfig.price,
+          isCouple: !!rowConfig.isCouple
+        });
+        if (fallbackSeats.length === targetCount) return fallbackSeats;
+      }
+    }
+  }
+
+  return fallbackSeats;
+}
 
 export default function SeatPicker3D({
   movie,
@@ -44,6 +118,8 @@ export default function SeatPicker3D({
   const [hoveredSeat, setHoveredSeat] = useState(null);
   const [limitWarning, setLimitWarning] = useState("");
   const [showLimitModal, setShowLimitModal] = useState(false);
+  const [desiredSeatCount, setDesiredSeatCount] = useState(selectedSeats?.length || 2);
+  const [showQuantityModal, setShowQuantityModal] = useState(() => (!selectedSeats || selectedSeats.length === 0));
 
   // All seats are selectable by default.
   // Seats become booked when a user completes a booking for this movie, theater, date, and time.
@@ -84,7 +160,17 @@ export default function SeatPicker3D({
 
   const occupiedSeats = useMemo(() => new Set(bookedSeatsList), [bookedSeatsList]);
 
-  // Toggle seat selection
+  // Handle user selecting a quantity from the modal (1 to 6)
+  const handleQuantitySelect = (count) => {
+    setDesiredSeatCount(count);
+    setShowQuantityModal(false);
+    // Auto-allocate best available seats for this count
+    const bestSeats = findBestAvailableSeats(count, occupiedSeats);
+    setSelectedSeats(bestSeats);
+    setLimitWarning("");
+  };
+
+  // Toggle seat selection (User can always change seats)
   const handleSeatClick = (seatId, rowConfig, seatNum) => {
     if (occupiedSeats.has(seatId)) return;
 
@@ -392,14 +478,33 @@ export default function SeatPicker3D({
         
         {/* Left: Selected Seats Summary */}
         <div className="space-y-1">
-          <div className="flex items-center gap-2">
-            <Armchair className="w-5 h-5 text-rose-500" />
+          <div className="flex items-center gap-2 flex-wrap">
+            <Armchair className="w-5 h-5 text-rose-500 shrink-0" />
             <span className="text-sm font-bold text-white flex items-center gap-2">
               <span>Selected Seats: {selectedSeats.length > 0 ? `${selectedSeats.length} of ${MAX_SEATS}` : "None selected"}</span>
               <span className="text-[10px] px-2 py-0.5 rounded-md bg-white/10 text-slate-300 font-mono font-normal">
                 Max {MAX_SEATS} seats
               </span>
             </span>
+
+            {/* Change Seat Count Vehicle Quick-Trigger */}
+            <button
+              type="button"
+              onClick={() => {
+                cinemaAudio.playHoverTick();
+                setShowQuantityModal(true);
+              }}
+              className="ml-1 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-300 hover:text-white border border-cyan-500/30 text-xs font-bold transition-all cursor-pointer shadow-sm"
+              title="Change number of seats (Cycle, Scooty, Auto, Car...)"
+            >
+              <SlidersHorizontal className="w-3.5 h-3.5 text-cyan-400" />
+              <span>
+                {(() => {
+                  const currentOpt = SEAT_QUANTITY_OPTIONS.find((o) => o.count === (selectedSeats.length || desiredSeatCount));
+                  return currentOpt ? `${currentOpt.vehicleName} (${currentOpt.count})` : "Change Count";
+                })()}
+              </span>
+            </button>
           </div>
 
           <div className="flex flex-wrap items-center gap-1.5 pt-1">
@@ -504,6 +609,14 @@ export default function SeatPicker3D({
           </div>
         </div>
       )}
+
+      {/* Vehicle Seat Quantity Selector Modal (1 to 6 seats) */}
+      <SeatQuantityModal
+        isOpen={showQuantityModal}
+        currentCount={desiredSeatCount}
+        onSelectCount={handleQuantitySelect}
+        onClose={() => setShowQuantityModal(false)}
+      />
 
     </div>
   );
