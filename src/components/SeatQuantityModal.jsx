@@ -122,6 +122,11 @@ export default function SeatQuantityModal({
 }) {
   const [selectedCount, setSelectedCount] = useState(currentCount || 2);
 
+  // Keep selectedCount in sync when currentCount changes
+  React.useEffect(() => {
+    if (currentCount) setSelectedCount(currentCount);
+  }, [currentCount, isOpen]);
+
   if (!isOpen) return null;
 
   const handleConfirm = (count) => {
@@ -179,8 +184,9 @@ export default function SeatQuantityModal({
                 key={opt.count}
                 type="button"
                 onClick={() => {
-                  cinemaAudio.playHoverTick();
+                  cinemaAudio.playSeatConfirm();
                   setSelectedCount(opt.count);
+                  handleConfirm(opt.count);
                 }}
                 className={`group relative p-2.5 sm:p-3 rounded-2xl flex flex-col items-center justify-between transition-all duration-200 cursor-pointer border ${
                   isSelected

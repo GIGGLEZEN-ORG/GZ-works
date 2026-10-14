@@ -220,8 +220,33 @@ export default function SeatPicker3D({
     activeFocusRow === "F" ? 0.95 :
     activeFocusRow === "G" ? 0.9 : 0.85;
 
+  // Don't render the screen and seat picker until the user has selected how many seats they need
+  if (showQuantityModal) {
+    return (
+      <div className="w-full min-h-[420px] flex items-center justify-center p-6 rounded-2xl glass-panel border border-white/10 bg-slate-900/40">
+        <div className="text-center space-y-3 animate-pulse">
+          <div className="w-12 h-12 rounded-2xl bg-rose-500/20 text-rose-400 border border-rose-500/30 flex items-center justify-center mx-auto">
+            <Armchair className="w-6 h-6" />
+          </div>
+          <h4 className="text-lg font-bold text-white">Select Number of Seats</h4>
+          <p className="text-xs text-slate-400">
+            Please choose how many tickets you need to view and select auditorium seats.
+          </p>
+        </div>
+
+        {/* Vehicle Seat Quantity Selector Modal (1 to 6 seats) */}
+        <SeatQuantityModal
+          isOpen={showQuantityModal}
+          currentCount={desiredSeatCount}
+          onSelectCount={handleQuantitySelect}
+          onClose={() => setShowQuantityModal(false)}
+        />
+      </div>
+    );
+  }
+
   return (
-    <div className="w-full space-y-6">
+    <div className="w-full space-y-6 animate-in fade-in zoom-in-95 duration-300">
 
       {/* Main Theater Seating Stage */}
       <div className="relative w-full rounded-2xl glass-panel p-3 xs:p-4 sm:p-8 border border-white/10 overflow-hidden min-h-[500px] flex flex-col items-center justify-between">
