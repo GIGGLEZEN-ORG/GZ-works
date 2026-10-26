@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { X, UserRound, Mail, Phone, MapPin, Save } from 'lucide-react';
-import { useBooking } from '../context/BookingContext';
+import { useAccount } from '../context/AccountContext';
 
 export default function ProfileModal() {
-  const { profileModalOpen, setProfileModalOpen, userProfile, setUserProfile } = useBooking();
+  const { profileModalOpen, setProfileModalOpen, userProfile, setUserProfile } = useAccount();
   const [form, setForm] = useState(userProfile);
 
   useEffect(() => {

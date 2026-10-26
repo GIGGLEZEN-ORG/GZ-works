@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, LogIn, Mail, Lock, UserPlus, Tag } from 'lucide-react';
-import { useBooking } from '../context/BookingContext';
+import { useAccount } from '../context/AccountContext';
 import { getPasswordValidationMessage, isValidGmailAddress } from '../utils/auth';
 
 export default function LoginModal() {
@@ -16,7 +16,7 @@ export default function LoginModal() {
     navigateToHome,
     checkoutModalOpen,
     passengerInfoModalOpen
-  } = useBooking();
+  } = useAccount();
   const [form, setForm] = useState({
     email: '',
     password: ''

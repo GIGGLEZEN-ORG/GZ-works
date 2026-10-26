@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, UserPlus, Mail, Lock, UserRound } from 'lucide-react';
-import { useBooking } from '../context/BookingContext';
+import { useAccount } from '../context/AccountContext';
 import { getPasswordValidationMessage, isValidGmailAddress } from '../utils/auth';
 
 export default function SignupModal() {
@@ -11,7 +11,7 @@ export default function SignupModal() {
     setBookingLoginPending,
     setPendingCouponCode,
     signup
-  } = useBooking();
+  } = useAccount();
   const [form, setForm] = useState({
     fullName: '',
     email: '',

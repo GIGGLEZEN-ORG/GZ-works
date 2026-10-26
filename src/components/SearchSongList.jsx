@@ -20,23 +20,25 @@ export default function SearchSongList({ songs }) {
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
       {topSong && (
         <div className="lg:col-span-5 flex flex-col">
-          <h2 className="text-2xl font-bold text-white mb-4 tracking-tight">
+          <h2 className="text-xl font-bold text-white mb-4 tracking-tight">
             {t('Top result')}
           </h2>
           <div
             onClick={() => playTrack(topSong, songs)}
-            className="group relative flex-1 p-5 bg-[#181818] hover:bg-[#282828] rounded-lg cursor-pointer transition-all duration-300 flex flex-col justify-between"
+            className="group relative flex-1 p-6 glass-card rounded-2xl cursor-pointer flex flex-col justify-between"
           >
             <div>
-              <img
-                src={topSong.coverArt}
-                alt={topSong.title}
-                className="w-24 h-24 rounded shadow-lg object-cover mb-4"
-              />
+              <div className="relative w-28 h-28 rounded-xl overflow-hidden shadow-xl mb-4 border border-white/10">
+                <img
+                  src={topSong.coverArt}
+                  alt={topSong.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
               <h3 className="text-2xl font-bold text-white tracking-tight line-clamp-1 mb-1">
                 {topSong.title}
               </h3>
-              <p className="text-sm text-[#a7a7a7]">
+              <p className="text-sm text-[#9ca3af]">
                 Song • <span
                   className="text-white hover:underline cursor-pointer"
                   onClick={(event) => {
@@ -58,24 +60,24 @@ export default function SearchSongList({ songs }) {
                   playTrack(topSong, songs);
                 }
               }}
-              className="self-end w-12 h-12 rounded-full bg-[#1ed760] text-black flex items-center justify-center shadow-spotify-green hover:scale-105 active:scale-95 transition-all"
+              className="self-end w-12 h-12 rounded-full bg-[#1ed760] text-black flex items-center justify-center shadow-[0_0_15px_rgba(30,215,96,0.4)] transition-all duration-200 hover:scale-110 active:scale-95"
             >
               {currentTrack?.id === topSong.id && isPlaying ? (
-                <Pause className="w-5 h-5 fill-black" />
+                <Pause className="w-6 h-6 fill-black" />
               ) : (
-                <Play className="w-5 h-5 fill-black translate-x-0.5" />
+                <Play className="w-6 h-6 fill-black translate-x-0.5" />
               )}
             </button>
           </div>
         </div>
       )}
 
-      <div className={`${topSong ? 'lg:col-span-7' : 'col-span-12'} flex flex-col`}>
-        <h2 className="text-2xl font-bold text-white mb-4 tracking-tight">
-          Songs
+      <div className={`${topSong ? 'lg:col-span-7' : 'lg:col-span-12'}`}>
+        <h2 className="text-xl font-bold text-white mb-4 tracking-tight">
+          {t('Songs')}
         </h2>
         <div className="space-y-1">
-          {songs.slice(0, 4).map(song => (
+          {songs.slice(0, 8).map((song) => (
             <SearchSongRow
               key={song.id}
               song={song}

@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { getBusesForRoute } from '../data/buses';
+import { getBusesForRoute } from '../data/routeData';
 import { hashPassword, getPasswordValidationMessage, isValidGmailAddress } from '../utils/auth';
-import { clampTravelDate, getTravelDateBounds } from '../utils/travelDates';
+import { clampTravelDate, getTravelDateBounds } from '../utils/dateUtils';
 
-const BookingContext = createContext();
+const AccountContext = createContext();
 
 const LOCAL_STORAGE_KEY = 'mybusbooking_confirmed_tickets';
 const PROFILE_STORAGE_KEY = 'mybusbooking_profile';
@@ -17,7 +17,7 @@ const defaultProfile = {
   city: 'Bengaluru'
 };
 
-export const BookingProvider = ({ children }) => {
+export const AccountProvider = ({ children }) => {
   const { tomorrow: defaultDateStr } = getTravelDateBounds();
 
   const [searchParams, setSearchParams] = useState({
@@ -338,7 +338,7 @@ export const BookingProvider = ({ children }) => {
   };
 
   return (
-    <BookingContext.Provider
+    <AccountContext.Provider
       value={{
         searchParams,
         setSearchParams,
@@ -401,14 +401,14 @@ export const BookingProvider = ({ children }) => {
       }}
     >
       {children}
-    </BookingContext.Provider>
+    </AccountContext.Provider>
   );
 };
 
-export const useBooking = () => {
-  const context = useContext(BookingContext);
+export const useAccount = () => {
+  const context = useContext(AccountContext);
   if (!context) {
-    throw new Error('useBooking must be used within a BookingProvider');
+    throw new Error('useAccount must be used within an AccountProvider');
   }
   return context;
 };

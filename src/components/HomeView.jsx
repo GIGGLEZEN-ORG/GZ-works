@@ -1,5 +1,5 @@
 import React from 'react';
-import { Play, Pause, Heart, Sparkles, ArrowLeft } from 'lucide-react';
+import { Play, Pause, Heart, Sparkles, Flame, Disc, ChevronRight, Cloud, Dumbbell, Moon, Target, Zap, MoreHorizontal } from 'lucide-react';
 import { useMusic } from '../context/MusicContext';
 import { ALL_SONGS, ARTISTS_DATA } from '../data/musicData';
 import SongOptionsMenu from './SongOptionsMenu';
@@ -20,8 +20,10 @@ export default function HomeView() {
     isPlaying, 
     togglePlay, 
     navigate, 
-    playlists,
-    likedTrackIds,
+    recentlyPlayed,
+    activeMood,
+    setActiveMood,
+    getSongsByMood,
     selectedMusicLanguage,
     setSelectedMusicLanguage,
     t 
@@ -29,46 +31,28 @@ export default function HomeView() {
 
   const activeLang = selectedMusicLanguage || 'All';
   const greeting = t(getGreeting());
-
-  // Quick items
-  const quickCards = [
-    {
-      id: 'liked-quick',
-      title: t('Liked Songs'),
-      type: 'liked',
-      gradient: 'from-indigo-700 via-purple-700 to-emerald-400',
-      icon: Heart,
-      action: () => navigate('liked')
-    },
-    ...playlists.slice(0, 5).map(pl => ({
-      id: pl.id,
-      title: pl.title,
-      type: 'playlist',
-      image: pl.coverArt,
-      action: () => navigate('playlist', pl.id),
-      songs: ALL_SONGS.filter(s => pl.songIds.includes(s.id))
-    }))
+  const moodOptions = [
+    { id: 'cyber', label: 'Energy', icon: Zap, color: '#f6a723' },
+    { id: 'chill', label: 'Chill', icon: Cloud, color: '#36c9ed' },
+    { id: 'workout', label: 'Workout', icon: Dumbbell, color: '#15d6b1' },
+    { id: 'drive', label: 'Drive', icon: Moon, color: '#9e62f5' },
+    { id: 'romance', label: 'Romantic', icon: Heart, color: '#f044a5' },
+    { id: 'focus', label: 'Focus', icon: Target, color: '#5275ff' },
   ];
 
-  const handlePlayQuickItem = (e, item) => {
-    e.stopPropagation();
-    if (item.type === 'liked') {
-      const likedSongs = ALL_SONGS.filter(s => likedTrackIds.includes(s.id));
-      if (likedSongs.length > 0) {
-        if (currentTrack && likedSongs.some(s => s.id === currentTrack.id) && isPlaying) {
-          togglePlay();
-        } else {
-          playTrack(likedSongs[0], likedSongs);
-        }
-      }
-    } else if (item.songs && item.songs.length > 0) {
-      if (currentTrack && item.songs.some(s => s.id === currentTrack.id) && isPlaying) {
-        togglePlay();
-      } else {
-        playTrack(item.songs[0], item.songs);
-      }
-    }
-  };
+  // Spotlight Track (featured blockbuster)
+  const spotlightTrack = ALL_SONGS.find(s => s.id === 's-te-1') || ALL_SONGS[0];
+  const isSpotlightPlaying = currentTrack?.id === spotlightTrack.id && isPlaying;
+
+  // Language filtered pools
+  const teluguSongs = ALL_SONGS.filter(s => s.language === 'Telugu');
+  const hindiSongs = ALL_SONGS.filter(s => s.language === 'Hindi');
+  const kannadaSongs = ALL_SONGS.filter(s => s.language === 'Kannada');
+  const englishSongs = ALL_SONGS.filter(s => s.language === 'English');
+
+  const filteredPool = activeLang === 'All' 
+    ? ALL_SONGS 
+    : ALL_SONGS.filter(s => s.language === activeLang);
 
   const renderSongCard = (song, trackList) => {
     const isThisPlaying = currentTrack?.id === song.id && isPlaying;
@@ -77,15 +61,30 @@ export default function HomeView() {
       <div
         key={song.id}
         onClick={() => playTrack(song, trackList)}
-        className="music-card group p-4 bg-[#181818] hover:bg-[#282828] rounded-lg cursor-pointer transition-all duration-300 flex flex-col relative"
+        className="app-track-card glass-card group p-3.5 rounded-2xl cursor-pointer flex flex-col relative"
       >
-        <div className="relative mb-4 aspect-square w-full rounded-md overflow-hidden shadow-lg">
+        {/* Cover Art Box */}
+        <div className="relative mb-3 aspect-square w-full rounded-xl overflow-hidden shadow-md">
           <img 
             src={song.coverArt} 
             alt={song.title} 
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             loading="lazy"
           />
+
+          {/* Equalizer Indicator when currently playing */}
+          {isThisPlaying && (
+            <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] flex items-center justify-center">
+              <div className="flex items-end gap-1 h-6">
+                <span className="w-1.5 bg-[#1ed760] rounded-full eq-bar-1 shadow-[0_0_8px_#1ed760]"></span>
+                <span className="w-1.5 bg-[#1ed760] rounded-full eq-bar-2 shadow-[0_0_8px_#1ed760]"></span>
+                <span className="w-1.5 bg-[#1ed760] rounded-full eq-bar-3 shadow-[0_0_8px_#1ed760]"></span>
+                <span className="w-1.5 bg-[#1ed760] rounded-full eq-bar-4 shadow-[0_0_8px_#1ed760]"></span>
+              </div>
+            </div>
+          )}
+
+          {/* Floating Hover Play Button */}
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -95,10 +94,10 @@ export default function HomeView() {
                 playTrack(song, trackList);
               }
             }}
-            className={`absolute bottom-2 right-2 w-12 h-12 rounded-full bg-[#1ed760] text-black flex items-center justify-center shadow-spotify-green transition-all duration-200 ${
+            className={`absolute bottom-2.5 right-2.5 w-11 h-11 rounded-full bg-[#1ed760] text-black flex items-center justify-center shadow-[0_0_15px_rgba(30,215,96,0.4)] transition-all duration-300 ${
               isThisPlaying 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 hover:scale-105 active:scale-95'
+                ? 'opacity-100 scale-100' 
+                : 'opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 hover:scale-110 active:scale-95'
             }`}
           >
             {isThisPlaying ? (
@@ -109,24 +108,25 @@ export default function HomeView() {
           </button>
         </div>
 
+        {/* Info */}
         <div className="flex items-center justify-between gap-1 mb-1">
-          <h3 className={`font-bold text-sm truncate ${
-            currentTrack?.id === song.id ? 'text-[#1ed760]' : 'text-white'
+          <h3 className={`font-bold text-sm truncate transition-colors ${
+            currentTrack?.id === song.id ? 'text-[#1ed760]' : 'text-white group-hover:text-white'
           }`}>
             {song.title}
           </h3>
-          <span className="text-[10px] px-1.5 py-0.5 rounded bg-white/10 text-white/70 flex-shrink-0 font-medium">
+          <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-white/10 text-white/70 flex-shrink-0 font-medium">
             {song.language}
           </span>
         </div>
 
-        <div className="flex items-center justify-between gap-2">
+        <div className="flex items-center justify-between gap-2 mt-auto">
           <p 
             onClick={(e) => {
               e.stopPropagation();
               navigate('artist', song.artistId);
             }}
-            className="text-xs text-[#a7a7a7] hover:underline hover:text-white truncate"
+            className="text-xs text-[#9ca3af] hover:underline hover:text-white truncate"
           >
             {song.artist}
           </p>
@@ -136,510 +136,333 @@ export default function HomeView() {
     );
   };
 
-  // Language filtered pools
-  const teluguSongs = ALL_SONGS.filter(s => s.language === 'Telugu');
-  const hindiSongs = ALL_SONGS.filter(s => s.language === 'Hindi');
-  const kannadaSongs = ALL_SONGS.filter(s => s.language === 'Kannada');
-  const englishSongs = ALL_SONGS.filter(s => s.language === 'English');
-
-  // Active language pool
-  const currentLangSongs = activeLang === 'All' ? ALL_SONGS : ALL_SONGS.filter(s => s.language === activeLang);
-  const currentLangSongIds = new Set(currentLangSongs.map(s => s.id));
-  const currentLangPlaylists = playlists.filter(p => p.songIds.some(id => currentLangSongIds.has(id)));
-  const currentLangArtists = ARTISTS_DATA.filter(a => {
-    const aSongs = ALL_SONGS.filter(s => s.artistId === a.id);
-    return aSongs.some(s => s.language === activeLang);
-  });
-
-  const isCurrentLangPlaying = currentTrack && currentLangSongs.some(s => s.id === currentTrack.id) && isPlaying;
-
-  const handlePlayCurrentLang = () => {
-    if (isCurrentLangPlaying) {
-      togglePlay();
-    } else if (currentLangSongs.length > 0) {
-      playTrack(currentLangSongs[0], currentLangSongs);
-    }
-  };
-
-  // Curated lists for 'All'
-  const todayTopHits = ALL_SONGS.filter(s => 
-    ['s-te-1', 's-hi-1', 's-ka-1', 's-13', 's-te-2', 's-hi-2'].includes(s.id)
+  const renderLanguageFilters = () => (
+    <div className="home-language-filters" aria-label="Filter music by language">
+      {LANGUAGES.map((lang) => (
+        <button
+          key={lang}
+          onClick={() => setSelectedMusicLanguage(lang)}
+          className={`home-language-filter ${activeLang === lang ? 'is-active' : ''}`}
+          aria-pressed={activeLang === lang}
+        >
+          {lang === 'All' && <Sparkles className="w-3 h-3" />}
+          {lang === 'Telugu' && <Flame className="w-3 h-3" />}
+          {lang === 'Hindi' && <Flame className="w-3 h-3" />}
+          {lang === 'Kannada' && <Flame className="w-3 h-3" />}
+          {lang === 'English' && <Disc className="w-3 h-3" />}
+          <span>{lang}</span>
+        </button>
+      ))}
+    </div>
   );
 
   return (
-    <div className="p-6 md:p-8 space-y-8 select-none">
-      {/* Top Greeting & Language Filter Tabs */}
-      <div>
-        <h1 className="text-3xl font-extrabold text-white tracking-tight mb-4">
-          {greeting}
-        </h1>
+    <div className="playmusic-home select-none">
+      <div className="playmusic-home-grid">
+        <div className="playmusic-home-main space-y-5">
+      {/* 1. CINEMATIC SPOTLIGHT HERO BANNER */}
+      {spotlightTrack && activeLang === 'All' && (
+        <div
+          onClick={() => playTrack(spotlightTrack, ALL_SONGS)}
+          className="playmusic-spotlight relative overflow-hidden rounded-2xl cursor-pointer group"
+        >
+          <div
+            className="spotlight-backdrop absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${spotlightTrack.coverArt})` }}
+          />
 
-        {/* Language Selection Filter Pills */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-          {LANGUAGES.map((lang) => {
-            const isSelected = activeLang === lang;
-            const count = lang === 'All' ? ALL_SONGS.length : ALL_SONGS.filter(s => s.language === lang).length;
-            return (
-              <button
-                key={lang}
-                onClick={() => setSelectedMusicLanguage(lang)}
-                className={`px-4 py-2 rounded-full text-xs font-bold transition-all duration-200 cursor-pointer flex-shrink-0 flex items-center gap-1.5 ${
-                  isSelected 
-                    ? 'bg-white text-black scale-105 shadow-md' 
-                    : 'bg-[#232323] text-white hover:bg-[#2e2e2e]'
-                }`}
-              >
-                <span>{t(lang)}</span>
-                <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${isSelected ? 'bg-black/10 text-black font-extrabold' : 'bg-white/10 text-[#a7a7a7]'}`}>
-                  {count}
-                </span>
-              </button>
-            );
-          })}
-        </div>
+          <div className="spotlight-content relative z-10 items-center">
+            <div className="spotlight-copy flex flex-col items-start gap-2">
+              <p className="spotlight-greeting">{greeting} <span aria-hidden="true">👋</span></p>
+              <h1 className="spotlight-title">
+                Let the Music<br />Move You
+              </h1>
 
-        {/* Quick Access Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-4">
-          {quickCards.map((item) => (
-            <div
-              key={item.id}
-              onClick={item.action}
-              className="music-card group relative flex items-center bg-[#282828]/50 hover:bg-[#323232] rounded-md overflow-hidden cursor-pointer transition-all duration-200 shadow-sm"
-            >
-              {item.image ? (
-                <img 
-                  src={item.image} 
-                  alt={item.title} 
-                  className="w-16 h-16 md:w-20 md:h-20 object-cover flex-shrink-0 shadow-md"
-                />
-              ) : (
-                <div className={`w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br ${item.gradient} flex items-center justify-center flex-shrink-0 shadow-md`}>
-                  <Heart className="w-7 h-7 fill-white text-white" />
-                </div>
-              )}
-
-              <span className="font-bold text-sm md:text-base text-white px-4 truncate flex-1">
-                {item.title}
-              </span>
-
-              <button
-                onClick={(e) => handlePlayQuickItem(e, item)}
-                className="mr-4 w-11 h-11 rounded-full bg-[#1ed760] text-black flex items-center justify-center shadow-spotify-green opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 hover:scale-105 active:scale-95 transition-all duration-200"
-              >
-                <Play className="w-5 h-5 fill-black translate-x-0.5" />
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* FILTER VIEW: When a specific language is selected (e.g. Telugu, Hindi, Kannada, English) */}
-      {activeLang !== 'All' && (
-        <div className="space-y-8 animate-in fade-in duration-300">
-          {/* Hero Banner for Selected Language */}
-          <div className="p-6 md:p-8 rounded-xl bg-gradient-to-r from-[#202020] via-[#181818] to-[#121212] border border-white/5 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-xl">
-            <div className="space-y-2">
-              <div className="flex items-center gap-2 text-xs font-bold text-[#1ed760] tracking-wider uppercase">
-                <Sparkles className="w-4 h-4" />
-                <span>Selected Language Filter</span>
+              <div className="spotlight-description">
+                <span>Discover new sounds, create your vibes,</span>
+                <span>and enjoy your favorite tracks anytime.</span>
               </div>
-              <h2 className="text-3xl md:text-5xl font-black text-white tracking-tight">
-                {activeLang} Music Hub
-              </h2>
-              <p className="text-sm text-[#b3b3b3] max-w-xl">
-                Showing all {currentLangSongs.length} songs, dedicated playlists, and celebrated artists in {activeLang}.
-              </p>
-            </div>
 
-            <div className="flex items-center gap-3 flex-wrap">
-              <button
-                onClick={handlePlayCurrentLang}
-                className="flex items-center gap-2.5 bg-[#1ed760] text-black font-extrabold text-sm px-6 py-3.5 rounded-full hover:scale-105 active:scale-95 transition-all shadow-spotify-green cursor-pointer"
-              >
-                {isCurrentLangPlaying ? (
-                  <Pause className="w-5 h-5 fill-black" />
-                ) : (
-                  <Play className="w-5 h-5 fill-black translate-x-0.5" />
-                )}
-                <span>{isCurrentLangPlaying ? 'Pause' : `Play All ${activeLang} Songs`}</span>
-              </button>
+              <div className="spotlight-actions flex items-center gap-3">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (isSpotlightPlaying) {
+                      togglePlay();
+                    } else {
+                      playTrack(spotlightTrack, ALL_SONGS);
+                    }
+                  }}
+                  className="spotlight-play-button flex items-center gap-2 px-5 py-2 rounded-full text-xs hover:scale-105 active:scale-95 transition-all"
+                >
+                  {isSpotlightPlaying ? (
+                    <>
+                      <Pause className="w-5 h-5 fill-black" />
+                      <span>Pause</span>
+                    </>
+                  ) : (
+                    <>
+                      <Play className="w-5 h-5 fill-black" />
+                      <span>Play Now</span>
+                    </>
+                  )}
+                </button>
 
-              <button
-                onClick={() => setSelectedMusicLanguage('All')}
-                className="flex items-center gap-1.5 px-4 py-3 rounded-full text-xs font-semibold text-white bg-white/10 hover:bg-white/20 transition-colors"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                <span>Show All Languages</span>
-              </button>
+                <button
+                  className="rounded-full border border-white/30 bg-black/15 px-5 py-2.5 text-xs font-bold text-white/90 backdrop-blur-md transition-colors hover:bg-white/[0.14]"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate('search');
+                  }}
+                >
+                  Explore
+                </button>
+              </div>
             </div>
           </div>
-
-          {/* All Songs in Selected Language */}
-          <section>
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-2xl font-bold text-white tracking-tight">
-                {activeLang} Songs ({currentLangSongs.length})
-              </h3>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-              {currentLangSongs.map((song) => renderSongCard(song, currentLangSongs))}
-            </div>
-          </section>
-
-          {/* Curated Playlists for Selected Language */}
-          {currentLangPlaylists.length > 0 && (
-            <section>
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-2xl font-bold text-white tracking-tight">
-                  {activeLang} Playlists
-                </h3>
-              </div>
-
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-                {currentLangPlaylists.map((pl) => {
-                  const isThisPlPlaying = currentTrack && pl.songIds.includes(currentTrack.id) && isPlaying;
-                  const plSongs = ALL_SONGS.filter(s => pl.songIds.includes(s.id));
-
-                  return (
-                    <div
-                      key={pl.id}
-                      onClick={() => navigate('playlist', pl.id)}
-                      className="music-card group p-4 bg-[#181818] hover:bg-[#282828] rounded-lg cursor-pointer transition-all duration-300 flex flex-col relative"
-                    >
-                      <div className="relative mb-4 aspect-square w-full rounded-md overflow-hidden shadow-lg">
-                        <img 
-                          src={pl.coverArt} 
-                          alt={pl.title} 
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            if (isThisPlPlaying) {
-                              togglePlay();
-                            } else if (plSongs.length > 0) {
-                              playTrack(plSongs[0], plSongs);
-                            }
-                          }}
-                          className={`absolute bottom-2 right-2 w-12 h-12 rounded-full bg-[#1ed760] text-black flex items-center justify-center shadow-spotify-green transition-all duration-200 ${
-                            isThisPlPlaying 
-                              ? 'opacity-100 translate-y-0' 
-                              : 'opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 hover:scale-105'
-                          }`}
-                        >
-                          {isThisPlPlaying ? (
-                            <Pause className="w-5 h-5 fill-black" />
-                          ) : (
-                            <Play className="w-5 h-5 fill-black translate-x-0.5" />
-                          )}
-                        </button>
-                      </div>
-
-                      <h4 className="font-bold text-sm text-white truncate mb-1">
-                        {pl.title}
-                      </h4>
-                      <p className="text-xs text-[#a7a7a7] line-clamp-2 leading-relaxed">
-                        {pl.description}
-                      </p>
-                    </div>
-                  );
-                })}
-              </div>
-            </section>
-          )}
-
-          {/* Top Artists for Selected Language */}
-          {currentLangArtists.length > 0 && (
-            <section className="pb-8">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-2xl font-bold text-white tracking-tight">
-                  Featured {activeLang} Artists
-                </h3>
-              </div>
-
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-                {currentLangArtists.map((artist) => {
-                  const artistSongs = ALL_SONGS.filter(s => s.artistId === artist.id);
-
-                  return (
-                    <div
-                      key={artist.id}
-                      onClick={() => navigate('artist', artist.id)}
-                      className="music-card group p-4 bg-[#181818] hover:bg-[#282828] rounded-lg cursor-pointer transition-all duration-300 flex flex-col relative"
-                    >
-                      <div className="relative mb-4 aspect-square w-full rounded-full overflow-hidden shadow-xl">
-                        <img 
-                          src={artist.avatar} 
-                          alt={artist.name} 
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            if (artistSongs.length > 0) {
-                              playTrack(artistSongs[0], artistSongs);
-                            }
-                          }}
-                          className="absolute bottom-2 right-2 w-12 h-12 rounded-full bg-[#1ed760] text-black flex items-center justify-center shadow-spotify-green opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 hover:scale-105 transition-all duration-200"
-                        >
-                          <Play className="w-5 h-5 fill-black translate-x-0.5" />
-                        </button>
-                      </div>
-
-                      <h4 className="font-bold text-sm text-white truncate mb-1">
-                        {artist.name}
-                      </h4>
-                      <p className="text-xs text-[#a7a7a7]">
-                        Artist
-                      </p>
-                    </div>
-                  );
-                })}
-              </div>
-            </section>
-          )}
         </div>
       )}
 
-      {/* DEFAULT VIEW: If 'All' is selected */}
-      {activeLang === 'All' && (
+      {/* Content sections */}
+      {/* If language filter is active (not All) */}
+      {activeLang !== 'All' ? (
+        <section className="space-y-4">
+          <div className="home-filtered-heading">
+            <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+              {activeLang} Master Tracks
+            </h3>
+            {renderLanguageFilters()}
+            <span className="text-xs text-[#9ca3af]">
+              {filteredPool.length} songs
+            </span>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
+            {filteredPool.map(song => renderSongCard(song, filteredPool))}
+          </div>
+        </section>
+      ) : (
         <>
-          {/* SECTION: Today's Biggest Hits */}
-          <section>
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-2xl font-bold text-white tracking-tight hover:underline cursor-pointer">
-                {t("Today's Biggest Hits")}
-              </h2>
-              <span 
-                onClick={() => navigate('playlist', 'pl-today-top-hits')}
-                className="text-xs font-bold text-[#b3b3b3] hover:underline cursor-pointer"
-              >
-                {t('Show all')}
-              </span>
+          {/* SECTION: TRENDING CHARTS */}
+          <section className="home-trending-section space-y-3">
+            <div className="home-trending-heading">
+              <div className="flex items-center gap-2">
+                <h3 className="text-lg sm:text-xl font-extrabold text-white tracking-tight flex items-center gap-2">
+                  <Flame className="w-5 h-5 text-red-500" />
+                  Trending Now
+                </h3>
+              </div>
+              <div className="home-trending-tools">
+                {renderLanguageFilters()}
+                <button
+                  onClick={() => navigate('search')}
+                  className="home-trending-see-all"
+                >
+                  See all <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
             </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-              {todayTopHits.map((song) => renderSongCard(song, todayTopHits))}
+            <div className="home-trending-row">
+              {ALL_SONGS.slice(0, 5).map(song => renderSongCard(song, ALL_SONGS))}
             </div>
           </section>
 
-          {/* SECTION: Telugu Superhits */}
-          <section>
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2 cursor-pointer" onClick={() => setSelectedMusicLanguage('Telugu')}>
-                <span className="text-lg">🔥</span>
-                <h2 className="text-2xl font-bold text-white tracking-tight hover:underline">
-                  {t('Telugu Superhits')}
-                </h2>
-                <span className="text-xs px-2 py-0.5 rounded-full bg-white/10 text-white font-medium ml-1">
-                  Telugu
-                </span>
+          {/* SECTION: FEATURED ARTISTS */}
+          <section className="home-artists-section space-y-3">
+            <div className="flex items-center justify-between">
+              <h3 className="text-lg sm:text-xl font-extrabold text-white tracking-tight">Featured Artists</h3>
+              <button
+                onClick={() => navigate('search')}
+                className="text-xs font-bold text-fuchsia-400 hover:text-fuchsia-300 flex items-center gap-1"
+              >
+                See all <ChevronRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+            <div className="home-artists-row">
+              {ARTISTS_DATA.slice(0, 6).map(art => (
+                <button
+                  type="button"
+                  key={art.id}
+                  onClick={() => navigate('artist', art.id)}
+                  className="home-artist"
+                >
+                  <span className="home-artist-avatar">
+                    <img src={art.avatar} alt="" loading="lazy" />
+                  </span>
+                  <span className="home-artist-name">{art.name}</span>
+                  <span className="home-artist-caption">Artist</span>
+                </button>
+              ))}
+            </div>
+          </section>
+
+          {/* SECTION: TELUGU SUPERHITS */}
+          <section className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+                  Tollywood Hits
+                </h3>
+                <p className="text-xs text-[#9ca3af]">High-voltage tracks from RRR, Devara, Pushpa & AVPL</p>
               </div>
               <button 
                 onClick={() => setSelectedMusicLanguage('Telugu')}
-                className="text-xs font-bold text-[#b3b3b3] hover:underline hover:text-white cursor-pointer"
+                className="text-xs font-bold text-[#1ed760] hover:underline flex items-center gap-1"
               >
-                View all Telugu ({teluguSongs.length})
+                See all <ChevronRight className="w-3.5 h-3.5" />
               </button>
             </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-              {teluguSongs.slice(0, 6).map((song) => renderSongCard(song, teluguSongs))}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
+              {teluguSongs.slice(0, 6).map(song => renderSongCard(song, teluguSongs))}
             </div>
           </section>
 
-          {/* SECTION: Bollywood & Hindi Hits */}
-          <section>
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2 cursor-pointer" onClick={() => setSelectedMusicLanguage('Hindi')}>
-                <span className="text-lg">✨</span>
-                <h2 className="text-2xl font-bold text-white tracking-tight hover:underline">
-                  {t('Bollywood & Hindi Hits')}
-                </h2>
-                <span className="text-xs px-2 py-0.5 rounded-full bg-white/10 text-white font-medium ml-1">
-                  Hindi
-                </span>
+          {/* SECTION: BOLLYWOOD CENTRAL */}
+          <section className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+                  Bollywood Central
+                </h3>
+                <p className="text-xs text-[#9ca3af]">Soulful melodies & party bangers by Arijit Singh & Pritam</p>
               </div>
               <button 
                 onClick={() => setSelectedMusicLanguage('Hindi')}
-                className="text-xs font-bold text-[#b3b3b3] hover:underline hover:text-white cursor-pointer"
+                className="text-xs font-bold text-[#1ed760] hover:underline flex items-center gap-1"
               >
-                View all Hindi ({hindiSongs.length})
+                See all <ChevronRight className="w-3.5 h-3.5" />
               </button>
             </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-              {hindiSongs.slice(0, 6).map((song) => renderSongCard(song, hindiSongs))}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
+              {hindiSongs.slice(0, 6).map(song => renderSongCard(song, hindiSongs))}
             </div>
           </section>
 
-          {/* SECTION: Kannada Sandalwood Anthems */}
-          <section>
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2 cursor-pointer" onClick={() => setSelectedMusicLanguage('Kannada')}>
-                <span className="text-lg">🌟</span>
-                <h2 className="text-2xl font-bold text-white tracking-tight hover:underline">
-                  {t('Kannada Sandalwood Anthems')}
-                </h2>
-                <span className="text-xs px-2 py-0.5 rounded-full bg-white/10 text-white font-medium ml-1">
-                  Kannada
-                </span>
+          {/* SECTION: SANDALWOOD ANTHEMS */}
+          <section className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+                  Sandalwood Anthems
+                </h3>
+                <p className="text-xs text-[#9ca3af]">Iconic soundscapes from Kantara, KGF & Raajakumara</p>
               </div>
               <button 
                 onClick={() => setSelectedMusicLanguage('Kannada')}
-                className="text-xs font-bold text-[#b3b3b3] hover:underline hover:text-white cursor-pointer"
+                className="text-xs font-bold text-[#1ed760] hover:underline flex items-center gap-1"
               >
-                View all Kannada ({kannadaSongs.length})
+                See all <ChevronRight className="w-3.5 h-3.5" />
               </button>
             </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-              {kannadaSongs.slice(0, 6).map((song) => renderSongCard(song, kannadaSongs))}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
+              {kannadaSongs.slice(0, 6).map(song => renderSongCard(song, kannadaSongs))}
             </div>
           </section>
 
-          {/* SECTION: Global English Hits */}
-          <section>
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2 cursor-pointer" onClick={() => setSelectedMusicLanguage('English')}>
-                <span className="text-lg">🌍</span>
-                <h2 className="text-2xl font-bold text-white tracking-tight hover:underline">
-                  {t('Global English Hits')}
-                </h2>
-                <span className="text-xs px-2 py-0.5 rounded-full bg-white/10 text-white font-medium ml-1">
-                  English
-                </span>
+          {/* SECTION: GLOBAL HITS */}
+          <section className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight">
+                  Global Pop & Hip-Hop
+                </h3>
+                <p className="text-xs text-[#9ca3af]">Taylor Swift, The Weeknd, Kendrick Lamar & Sabrina Carpenter</p>
               </div>
               <button 
                 onClick={() => setSelectedMusicLanguage('English')}
-                className="text-xs font-bold text-[#b3b3b3] hover:underline hover:text-white cursor-pointer"
+                className="text-xs font-bold text-[#1ed760] hover:underline flex items-center gap-1"
               >
-                View all English ({englishSongs.length})
+                See all <ChevronRight className="w-3.5 h-3.5" />
               </button>
             </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-              {englishSongs.slice(0, 6).map((song) => renderSongCard(song, englishSongs))}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
+              {englishSongs.slice(0, 6).map(song => renderSongCard(song, englishSongs))}
             </div>
           </section>
 
-          {/* SECTION: Made For You (Playlists) */}
-          <section>
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-2xl font-bold text-white tracking-tight hover:underline cursor-pointer">
-                {t('Made For You')}
-              </h2>
-              <span 
-                onClick={() => navigate('library')}
-                className="text-xs font-bold text-[#b3b3b3] hover:underline cursor-pointer"
-              >
-                {t('Show all')}
-              </span>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-              {playlists.map((pl) => {
-                const isThisPlaylistPlaying = currentTrack && pl.songIds.includes(currentTrack.id) && isPlaying;
-                const plSongs = ALL_SONGS.filter(s => pl.songIds.includes(s.id));
-
-                return (
-                  <div
-                    key={pl.id}
-                    onClick={() => navigate('playlist', pl.id)}
-                    className="music-card group p-4 bg-[#181818] hover:bg-[#282828] rounded-lg cursor-pointer transition-all duration-300 flex flex-col relative"
-                  >
-                    <div className="relative mb-4 aspect-square w-full rounded-md overflow-hidden shadow-lg">
-                      <img 
-                        src={pl.coverArt} 
-                        alt={pl.title} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (isThisPlaylistPlaying) {
-                            togglePlay();
-                          } else if (plSongs.length > 0) {
-                            playTrack(plSongs[0], plSongs);
-                          }
-                        }}
-                        className={`absolute bottom-2 right-2 w-12 h-12 rounded-full bg-[#1ed760] text-black flex items-center justify-center shadow-spotify-green transition-all duration-200 ${
-                          isThisPlaylistPlaying 
-                            ? 'opacity-100 translate-y-0' 
-                            : 'opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 hover:scale-105'
-                        }`}
-                      >
-                        {isThisPlaylistPlaying ? (
-                          <Pause className="w-5 h-5 fill-black" />
-                        ) : (
-                          <Play className="w-5 h-5 fill-black translate-x-0.5" />
-                        )}
-                      </button>
-                    </div>
-
-                    <h3 className="font-bold text-sm text-white truncate mb-1">
-                      {pl.title}
-                    </h3>
-                    <p className="text-xs text-[#a7a7a7] line-clamp-2 leading-relaxed">
-                      {pl.description}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </section>
-
-          {/* SECTION: Featured Artists */}
-          <section className="pb-8">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-2xl font-bold text-white tracking-tight hover:underline cursor-pointer">
-                {t('Popular Artists')}
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-6 gap-4">
-              {ARTISTS_DATA.slice(0, 6).map((artist) => {
-                const artistSongs = ALL_SONGS.filter(s => s.artistId === artist.id);
-
-                return (
-                  <div
-                    key={artist.id}
-                    onClick={() => navigate('artist', artist.id)}
-                    className="music-card group p-4 bg-[#181818] hover:bg-[#282828] rounded-lg cursor-pointer transition-all duration-300 flex flex-col relative"
-                  >
-                    <div className="relative mb-4 aspect-square w-full rounded-full overflow-hidden shadow-xl">
-                      <img 
-                        src={artist.avatar} 
-                        alt={artist.name} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (artistSongs.length > 0) {
-                            playTrack(artistSongs[0], artistSongs);
-                          }
-                        }}
-                        className="absolute bottom-2 right-2 w-12 h-12 rounded-full bg-[#1ed760] text-black flex items-center justify-center shadow-spotify-green opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 hover:scale-105 transition-all duration-200"
-                      >
-                        <Play className="w-5 h-5 fill-black translate-x-0.5" />
-                      </button>
-                    </div>
-
-                    <h3 className="font-bold text-sm text-white truncate mb-1">
-                      {artist.name}
-                    </h3>
-                    <p className="text-xs text-[#a7a7a7]">
-                      {t('Artists')}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </section>
         </>
       )}
+        </div>
+
+        <aside className="playmusic-home-rail" aria-label="Your music dashboard">
+          <section className="dashboard-panel mood-panel">
+            <div className="dashboard-panel-heading">
+              <h2>Your Mood</h2>
+              <p>Pick a vibe, find your next favorite.</p>
+            </div>
+            <div className="mood-grid">
+              {moodOptions.map(({ id, label, icon: Icon, color }) => (
+                <button
+                  key={id}
+                  type="button"
+                  onClick={() => setActiveMood(id)}
+                  className={`mood-chip ${activeMood === id ? 'is-active' : ''}`}
+                  style={{ '--mood-color': color }}
+                  aria-pressed={activeMood === id}
+                >
+                  <span className="mood-chip-icon"><Icon size={17} /></span>
+                  <span>{label}</span>
+                </button>
+              ))}
+            </div>
+            {activeMood !== 'all' && (
+              <button
+                type="button"
+                className="mood-recommendation"
+                onClick={() => {
+                  const moodSongs = getSongsByMood(activeMood);
+                  if (moodSongs.length) playTrack(moodSongs[0], moodSongs);
+                }}
+              >
+                <span>Play your {moodOptions.find(mood => mood.id === activeMood)?.label.toLowerCase()} mix</span>
+                <Play size={14} fill="currentColor" />
+              </button>
+            )}
+          </section>
+
+          <section className="dashboard-panel recent-panel">
+            <div className="dashboard-panel-heading recent-heading">
+              <div>
+                <h2>Recently Played</h2>
+                <p>Your recent favorites, right here.</p>
+              </div>
+              <button
+                type="button"
+                className="dashboard-more"
+                onClick={() => navigate('library')}
+                aria-label="Open your library"
+                title="Open your library"
+              >
+                <MoreHorizontal size={18} />
+              </button>
+            </div>
+            <div className="recent-track-list">
+              {recentlyPlayed.slice(0, 5).map((song) => {
+                const isThisPlaying = currentTrack?.id === song.id && isPlaying;
+                return (
+                  <button
+                    key={song.id}
+                    type="button"
+                    className={`recent-track ${isThisPlaying ? 'is-playing' : ''}`}
+                    onClick={() => playTrack(song, recentlyPlayed)}
+                  >
+                    <img src={song.coverArt} alt="" loading="lazy" />
+                    <span className="recent-track-copy">
+                      <span className="recent-track-title">{song.title}</span>
+                      <span className="recent-track-artist">{song.artist}</span>
+                    </span>
+                    {isThisPlaying ? (
+                      <span className="recent-playing-bars" aria-label="Now playing"><i /><i /><i /></span>
+                    ) : (
+                      <Play className="recent-track-play" size={14} fill="currentColor" />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </section>
+
+        </aside>
+      </div>
     </div>
   );
 }

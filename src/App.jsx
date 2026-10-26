@@ -1,14 +1,14 @@
 import React from 'react';
 import { MusicProvider } from './context/MusicContext';
-import { BookingProvider } from './context/BookingContext';
+import { AccountProvider } from './context/AccountContext';
 import SpotifyLayout from './components/SpotifyLayout';
 
 export default function App() {
   return (
-    <BookingProvider>
+    <AccountProvider>
       <MusicProvider>
         <SpotifyLayout />
       </MusicProvider>
-    </BookingProvider>
+    </AccountProvider>
   );
 }

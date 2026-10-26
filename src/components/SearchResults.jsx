@@ -7,8 +7,18 @@ export default function SearchResults({
   matchedSongs,
   matchedArtists,
   matchedPlaylists,
+  isLoading,
 }) {
   const { t } = useMusic();
+
+  if (isLoading) {
+    return (
+      <div className="text-center py-20 flex flex-col items-center justify-center gap-3">
+        <div className="w-8 h-8 border-2 border-[#1ed760] border-t-transparent rounded-full animate-spin"></div>
+        <p className="text-sm text-[#a7a7a7]">Searching original songs...</p>
+      </div>
+    );
+  }
 
   if (matchedSongs.length === 0 && matchedArtists.length === 0) {
     return (

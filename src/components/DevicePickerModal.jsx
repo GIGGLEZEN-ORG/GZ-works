@@ -22,8 +22,8 @@ export default function DevicePickerModal() {
   if (!isDeviceModalOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm select-none p-4">
-      <div className="bg-[#282828] w-full max-w-md rounded-xl p-6 shadow-2xl border border-white/5 space-y-5 animate-in fade-in zoom-in-95">
+    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/70 backdrop-blur-sm select-none p-4 sm:items-center">
+      <div className="my-auto max-h-[calc(100dvh-2rem)] w-full max-w-md overflow-y-auto rounded-xl border border-white/5 bg-[#282828] p-6 shadow-2xl space-y-5 animate-in fade-in zoom-in-95">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Speaker className="w-5 h-5 text-[#1ed760]" />

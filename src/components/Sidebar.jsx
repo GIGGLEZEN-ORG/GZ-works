@@ -1,203 +1,145 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { 
   Home, 
-  Search, 
   Library, 
   Plus, 
   Heart, 
-  Bookmark, 
-  ArrowRight, 
-  FolderPlus,
   Compass,
-  ListMusic,
-  Check
+  Music2,
 } from 'lucide-react';
 import { useMusic } from '../context/MusicContext';
 
 export default function Sidebar() {
   const { 
     currentView, 
-    currentViewData,
     navigate, 
     playlists, 
-    likedTrackIds, 
     setIsCreatePlaylistOpen,
-    activePlaylistId,
+    setSelectedMusicLanguage,
     t
   } = useMusic();
 
-  const [libraryFilter, setLibraryFilter] = useState('all'); // 'all' | 'playlists' | 'artists'
-  const [librarySearch, setLibrarySearch] = useState('');
-
-  const filteredPlaylists = playlists.filter(pl => 
-    pl.title.toLowerCase().includes(librarySearch.toLowerCase())
-  );
-
   return (
-    <aside className="w-72 lg:w-80 flex-shrink-0 flex flex-col gap-2 h-full select-none">
-      {/* Top Nav Box */}
-      <div className="bg-[#121212] rounded-lg p-5 flex flex-col gap-5">
-        {/* playmusic Logo */}
-        <div 
-          onClick={() => navigate('home')}
-          className="flex items-center gap-2 text-white font-bold text-xl cursor-pointer tracking-tight hover:opacity-90 transition-opacity"
+    <aside className="playmusic-sidebar flex-shrink-0 flex flex-col gap-3 h-full select-none">
+      {/* Brand & Main Nav */}
+      <div className="playmusic-sidebar-card glass-panel rounded-2xl p-4 flex flex-col gap-4 border border-white/[0.08] shadow-xl">
+        {/* App Logo */}
+        <button
+          type="button"
+          onClick={() => {
+            setSelectedMusicLanguage('All');
+            navigate('home');
+          }}
+          className="playmusic-brand flex items-center gap-3 cursor-pointer group px-2 py-1 text-left"
+          aria-label="PlayMusic home, show all languages"
+          title="Go to Home and show all languages"
         >
-          <img
-            src="/playmusic-logo.png"
-            alt=""
-            className="w-8 h-8 rounded-md object-cover"
-          />
-          <span className="text-xl font-bold tracking-tight">playmusic</span>
-        </div>
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#1ed760] via-[#2cd86b] to-[#38ef7d] flex items-center justify-center shadow-[0_0_15px_rgba(30,215,96,0.35)] group-hover:scale-105 transition-transform duration-300">
+            <Music2 className="w-5 h-5 text-black" />
+          </div>
+          <div className="flex flex-col">
+            <span className="font-extrabold text-lg tracking-tight bg-gradient-to-r from-white via-white to-white/70 bg-clip-text text-transparent">
+              PlayMusic
+            </span>
+            <span className="text-[10px] font-medium text-[#9ca3af] -mt-1 tracking-wider uppercase">
+              Music for Everyone
+            </span>
+          </div>
+        </button>
 
         {/* Primary Links */}
-        <nav className="flex flex-col gap-4 text-sm font-semibold">
+        <nav className="flex flex-col gap-1 text-sm font-semibold">
           <button 
             onClick={() => navigate('home')}
-            className={`music-control flex items-center gap-4 transition-colors duration-200 text-left ${
-              currentView === 'home' ? 'text-white' : 'text-[#b3b3b3] hover:text-white'
+            className={`playmusic-nav-link flex items-center gap-3.5 px-3 py-1 rounded-xl transition-all duration-200 text-left ${
+              currentView === 'home' 
+                ? 'bg-white/10 text-white shadow-sm ring-1 ring-white/15' 
+                : 'text-[#9ca3af] hover:text-white hover:bg-white/5'
             }`}
           >
-            <Home className={`w-6 h-6 ${currentView === 'home' ? 'text-white' : ''}`} />
+            <Home className={`w-5 h-5 ${currentView === 'home' ? 'text-[#1ed760]' : ''}`} />
             <span>{t('Home')}</span>
           </button>
 
           <button 
             onClick={() => navigate('search')}
-            className={`music-control flex items-center gap-4 transition-colors duration-200 text-left ${
-              currentView === 'search' ? 'text-white' : 'text-[#b3b3b3] hover:text-white'
+            className={`playmusic-nav-link flex items-center gap-3.5 px-3 py-1 rounded-xl transition-all duration-200 text-left ${
+              currentView === 'search' 
+                ? 'bg-white/10 text-white shadow-sm ring-1 ring-white/15' 
+                : 'text-[#9ca3af] hover:text-white hover:bg-white/5'
             }`}
           >
-            <Search className={`w-6 h-6 ${currentView === 'search' ? 'text-white' : ''}`} />
-            <span>{t('Search')}</span>
+            <Compass className={`w-5 h-5 ${currentView === 'search' ? 'text-[#1ed760]' : ''}`} />
+            <span>{t('Discover')}</span>
           </button>
-        </nav>
-      </div>
 
-      {/* Library Box */}
-      <div className="bg-[#121212] rounded-lg p-3 flex-1 flex flex-col min-h-0 overflow-hidden">
-        {/* Library Header */}
-        <div className="flex items-center justify-between px-3 py-2 text-[#b3b3b3]">
           <button 
             onClick={() => navigate('library')}
-            className={`flex items-center gap-3 transition-colors hover:text-white font-semibold text-sm ${
-              currentView === 'library' ? 'text-white' : ''
+            className={`playmusic-nav-link flex items-center gap-3.5 px-3 py-1 rounded-xl transition-all duration-200 text-left ${
+              currentView === 'library' 
+                ? 'bg-white/10 text-white shadow-sm ring-1 ring-white/15' 
+                : 'text-[#9ca3af] hover:text-white hover:bg-white/5'
             }`}
           >
-            <Library className="w-6 h-6" />
+            <Library className={`w-5 h-5 ${currentView === 'library' ? 'text-[#1ed760]' : ''}`} />
             <span>{t('Your Library')}</span>
           </button>
 
           <button 
-            onClick={() => setIsCreatePlaylistOpen(true)}
-            title="Create playlist or folder"
-            className="music-control p-1.5 hover:bg-[#282828] hover:text-white rounded-full transition-all text-[#b3b3b3]"
-          >
-            <Plus className="w-5 h-5" />
-          </button>
-        </div>
-
-        {/* Filter Pills */}
-        <div className="flex items-center gap-2 px-3 py-2">
-          <button 
-            onClick={() => setLibraryFilter('all')}
-            className={`px-3 py-1 rounded-full text-xs font-semibold transition-all ${
-              libraryFilter === 'all' 
-                ? 'bg-white text-black' 
-                : 'bg-[#232323] text-white hover:bg-[#2a2a2a]'
-            }`}
-          >
-            {t('Playlists')}
-          </button>
-          <button 
-            onClick={() => navigate('search')}
-            className="px-3 py-1 rounded-full text-xs font-semibold bg-[#232323] text-white hover:bg-[#2a2a2a] transition-all"
-          >
-            {t('Artists')}
-          </button>
-        </div>
-
-        {/* Library Search input */}
-        <div className="px-3 py-1.5">
-          <div className="relative">
-            <Search className="w-3.5 h-3.5 text-[#a7a7a7] absolute left-2.5 top-1/2 -translate-y-1/2" />
-            <input 
-              type="text"
-              value={librarySearch}
-              onChange={(e) => setLibrarySearch(e.target.value)}
-              placeholder={t('Search in Your Library')}
-              className="w-full bg-[#242424] text-xs text-white pl-8 pr-3 py-1.5 rounded-full placeholder-[#727272] focus:outline-none focus:ring-1 focus:ring-white/20 transition-all"
-            />
-          </div>
-        </div>
-
-        {/* Playlists & Liked Songs Scroll List */}
-        <div className="flex-1 overflow-y-auto px-1 mt-1 space-y-0.5">
-          {/* Liked Songs Special Item */}
-          <div 
             onClick={() => navigate('liked')}
-            className={`music-card flex items-center gap-3 p-2 rounded-md cursor-pointer transition-colors group ${
-              currentView === 'liked' ? 'bg-[#282828]' : 'hover:bg-[#1a1a1a]'
+            className={`playmusic-nav-link flex items-center gap-3.5 px-3 py-1 rounded-xl transition-all duration-200 text-left ${
+              currentView === 'liked' 
+                ? 'bg-white/10 text-white shadow-sm ring-1 ring-white/15' 
+                : 'text-[#9ca3af] hover:text-white hover:bg-white/5'
             }`}
           >
-            <div className="w-12 h-12 rounded bg-gradient-to-br from-indigo-700 via-purple-700 to-emerald-400 flex items-center justify-center flex-shrink-0 shadow-md">
-              <Heart className="w-5 h-5 fill-white text-white" />
+            <div className="w-5 h-5 rounded-md bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+              <Heart className="w-3 h-3 text-white fill-current" />
             </div>
-            <div className="flex flex-col min-w-0">
-              <span className={`text-sm font-semibold truncate ${
-                currentView === 'liked' ? 'text-[#1ed760]' : 'text-white'
-              }`}>
-                {t('Liked Songs')}
-              </span>
-              <div className="flex items-center gap-1.5 text-xs text-[#a7a7a7]">
-                <span className="text-[#1ed760]">📌</span>
-                <span>Playlist • {likedTrackIds.length} {t('songs')}</span>
-              </div>
-            </div>
-          </div>
+            <span>{t('Liked Songs')}</span>
+          </button>
+        </nav>
 
-          {/* User & Default Playlists */}
-          {filteredPlaylists.map((pl) => {
-            const isSelected = currentView === 'playlist' && currentViewData === pl.id;
+      </div>
 
-            return (
-              <div 
-                key={pl.id}
-                onClick={() => navigate('playlist', pl.id)}
-                className={`music-card flex items-center gap-3 p-2 rounded-md cursor-pointer transition-colors group ${
-                  isSelected ? 'bg-[#282828]' : 'hover:bg-[#1a1a1a]'
-                }`}
-              >
-                <img 
-                  src={pl.coverArt} 
-                  alt={pl.title}
-                  className="w-12 h-12 rounded object-cover flex-shrink-0 shadow-sm"
-                />
-                <div className="flex flex-col min-w-0">
-                  <span className={`text-sm font-semibold truncate ${
-                    isSelected ? 'text-[#1ed760]' : 'text-white group-hover:text-white'
-                  }`}>
-                    {pl.title}
-                  </span>
-                  <span className="text-xs text-[#a7a7a7] truncate">
-                    Playlist • {pl.owner || 'playmusic'}
-                  </span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Bottom CTA for Quick Playlist Create */}
-        <div className="p-3 bg-[#1e1e1e]/60 rounded-lg mt-2 text-xs flex flex-col gap-2">
-          <p className="font-semibold text-white">{t('Create your first playlist')}</p>
-          <p className="text-[#a7a7a7]">{t("It's easy, we'll help you")}</p>
+      {/* Playlists Box */}
+      <div className="playmusic-playlist-panel glass-panel rounded-2xl p-3.5 flex-1 flex flex-col min-h-0 overflow-hidden border border-white/[0.08] shadow-xl">
+        <div className="flex items-center justify-between px-2 py-1 mb-2">
+          <span className="text-xs font-bold text-[#9ca3af] uppercase tracking-wider">
+            Playlists
+          </span>
           <button 
             onClick={() => setIsCreatePlaylistOpen(true)}
-            className="w-fit bg-white text-black font-bold px-4 py-1.5 rounded-full hover:scale-105 transition-transform text-xs"
+            className="p-1 rounded-lg hover:bg-white/10 text-[#9ca3af] hover:text-white transition-colors"
+            title="Create playlist"
           >
-            {t('Create playlist')}
+            <Plus className="w-4 h-4" />
           </button>
+        </div>
+
+        {/* Playlist Scroll Area */}
+        <div className="flex-1 overflow-y-auto space-y-1 pr-1 custom-scrollbar">
+          {playlists.map(pl => (
+            <div
+              key={pl.id}
+              onClick={() => navigate('playlist', pl.id)}
+              className="playmusic-playlist-link group flex items-center gap-3 p-2 rounded-xl cursor-pointer transition-all hover:bg-white/10"
+            >
+              <img 
+                src={pl.coverArt} 
+                alt={pl.title}
+                className="w-10 h-10 rounded-lg object-cover flex-shrink-0 shadow-sm border border-white/5 group-hover:scale-105 transition-transform"
+              />
+              <div className="flex flex-col min-w-0">
+                <span className="text-xs font-semibold text-white group-hover:text-[#1ed760] transition-colors truncate">
+                  {pl.title}
+                </span>
+                <span className="text-[11px] text-[#9ca3af] truncate">
+                  Playlist • {pl.songIds?.length || 0} songs
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </aside>

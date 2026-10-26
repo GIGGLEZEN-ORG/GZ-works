@@ -18,7 +18,7 @@ export default function QueueDrawer() {
   const upNextTracks = currentQueue.slice(queueIndex + 1);
 
   return (
-    <div className="w-80 lg:w-96 flex-shrink-0 bg-[#121212] border-l border-[#282828] h-full flex flex-col z-30 select-none animate-in slide-in-from-right duration-200">
+    <div className="playmusic-queue absolute right-2 top-2 bottom-2 z-30 flex w-80 max-w-[calc(100%-1rem)] flex-col select-none animate-in slide-in-from-right duration-200 lg:relative lg:inset-auto lg:h-full lg:w-96 lg:max-w-none lg:flex-shrink-0">
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-white/5">
         <h2 className="text-base font-bold text-white tracking-tight">
